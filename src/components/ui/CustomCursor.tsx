@@ -42,11 +42,11 @@ export default function CustomCursor() {
           ringRef.current.style.width = isHovered ? "54px" : "34px";
           ringRef.current.style.height = isHovered ? "54px" : "34px";
           ringRef.current.style.backgroundColor = isHovered
-            ? "rgba(0, 245, 212, 0.12)"
+            ? "rgba(255, 87, 34, 0.12)"
             : "transparent";
           ringRef.current.style.borderColor = isHovered
-            ? "rgba(0, 245, 212, 0.9)"
-            : "rgba(0, 245, 212, 0.38)";
+            ? "rgba(255, 87, 34, 0.9)"
+            : "rgba(255, 87, 34, 0.4)";
         }
       }
     };
@@ -77,12 +77,12 @@ export default function CustomCursor() {
     <>
       <div
         ref={dotRef}
-        className="pointer-events-none fixed top-0 left-0 z-[999] h-2 w-2 rounded-full bg-[#00F5D4] opacity-0 will-change-transform"
+        className="pointer-events-none fixed top-0 left-0 z-[999] h-2 w-2 rounded-full bg-[#FF5722] opacity-0 will-change-transform"
       />
       <div
         ref={ringRef}
         style={{ width: 34, height: 34 }}
-        className="pointer-events-none fixed top-0 left-0 z-[998] rounded-full border border-[#00F5D4]/40 opacity-0 transition-[width,height,background-color,border-color] duration-150 ease-out will-change-transform"
+        className="pointer-events-none fixed top-0 left-0 z-[998] rounded-full border border-[#FF5722]/40 opacity-0 transition-[width,height,background-color,border-color] duration-150 ease-out will-change-transform"
       />
     </>
   );

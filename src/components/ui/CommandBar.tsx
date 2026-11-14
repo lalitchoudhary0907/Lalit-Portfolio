@@ -209,13 +209,13 @@ export default function CommandBar() {
       >
         <button
           onClick={() => setIsOpen(true)}
-          className="group flex items-center gap-3 rounded-full border border-white/15 bg-black/70 px-5 py-2.5 text-xs font-mono text-slate-300 shadow-[0_10px_30px_rgba(0,0,0,0.6)] backdrop-blur-xl transition-all duration-300 hover:border-[#00F5D4]/60 hover:bg-black/85 hover:shadow-[0_0_30px_rgba(0,245,212,0.25)]"
+          className="group flex items-center gap-3 rounded-full border border-white/[0.08] bg-[#181614]/90 px-5 py-2.5 text-xs font-mono text-[#9E9890] shadow-[0_10px_30px_rgba(0,0,0,0.6)] backdrop-blur-xl transition-all duration-300 hover:border-[#FF5722]/60 hover:bg-[#181614] hover:shadow-[0_0_30px_rgba(255,87,34,0.2)]"
         >
-          <span className="flex h-2 w-2 rounded-full bg-[#00F5D4] animate-pulse" />
-          <span className="text-white group-hover:text-[#00F5D4] transition-colors">
+          <span className="flex h-2 w-2 rounded-full bg-[#FF5722] animate-pulse" />
+          <span className="text-[#F5F3EF] group-hover:text-[#FF5722] transition-colors">
             Ask Lalit&apos;s AI Twin or Jump to Section
           </span>
-          <span className="flex items-center gap-1 rounded-md border border-white/20 bg-white/10 px-2 py-0.5 text-[10px] font-semibold text-slate-300 group-hover:border-[#00F5D4]/50 group-hover:text-[#00F5D4]">
+          <span className="flex items-center gap-1 rounded-md border border-white/10 bg-white/5 px-2 py-0.5 text-[10px] font-semibold text-[#9E9890] group-hover:border-[#FF5722]/50 group-hover:text-[#FF5722]">
             <Command className="h-3 w-3" />
             <span>K</span>
           </span>
@@ -238,27 +238,27 @@ export default function CommandBar() {
               exit={{ scale: 0.94, opacity: 0, y: 15 }}
               transition={{ duration: 0.25, ease: "easeOut" }}
               onClick={(e) => e.stopPropagation()}
-              className="glass-panel relative w-full max-w-2xl overflow-hidden rounded-3xl border border-white/20 bg-[#070913]/95 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9)]"
+              className="relative w-full max-w-2xl overflow-hidden rounded-3xl border border-white/[0.08] bg-[#181614] shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9)]"
             >
               {/* Header Search Bar */}
               <form
                 onSubmit={handleCustomQuery}
-                className="flex items-center border-b border-white/10 px-5 py-4"
+                className="flex items-center border-b border-white/[0.08] px-5 py-4"
               >
-                <Search className="h-5 w-5 shrink-0 text-[#00F5D4]" />
+                <Search className="h-5 w-5 shrink-0 text-[#FF5722]" />
                 <input
                   ref={inputRef}
                   type="text"
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                   placeholder="Ask Lalit's AI Concierge anything or type 'quant', 'projects', 'stack'..."
-                  className="w-full bg-transparent px-3 text-sm text-white placeholder-slate-400 focus:outline-none"
+                  className="w-full bg-transparent px-3 text-sm text-[#F5F3EF] placeholder-[#9E9890] focus:outline-none"
                 />
                 {query && (
                   <button
                     type="button"
                     onClick={() => setQuery("")}
-                    className="text-slate-400 hover:text-white"
+                    className="text-[#9E9890] hover:text-[#F5F3EF]"
                   >
                     <X className="h-4 w-4" />
                   </button>
@@ -266,15 +266,15 @@ export default function CommandBar() {
                 <button
                   type="button"
                   onClick={() => setIsOpen(false)}
-                  className="ml-2 rounded-lg border border-white/10 p-1.5 text-slate-400 hover:bg-white/10 hover:text-white"
+                  className="ml-2 rounded-lg border border-white/[0.08] p-1.5 text-[#9E9890] hover:bg-white/10 hover:text-[#F5F3EF]"
                 >
                   <X className="h-4 w-4" />
                 </button>
               </form>
 
               {/* Quick Navigation Jump Bar */}
-              <div className="border-b border-white/10 bg-white/[0.02] px-5 py-3">
-                <div className="text-[10px] font-mono uppercase tracking-wider text-slate-400 mb-2">
+              <div className="border-b border-white/[0.08] bg-white/[0.02] px-5 py-3">
+                <div className="text-[10px] font-mono uppercase tracking-wider text-[#9E9890] mb-2">
                   Instant Section Telemetry
                 </div>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
@@ -284,9 +284,9 @@ export default function CommandBar() {
                       <button
                         key={target.href}
                         onClick={() => handleNavigate(target.href)}
-                        className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-2.5 py-1.5 text-left text-xs font-mono text-slate-300 hover:border-[#00F5D4]/50 hover:bg-[#00F5D4]/10 hover:text-[#00F5D4] transition-all"
+                        className="flex items-center gap-2 rounded-xl border border-white/[0.08] bg-white/5 px-2.5 py-1.5 text-left text-xs font-mono text-[#9E9890] hover:border-[#FF5722]/50 hover:bg-[#FF5722]/10 hover:text-[#FF5722] transition-all"
                       >
-                        <IconComp className="h-3.5 w-3.5 shrink-0 text-[#00F5D4]" />
+                        <IconComp className="h-3.5 w-3.5 shrink-0 text-[#FF5722]" />
                         <span className="truncate">{target.label}</span>
                       </button>
                     );
@@ -296,30 +296,30 @@ export default function CommandBar() {
 
               {/* AI Concierge Response Area */}
               <div className="p-5 space-y-4 max-h-[380px] overflow-y-auto">
-                <div className="flex items-center justify-between text-xs font-mono text-slate-400">
-                  <span className="inline-flex items-center gap-1.5 text-[#00F5D4]">
+                <div className="flex items-center justify-between text-xs font-mono text-[#9E9890]">
+                  <span className="inline-flex items-center gap-1.5 text-[#FF5722]">
                     <Sparkles className="h-3.5 w-3.5" />
                     <span>LALIT&apos;S AI CONCIERGE (AUTONOMOUS AGENT)</span>
                   </span>
                   {isTyping && (
-                    <span className="text-[10px] text-slate-500 animate-pulse">
+                    <span className="text-[10px] text-[#9E9890] animate-pulse">
                       STREAMING TELEMETRY...
                     </span>
                   )}
                 </div>
 
                 {/* AI Dialogue Box */}
-                <div className="rounded-2xl border border-white/10 bg-black/50 p-4 sm:p-5 backdrop-blur-md">
-                  <p className="text-sm sm:text-base leading-relaxed text-slate-200">
+                <div className="rounded-2xl border border-white/[0.08] bg-[#121110] p-4 sm:p-5 backdrop-blur-md">
+                  <p className="text-sm sm:text-base leading-relaxed text-[#F5F3EF]">
                     {streamedText}
                     {isTyping && (
-                      <span className="inline-block h-4 w-1.5 translate-y-0.5 bg-[#00F5D4] animate-pulse ml-1" />
+                      <span className="inline-block h-4 w-1.5 translate-y-0.5 bg-[#FF5722] animate-pulse ml-1" />
                     )}
                   </p>
 
                   {/* Contextual Action Buttons */}
                   {activeAnswer?.actions && activeAnswer.actions.length > 0 && (
-                    <div className="mt-4 flex flex-wrap gap-2.5 pt-3 border-t border-white/10">
+                    <div className="mt-4 flex flex-wrap gap-2.5 pt-3 border-t border-white/[0.08]">
                       {activeAnswer.actions.map((act, i) => (
                         <a
                           key={i}
@@ -329,7 +329,7 @@ export default function CommandBar() {
                           onClick={() => {
                             if (!act.isExternal) handleNavigate(act.href);
                           }}
-                          className="flex items-center gap-1.5 rounded-full border border-[#00F5D4]/30 bg-[#00F5D4]/10 px-3 py-1.5 text-xs font-mono font-medium text-[#00F5D4] hover:bg-[#00F5D4] hover:text-slate-950 transition-all"
+                          className="flex items-center gap-1.5 rounded-full border border-[#FF5722]/30 bg-[#FF5722]/10 px-3 py-1.5 text-xs font-mono font-medium text-[#FF5722] hover:bg-[#FF5722] hover:text-[#121110] transition-all"
                         >
                           <span>{act.label}</span>
                           <ArrowUpRight className="h-3 w-3" />
@@ -341,7 +341,7 @@ export default function CommandBar() {
 
                 {/* Quick Prompt Chips */}
                 <div>
-                  <div className="text-[10px] font-mono uppercase tracking-wider text-slate-400 mb-2">
+                  <div className="text-[10px] font-mono uppercase tracking-wider text-[#9E9890] mb-2">
                     Quick Judge Prompts
                   </div>
                   <div className="flex flex-wrap gap-2">
@@ -349,9 +349,9 @@ export default function CommandBar() {
                       <button
                         key={chip.id}
                         onClick={() => handleSelectPrompt(chip.id)}
-                        className="flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-mono text-slate-300 hover:border-[#F59E0B]/50 hover:bg-[#F59E0B]/10 hover:text-[#F59E0B] transition-all"
+                        className="flex items-center gap-1.5 rounded-full border border-white/[0.08] bg-white/5 px-3 py-1.5 text-xs font-mono text-[#9E9890] hover:border-[#FF5722]/50 hover:bg-[#FF5722]/10 hover:text-[#FF5722] transition-all"
                       >
-                        <Terminal className="h-3 w-3 text-[#F59E0B]" />
+                        <Terminal className="h-3 w-3 text-[#FF5722]" />
                         <span>{chip.label}</span>
                       </button>
                     ))}
@@ -360,7 +360,7 @@ export default function CommandBar() {
               </div>
 
               {/* Modal Footer Key Hints */}
-              <div className="flex items-center justify-between border-t border-white/10 bg-black/60 px-5 py-2.5 font-mono text-[11px] text-slate-500">
+              <div className="flex items-center justify-between border-t border-white/[0.08] bg-[#121110] px-5 py-2.5 font-mono text-[11px] text-[#9E9890]">
                 <span>PRESS ESC TO CLOSE</span>
                 <span>AUTONOMOUS AGENT ACTIVE</span>
               </div>

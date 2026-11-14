@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { Sparkles, Terminal, ArrowUpRight, Volume2, VolumeX } from "lucide-react";
+import { Terminal, ArrowUpRight, Volume2, VolumeX } from "lucide-react";
 
 export default function Navbar() {
   const [soundEnabled, setSoundEnabled] = useState(false);
@@ -128,25 +128,25 @@ export default function Navbar() {
       transition={{ duration: 0.7, ease: "easeOut" }}
       className="fixed top-5 left-0 right-0 z-50 mx-auto max-w-5xl px-4"
     >
-      <nav className="glass-panel flex items-center justify-between rounded-full px-5 py-3">
+      <nav className="flex items-center justify-between rounded-full bg-[#181614]/90 backdrop-blur-xl border border-white/[0.08] px-5 py-3 shadow-[0_4px_24px_rgba(0,0,0,0.5)]">
         {/* Brand Identity */}
         <a href="#" className="flex items-center gap-2.5 group">
-          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#00F5D4]/15 border border-[#00F5D4]/40 text-[#00F5D4] font-mono text-sm font-bold group-hover:bg-[#00F5D4] group-hover:text-black transition-all">
+          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-white/[0.05] border border-white/[0.08] text-[#F5F3EF] font-mono text-xs font-bold group-hover:border-[#FF5722] group-hover:text-[#FF5722] transition-all">
             LC
           </div>
           <div className="flex flex-col">
-            <span className="text-sm font-semibold tracking-tight text-white">
+            <span className="text-sm font-semibold tracking-tight text-[#F5F3EF]">
               Lalit Choudhary
             </span>
-            <span className="flex items-center gap-1.5 text-[10px] font-mono text-[#00F5D4]">
-              <span className="h-1.5 w-1.5 rounded-full bg-[#00F5D4] animate-pulse" />
+            <span className="flex items-center gap-1.5 text-[10px] font-mono text-[#9E9890]">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#FF5722]" />
               QUANT & FULL-STACK
             </span>
           </div>
         </a>
 
         {/* Navigation Links */}
-        <div className="hidden md:flex items-center gap-6 text-xs font-mono uppercase tracking-wider text-slate-300">
+        <div className="hidden md:flex items-center gap-6 text-xs font-mono uppercase tracking-wider text-[#9E9890]">
           <a href="#about" className="hover:text-[#FF5722] transition-colors">
             ABOUT
           </a>
@@ -159,11 +159,7 @@ export default function Navbar() {
           <a href="#journey" className="hover:text-[#FF5722] transition-colors">
             TIME JOURNEY
           </a>
-          <a
-            href="#credentials"
-            className="hover:text-[#F59E0B] transition-colors flex items-center gap-1"
-          >
-            <Sparkles className="h-3 w-3 text-[#F59E0B]" />
+          <a href="#credentials" className="hover:text-[#FF5722] transition-colors">
             VAULT
           </a>
           <a href="#contact" className="hover:text-[#FF5722] transition-colors">
@@ -179,8 +175,8 @@ export default function Navbar() {
             aria-label={soundEnabled ? "Mute UI Audio" : "Enable UI Audio"}
             className={`flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-mono transition-all ${
               soundEnabled
-                ? "border-[#00F5D4]/50 bg-[#00F5D4]/15 text-[#00F5D4] shadow-[0_0_15px_rgba(0,245,212,0.3)]"
-                : "border-white/10 bg-white/5 text-slate-400 hover:border-white/20 hover:text-white"
+                ? "border-[#FF5722]/50 bg-[#FF5722]/10 text-[#FF5722]"
+                : "border-white/[0.08] bg-white/[0.03] text-[#9E9890] hover:border-white/20 hover:text-[#F5F3EF]"
             }`}
           >
             {soundEnabled ? (
@@ -201,7 +197,7 @@ export default function Navbar() {
             href="https://focus-flow0907.vercel.app/"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1.5 rounded-full bg-[#00F5D4]/10 border border-[#00F5D4]/40 px-3.5 py-1.5 text-xs font-mono font-medium text-[#00F5D4] hover:bg-[#00F5D4] hover:text-slate-950 transition-all"
+            className="flex items-center gap-1.5 rounded-full bg-[#FF5722] px-3.5 py-1.5 text-xs font-mono font-bold text-[#121110] hover:bg-[#ff6838] transition-all"
           >
             <Terminal className="h-3.5 w-3.5" />
             <span className="hidden sm:inline">FocusFlow Live</span>

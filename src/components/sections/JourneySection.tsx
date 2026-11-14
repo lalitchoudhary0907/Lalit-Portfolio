@@ -24,7 +24,6 @@ interface Milestone {
   description: string;
   highlights: string[];
   tags: string[];
-  theme: "cyan" | "gold" | "indigo" | "emerald" | "purple" | "orange";
   badge: string;
   action?: {
     label: string;
@@ -50,7 +49,6 @@ const MILESTONES: Milestone[] = [
       "Validated performance across historical multi-asset market datasets",
     ],
     tags: ["Alpha Simulation", "Statistical Arbitrage", "Python", "Risk Control", "Quant Finance"],
-    theme: "gold",
     badge: "GOLD MEDALIST",
     action: {
       label: "Inspect Credential",
@@ -73,7 +71,6 @@ const MILESTONES: Milestone[] = [
       "Earned official verified event credential backed by MLH & DEV",
     ],
     tags: ["Open Source", "Git & GitHub", "Full-Stack Web", "Linux CLI", "Teamwork"],
-    theme: "orange",
     badge: "IN-PERSON HACKATHON",
     action: {
       label: "Inspect Credential",
@@ -96,7 +93,6 @@ const MILESTONES: Milestone[] = [
       "Deployed on Vercel Edge Network with sub-45ms global P99 latency",
     ],
     tags: ["Next.js 16", "TypeScript", "Tailwind CSS", "Framer Motion", "Vercel Edge"],
-    theme: "cyan",
     badge: "PRODUCTION APP",
     action: {
       label: "Launch FocusFlow Live",
@@ -120,7 +116,6 @@ const MILESTONES: Milestone[] = [
       "Active participant in collegiate hackathons, code jams, and tech symposiums",
     ],
     tags: ["Computer Science", "Artificial Intelligence", "Data Structures", "Algorithms", "Systems"],
-    theme: "emerald",
     badge: "B.TECH CS & AI",
     action: {
       label: "View Technical Arsenal",
@@ -143,7 +138,6 @@ const MILESTONES: Milestone[] = [
       "Bridged interactive frontend interfaces with streaming AI backends",
     ],
     tags: ["Gemini AI SDK", "Python", "Autonomous Agents", "Prompt Engineering", "REST APIs"],
-    theme: "purple",
     badge: "AI/ML SYSTEMS",
     action: {
       label: "Explore Tech Stack",
@@ -166,72 +160,19 @@ const MILESTONES: Milestone[] = [
       "Authored fluid UI components with Framer Motion and modern Tailwind CSS",
     ],
     tags: ["Three.js", "React Three Fiber", "TypeScript", "Tailwind CSS", "WebGL"],
-    theme: "cyan",
     badge: "CREATIVE WEBGL",
     action: {
-      label: "Inspect 3D Core",
+      label: "Inspect Lattice Network",
       href: "#about",
     },
     icon: Terminal,
   },
 ];
 
-const THEME_STYLES = {
-  gold: {
-    accent: "#F59E0B",
-    border: "border-[#F59E0B]/40 hover:border-[#F59E0B]/80",
-    bg: "bg-[#F59E0B]/10",
-    text: "text-[#F59E0B]",
-    glow: "rgba(245, 158, 11, 0.35)",
-    badgeBg: "bg-[#F59E0B]/20 text-[#F59E0B] border-[#F59E0B]/40",
-  },
-  orange: {
-    accent: "#FF5722",
-    border: "border-[#FF5722]/40 hover:border-[#FF5722]/80",
-    bg: "bg-[#FF5722]/10",
-    text: "text-[#FF5722]",
-    glow: "rgba(255, 87, 34, 0.4)",
-    badgeBg: "bg-[#FF5722]/20 text-[#FF5722] border-[#FF5722]/40",
-  },
-  cyan: {
-    accent: "#00F5D4",
-    border: "border-[#00F5D4]/40 hover:border-[#00F5D4]/80",
-    bg: "bg-[#00F5D4]/10",
-    text: "text-[#00F5D4]",
-    glow: "rgba(0, 245, 212, 0.35)",
-    badgeBg: "bg-[#00F5D4]/20 text-[#00F5D4] border-[#00F5D4]/40",
-  },
-  indigo: {
-    accent: "#6366F1",
-    border: "border-indigo-500/40 hover:border-indigo-400/80",
-    bg: "bg-indigo-500/10",
-    text: "text-indigo-400",
-    glow: "rgba(99, 102, 241, 0.35)",
-    badgeBg: "bg-indigo-500/20 text-indigo-300 border-indigo-500/40",
-  },
-  emerald: {
-    accent: "#10B981",
-    border: "border-emerald-500/40 hover:border-emerald-400/80",
-    bg: "bg-emerald-500/10",
-    text: "text-emerald-400",
-    glow: "rgba(168, 85, 247, 0.35)",
-    badgeBg: "bg-emerald-500/20 text-emerald-300 border-emerald-500/40",
-  },
-  purple: {
-    accent: "#A855F7",
-    border: "border-purple-500/40 hover:border-purple-400/80",
-    bg: "bg-purple-500/10",
-    text: "text-purple-400",
-    glow: "rgba(168, 85, 247, 0.35)",
-    badgeBg: "bg-purple-500/20 text-purple-300 border-purple-500/40",
-  },
-};
-
 export default function JourneySection() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const active = MILESTONES[activeIndex];
-  const theme = THEME_STYLES[active.theme];
   const IconComponent = active.icon;
 
   const handlePrev = () => {
@@ -245,32 +186,32 @@ export default function JourneySection() {
   return (
     <section
       id="journey"
-      className="relative z-10 mx-auto max-w-6xl px-6 py-28 border-t border-white/5 overflow-hidden"
+      className="relative z-10 mx-auto max-w-6xl px-6 py-28 border-t border-white/[0.08] overflow-hidden"
     >
       {/* SECTION HEADER & COUNTER CONTROLS */}
       <div className="flex items-center gap-3 font-mono text-xs uppercase tracking-widest text-[#FF5722] mb-6">
         <span>04 / TIME JOURNEY</span>
-        <div className="h-px flex-1 bg-white/10" />
+        <div className="h-px flex-1 bg-white/[0.08]" />
       </div>
 
       <div className="mb-14 flex flex-col sm:flex-row sm:items-end justify-between gap-6">
         <div>
-          <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-white leading-tight">
+          <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-[#F5F3EF] leading-tight">
             A path that keeps{" "}
             <span className="text-[#FF5722]">growing.</span>
           </h2>
-          <p className="mt-3 max-w-xl text-sm sm:text-base text-slate-400">
+          <p className="mt-3 max-w-xl text-sm sm:text-base text-[#9E9890]">
             From algorithmic foundations and hardware-accelerated 3D graphics to academic CS & AI rigor, WorldQuant Gold honors, and live hackathon deployments.
           </p>
         </div>
 
         {/* Counter and Navigation Controls */}
         <div className="flex items-center gap-4">
-          <div className="font-mono text-sm tracking-wider text-slate-400">
-            <span className="text-xl font-bold text-white">
+          <div className="font-mono text-sm tracking-wider text-[#9E9890]">
+            <span className="text-xl font-bold text-[#F5F3EF]">
               0{activeIndex + 1}
             </span>
-            <span className="text-slate-600"> / </span>
+            <span className="text-white/20"> / </span>
             <span>0{MILESTONES.length}</span>
           </div>
 
@@ -278,14 +219,14 @@ export default function JourneySection() {
             <button
               onClick={handlePrev}
               aria-label="Previous Milestone"
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/5 text-slate-300 hover:border-white/30 hover:bg-white/10 hover:text-white transition-all"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-white/[0.08] bg-[#181614] text-[#9E9890] hover:border-white/20 hover:text-[#F5F3EF] transition-all"
             >
               ←
             </button>
             <button
               onClick={handleNext}
               aria-label="Next Milestone"
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-[#FF5722]/40 bg-[#FF5722]/10 text-[#FF5722] hover:bg-[#FF5722] hover:text-white transition-all"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-[#FF5722]/40 bg-[#FF5722]/10 text-[#FF5722] hover:bg-[#FF5722] hover:text-[#121110] transition-all"
             >
               →
             </button>
@@ -319,51 +260,47 @@ export default function JourneySection() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -25 }}
             transition={{ duration: 0.45 }}
-            className="relative z-10 w-full max-w-3xl rounded-3xl bg-white/[0.03] backdrop-blur-2xl border border-white/15 p-7 sm:p-10 shadow-[0_12px_48px_0_rgba(0,0,0,0.5)]"
-            style={{
-              boxShadow: `0 16px 50px -15px ${theme.glow}`,
-            }}
+            className="relative z-10 w-full max-w-3xl rounded-3xl bg-[#181614] border border-white/[0.08] p-7 sm:p-10 shadow-[0_12px_48px_0_rgba(0,0,0,0.5)]"
           >
             {/* Top Bar: Badge & Period */}
-            <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-4">
+            <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/[0.08] pb-4">
               <span
-                className={`inline-flex items-center gap-1.5 rounded-full border px-3.5 py-1 font-mono text-xs font-bold tracking-wider uppercase ${theme.badgeBg}`}
+                className="inline-flex items-center gap-1.5 rounded-full border border-[#FF5722]/30 bg-[#FF5722]/10 px-3.5 py-1 font-mono text-xs font-bold tracking-wider uppercase text-[#FF5722]"
               >
                 <IconComponent className="h-3.5 w-3.5" />
                 <span>{active.badge}</span>
               </span>
 
-              <span className="flex items-center gap-1.5 font-mono text-xs text-slate-400">
-                <Calendar className="h-3.5 w-3.5 text-slate-500" />
+              <span className="flex items-center gap-1.5 font-mono text-xs text-[#9E9890]">
+                <Calendar className="h-3.5 w-3.5 text-[#9E9890]/60" />
                 <span>{active.period}</span>
               </span>
             </div>
 
             {/* Title & Category */}
             <div className="mt-6">
-              <div className="font-mono text-xs uppercase tracking-wider text-slate-400">
+              <div className="font-mono text-xs uppercase tracking-wider text-[#9E9890]">
                 {active.category}
               </div>
-              <h3 className="mt-2 text-2xl sm:text-3xl font-black tracking-tight text-white">
+              <h3 className="mt-2 text-2xl sm:text-3xl font-black tracking-tight text-[#F5F3EF]">
                 {active.title}
               </h3>
-              <p className="mt-1 font-mono text-xs sm:text-sm" style={{ color: theme.accent }}>
+              <p className="mt-1 font-mono text-xs sm:text-sm text-[#FF5722]">
                 {active.subtitle}
               </p>
             </div>
 
             {/* Description Narrative */}
-            <p className="mt-5 text-sm sm:text-base text-slate-300 leading-relaxed">
+            <p className="mt-5 text-sm sm:text-base text-[#9E9890] leading-relaxed">
               {active.description}
             </p>
 
             {/* Highlights with Checkmarks */}
-            <div className="mt-6 space-y-2.5 pt-4 border-t border-white/5">
+            <div className="mt-6 space-y-2.5 pt-4 border-t border-white/[0.06]">
               {active.highlights.map((highlight, idx) => (
-                <div key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-300">
+                <div key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-[#F5F3EF]">
                   <CheckCircle2
-                    className="h-4 w-4 shrink-0 mt-0.5"
-                    style={{ color: theme.accent }}
+                    className="h-4 w-4 shrink-0 mt-0.5 text-[#FF5722]"
                   />
                   <span>{highlight}</span>
                 </div>
@@ -371,12 +308,12 @@ export default function JourneySection() {
             </div>
 
             {/* Bottom Tech Tags & Action Button */}
-            <div className="mt-7 pt-4 border-t border-white/10 flex flex-wrap items-center justify-between gap-4">
+            <div className="mt-7 pt-4 border-t border-white/[0.08] flex flex-wrap items-center justify-between gap-4">
               <div className="flex flex-wrap gap-1.5">
                 {active.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="rounded-lg border border-white/10 bg-white/[0.04] px-2.5 py-1 font-mono text-[11px] text-slate-300"
+                    className="rounded-lg border border-white/[0.08] bg-white/[0.03] px-2.5 py-1 font-mono text-[11px] text-[#9E9890]"
                   >
                     {tag}
                   </span>
@@ -388,12 +325,7 @@ export default function JourneySection() {
                   href={active.action.href}
                   target={active.action.isExternal ? "_blank" : undefined}
                   rel={active.action.isExternal ? "noopener noreferrer" : undefined}
-                  className="flex items-center gap-1.5 rounded-full px-4 py-2 font-mono text-xs font-semibold transition-all"
-                  style={{
-                    backgroundColor: `${theme.accent}20`,
-                    color: theme.accent,
-                    border: `1px solid ${theme.accent}50`,
-                  }}
+                  className="flex items-center gap-1.5 rounded-full px-4 py-2 font-mono text-xs font-semibold bg-[#FF5722]/15 text-[#FF5722] border border-[#FF5722]/40 hover:bg-[#FF5722] hover:text-[#121110] transition-all"
                 >
                   <span>{active.action.label}</span>
                   <ArrowUpRight className="h-3.5 w-3.5" />
@@ -407,7 +339,7 @@ export default function JourneySection() {
       {/* HORIZONTAL INTERACTIVE TIMELINE SCRUBBER */}
       <div className="relative mt-14 pt-8">
         {/* Connecting track line */}
-        <div className="absolute top-1/2 left-4 right-4 h-0.5 -translate-y-1/2 bg-white/10" />
+        <div className="absolute top-1/2 left-4 right-4 h-0.5 -translate-y-1/2 bg-white/[0.08]" />
 
         {/* Milestone Node Dots */}
         <div className="relative z-10 flex items-center justify-between">
@@ -430,10 +362,10 @@ export default function JourneySection() {
                   className={`relative flex h-5 w-5 sm:h-6 sm:w-6 items-center justify-center rounded-full border-2 transition-all duration-300 ${
                     isActive
                       ? "border-[#FF5722] bg-[#FF5722] scale-125 shadow-[0_0_20px_#FF5722]"
-                      : "border-white/30 bg-[#050508] group-hover:border-white group-hover:scale-110"
+                      : "border-white/20 bg-[#121110] group-hover:border-white/50 group-hover:scale-110"
                   }`}
                 >
-                  {isActive && <div className="h-1.5 w-1.5 rounded-full bg-white" />}
+                  {isActive && <div className="h-1.5 w-1.5 rounded-full bg-[#121110]" />}
                 </div>
 
                 {/* Year Label */}
@@ -441,14 +373,14 @@ export default function JourneySection() {
                   className={`mt-3 font-mono text-[11px] sm:text-xs transition-colors ${
                     isActive
                       ? "font-bold text-[#FF5722]"
-                      : "text-slate-500 group-hover:text-slate-300"
+                      : "text-[#9E9890] group-hover:text-[#F5F3EF]"
                   }`}
                 >
                   {item.year}
                 </span>
 
                 {/* Subtitle / badge teaser */}
-                <span className="hidden md:block mt-0.5 font-mono text-[9px] text-slate-500 max-w-[90px] truncate text-center">
+                <span className="hidden md:block mt-0.5 font-mono text-[9px] text-[#9E9890]/60 max-w-[90px] truncate text-center">
                   {item.badge}
                 </span>
               </button>

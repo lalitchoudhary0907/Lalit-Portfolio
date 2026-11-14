@@ -16,25 +16,25 @@ export const PORTFOLIO_DATA = {
       label: "WorldQuant Challenge",
       value: "GOLD",
       subtext: "Top Quantitative Alpha Tier",
-      accent: "gold",
+      accent: "orange",
     },
     {
       label: "Flagship Production App",
       value: "FocusFlow",
       subtext: "Live on Vercel Edge Network",
-      accent: "cyan",
+      accent: "orange",
     },
     {
       label: "Open Source & Hackathons",
       value: "2026",
       subtext: "Hacktoberfest x MLH & DEV",
-      accent: "indigo",
+      accent: "orange",
     },
     {
       label: "Target Frame Rate",
       value: "60 FPS",
       subtext: "Hardware-Accelerated WebGL",
-      accent: "cyan",
+      accent: "orange",
     },
   ],
 
@@ -83,7 +83,7 @@ export const PORTFOLIO_DATA = {
       authorizedBy: "Nitish Maini, Chief Strategy Officer of WorldQuant",
       date: "2026",
       badgeText: "GOLD MEDALIST",
-      theme: "gold",
+      theme: "orange",
       description:
         "Awarded in recognition for reaching GOLD LEVEL in the WorldQuant Challenge through rigorous quantitative alpha formulation and backtesting.",
       certificateImage: "/assets/worldquant-gold.png",
@@ -95,7 +95,7 @@ export const PORTFOLIO_DATA = {
       authorizedBy: "Sonipat x Rishihood University (In-Person)",
       date: "October 31, 2026",
       badgeText: "OPEN SOURCE CONTRIBUTOR",
-      theme: "cyan",
+      theme: "orange",
       description:
         "Official Certificate of Attendance for participating in person at Hacktoberfest Hack Day Sonipat x Rishihood University, collaborating on open-source software.",
       certificateImage: "/assets/hacktoberfest-2026.png",

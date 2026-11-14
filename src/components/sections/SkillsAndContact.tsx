@@ -40,23 +40,23 @@ export default function SkillsAndContact() {
   };
 
   return (
-    <section id="contact" className="relative z-10 mx-auto max-w-6xl px-6 py-28 border-t border-white/5">
+    <section id="contact" className="relative z-10 mx-auto max-w-6xl px-6 py-28 border-t border-white/[0.08]">
       {/* ========================================================
           01. BENTO TECHNICAL ARSENAL
          ======================================================== */}
       <div id="skills" className="mb-28">
-        <div className="flex items-center gap-3 font-mono text-xs uppercase tracking-widest text-[#00F5D4] mb-4">
+        <div className="flex items-center gap-3 font-mono text-xs uppercase tracking-widest text-[#FF5722] mb-4">
           <Cpu className="h-4 w-4" />
-          <span>TECHNICAL ARSENAL</span>
-          <div className="h-px flex-1 bg-white/10" />
+          <span>06 / TECHNICAL ARSENAL</span>
+          <div className="h-px flex-1 bg-white/[0.08]" />
         </div>
 
-        <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-white leading-tight">
+        <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-[#F5F3EF] leading-tight">
           Full-Stack, 3D Web & <br className="hidden sm:inline" />
-          <span className="text-[#00F5D4]">Quant Stack.</span>
+          <span className="text-[#FF5722]">Quant Stack.</span>
         </h2>
 
-        <p className="mt-4 max-w-2xl text-sm sm:text-base text-slate-400">
+        <p className="mt-4 max-w-2xl text-sm sm:text-base text-[#9E9890]">
           Curated proficiencies bridging hardware-accelerated frontend engineering, autonomous AI agent tooling, and mathematical quantitative alpha research.
         </p>
 
@@ -73,28 +73,22 @@ export default function SkillsAndContact() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className={`relative overflow-hidden rounded-3xl p-7 transition-all duration-300 hover:-translate-y-1 ${
-                  isQuant ? "glass-panel-gold" : "glass-panel"
-                }`}
+                className="relative overflow-hidden rounded-3xl border border-white/[0.08] bg-[#181614] p-7 transition-all duration-300 hover:border-white/20 hover:-translate-y-1"
               >
                 <div className="flex items-center justify-between">
-                  <div
-                    className={`font-mono text-xs uppercase tracking-wider ${
-                      isQuant ? "text-[#F59E0B]" : "text-[#00F5D4]"
-                    }`}
-                  >
+                  <div className="font-mono text-xs uppercase tracking-wider text-[#FF5722]">
                     {`// 0${idx + 1}`}
                   </div>
                   {isQuant ? (
-                    <Sparkles className="h-4 w-4 text-[#F59E0B]" />
+                    <Sparkles className="h-4 w-4 text-[#FF5722]" />
                   ) : isFrontend ? (
-                    <Layers className="h-4 w-4 text-[#00F5D4]" />
+                    <Layers className="h-4 w-4 text-[#9E9890]" />
                   ) : (
-                    <Terminal className="h-4 w-4 text-indigo-400" />
+                    <Terminal className="h-4 w-4 text-[#9E9890]" />
                   )}
                 </div>
 
-                <h3 className="mt-4 text-xl font-bold text-white tracking-tight">
+                <h3 className="mt-4 text-xl font-bold text-[#F5F3EF] tracking-tight">
                   {group.category}
                 </h3>
 
@@ -102,11 +96,7 @@ export default function SkillsAndContact() {
                   {group.items.map((skill) => (
                     <span
                       key={skill}
-                      className={`rounded-xl border px-3 py-1.5 font-mono text-xs transition-all duration-200 ${
-                        isQuant
-                          ? "border-[#F59E0B]/20 bg-[#F59E0B]/5 text-amber-200 hover:border-[#F59E0B] hover:bg-[#F59E0B]/15"
-                          : "border-white/10 bg-white/[0.04] text-slate-200 hover:border-[#00F5D4]/60 hover:bg-[#00F5D4]/10 hover:text-[#00F5D4]"
-                      }`}
+                      className="rounded-xl border border-white/[0.08] bg-white/[0.03] px-3 py-1.5 font-mono text-xs text-[#F5F3EF] transition-all duration-200 hover:border-[#FF5722]/60 hover:bg-[#FF5722]/10 hover:text-[#FF5722]"
                     >
                       {skill}
                     </span>
@@ -119,19 +109,19 @@ export default function SkillsAndContact() {
       </div>
 
       {/* ========================================================
-          02. 05 / CONTACT — 'Let's connect.' MATCHING REFERENCE
+          02. 07 / CONTACT — 'Let's connect.' MATCHING REFERENCE
          ======================================================== */}
       <div>
         <div className="flex items-center gap-3 font-mono text-xs uppercase tracking-widest text-[#FF5722] mb-6">
-          <span>05 / CONTACT</span>
-          <div className="h-px flex-1 bg-white/10" />
+          <span>07 / CONTACT</span>
+          <div className="h-px flex-1 bg-white/[0.08]" />
         </div>
 
         <div className="mb-14">
-          <h2 className="text-4xl sm:text-6xl font-black tracking-tight text-white leading-tight">
+          <h2 className="text-4xl sm:text-6xl font-black tracking-tight text-[#F5F3EF] leading-tight">
             Let&apos;s <span className="text-[#FF5722]">connect.</span>
           </h2>
-          <p className="mt-4 max-w-xl text-base sm:text-lg text-slate-400 leading-relaxed">
+          <p className="mt-4 max-w-xl text-base sm:text-lg text-[#9E9890] leading-relaxed">
             I&apos;m always open to discussing new opportunities, quantitative alpha research, open-source projects, or high-performance frontend engineering.
           </p>
         </div>
@@ -145,31 +135,31 @@ export default function SkillsAndContact() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="group relative flex flex-col justify-between rounded-3xl bg-white/[0.03] backdrop-blur-xl border border-white/10 p-8 transition-all duration-300 hover:border-[#FF5722] hover:-translate-y-1 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)]"
+            className="group relative flex flex-col justify-between rounded-3xl bg-[#181614] border border-white/[0.08] p-8 transition-all duration-300 hover:border-[#FF5722] hover:-translate-y-1 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)]"
           >
             <div>
               <div className="flex items-center justify-between">
-                <span className="font-mono text-xs uppercase tracking-wider text-slate-400">
+                <span className="font-mono text-xs uppercase tracking-wider text-[#9E9890]">
                   DROP ME A LINE
                 </span>
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/5 border border-white/10 text-slate-300 group-hover:bg-[#FF5722] group-hover:text-white transition-all">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/5 border border-white/[0.08] text-[#F5F3EF] group-hover:bg-[#FF5722] group-hover:text-[#121110] transition-all">
                   <ArrowUpRight className="h-5 w-5" />
                 </div>
               </div>
 
               <div className="mt-8 flex items-center gap-3 text-[#FF5722]">
                 <Mail className="h-6 w-6" />
-                <span className="text-xl font-bold tracking-tight text-white">
+                <span className="text-xl font-bold tracking-tight text-[#F5F3EF]">
                   Email
                 </span>
               </div>
 
-              <p className="mt-3 font-mono text-xs text-slate-400 break-all">
+              <p className="mt-3 font-mono text-xs text-[#9E9890] break-all">
                 {PORTFOLIO_DATA.personal.email}
               </p>
             </div>
 
-            <div className="mt-8 pt-4 border-t border-white/5 font-mono text-xs text-[#FF5722] flex items-center gap-1 group-hover:underline">
+            <div className="mt-8 pt-4 border-t border-white/[0.06] font-mono text-xs text-[#FF5722] flex items-center gap-1 group-hover:underline">
               <span>Send message</span>
               <span>↗</span>
             </div>
@@ -184,31 +174,31 @@ export default function SkillsAndContact() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="group relative flex flex-col justify-between rounded-3xl bg-white/[0.03] backdrop-blur-xl border border-white/10 p-8 transition-all duration-300 hover:border-[#00F5D4] hover:-translate-y-1 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)]"
+            className="group relative flex flex-col justify-between rounded-3xl bg-[#181614] border border-white/[0.08] p-8 transition-all duration-300 hover:border-[#FF5722] hover:-translate-y-1 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)]"
           >
             <div>
               <div className="flex items-center justify-between">
-                <span className="font-mono text-xs uppercase tracking-wider text-slate-400">
+                <span className="font-mono text-xs uppercase tracking-wider text-[#9E9890]">
                   CODE & REPOSITORIES
                 </span>
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/5 border border-white/10 text-slate-300 group-hover:bg-[#00F5D4] group-hover:text-black transition-all">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/5 border border-white/[0.08] text-[#F5F3EF] group-hover:bg-[#FF5722] group-hover:text-[#121110] transition-all">
                   <ArrowUpRight className="h-5 w-5" />
                 </div>
               </div>
 
-              <div className="mt-8 flex items-center gap-3 text-[#00F5D4]">
+              <div className="mt-8 flex items-center gap-3 text-[#FF5722]">
                 <GitHubIcon className="h-6 w-6" />
-                <span className="text-xl font-bold tracking-tight text-white">
+                <span className="text-xl font-bold tracking-tight text-[#F5F3EF]">
                   GitHub
                 </span>
               </div>
 
-              <p className="mt-3 font-mono text-xs text-slate-400">
+              <p className="mt-3 font-mono text-xs text-[#9E9890]">
                 @lalit0907 • FocusFlow & Open Source
               </p>
             </div>
 
-            <div className="mt-8 pt-4 border-t border-white/5 font-mono text-xs text-[#00F5D4] flex items-center gap-1 group-hover:underline">
+            <div className="mt-8 pt-4 border-t border-white/[0.06] font-mono text-xs text-[#FF5722] flex items-center gap-1 group-hover:underline">
               <span>Follow on GitHub</span>
               <span>↗</span>
             </div>
@@ -223,31 +213,31 @@ export default function SkillsAndContact() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="group relative flex flex-col justify-between rounded-3xl bg-white/[0.03] backdrop-blur-xl border border-white/10 p-8 transition-all duration-300 hover:border-[#F59E0B] hover:-translate-y-1 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)]"
+            className="group relative flex flex-col justify-between rounded-3xl bg-[#181614] border border-white/[0.08] p-8 transition-all duration-300 hover:border-[#FF5722] hover:-translate-y-1 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)]"
           >
             <div>
               <div className="flex items-center justify-between">
-                <span className="font-mono text-xs uppercase tracking-wider text-slate-400">
+                <span className="font-mono text-xs uppercase tracking-wider text-[#9E9890]">
                   PROFESSIONAL NETWORK
                 </span>
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/5 border border-white/10 text-slate-300 group-hover:bg-[#F59E0B] group-hover:text-black transition-all">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/5 border border-white/[0.08] text-[#F5F3EF] group-hover:bg-[#FF5722] group-hover:text-[#121110] transition-all">
                   <ArrowUpRight className="h-5 w-5" />
                 </div>
               </div>
 
-              <div className="mt-8 flex items-center gap-3 text-[#F59E0B]">
+              <div className="mt-8 flex items-center gap-3 text-[#FF5722]">
                 <LinkedInIcon className="h-6 w-6" />
-                <span className="text-xl font-bold tracking-tight text-white">
+                <span className="text-xl font-bold tracking-tight text-[#F5F3EF]">
                   LinkedIn
                 </span>
               </div>
 
-              <p className="mt-3 font-mono text-xs text-slate-400">
+              <p className="mt-3 font-mono text-xs text-[#9E9890]">
                 Lalit Choudhary • BTech CS & AI
               </p>
             </div>
 
-            <div className="mt-8 pt-4 border-t border-white/5 font-mono text-xs text-[#F59E0B] flex items-center gap-1 group-hover:underline">
+            <div className="mt-8 pt-4 border-t border-white/[0.06] font-mono text-xs text-[#FF5722] flex items-center gap-1 group-hover:underline">
               <span>Connect on LinkedIn</span>
               <span>↗</span>
             </div>
@@ -255,7 +245,7 @@ export default function SkillsAndContact() {
         </div>
 
         {/* MINIMALIST FOOTER */}
-        <div className="mt-24 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs text-slate-500">
+        <div className="mt-24 pt-8 border-t border-white/[0.08] flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs text-[#9E9890]">
           <span>© 2026 LALIT CHOUDHARY • BUILT WITH CURIOSITY</span>
 
           <div className="flex items-center gap-6">
@@ -263,7 +253,7 @@ export default function SkillsAndContact() {
               href="https://focus-flow0907.vercel.app/"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-white transition-colors"
+              className="hover:text-[#F5F3EF] transition-colors"
             >
               FOCUSFLOW LIVE
             </a>
