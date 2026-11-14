@@ -47,7 +47,7 @@ export default function HomePage() {
          ======================================================== */}
       <section
         onMouseMove={handleMouseMove}
-        className="group relative z-10 flex min-h-screen w-full flex-col justify-between px-4 sm:px-8 pt-28 pb-12 overflow-hidden"
+        className="group relative z-10 flex min-h-[100svh] w-full flex-col justify-between px-4 sm:px-8 pt-36 sm:pt-44 pb-16 sm:pb-20 overflow-hidden"
       >
         {/* Dynamic Mouse-Tracking Spotlight Effect */}
         <motion.div
@@ -57,7 +57,7 @@ export default function HomePage() {
               radial-gradient(
                 750px circle at ${mouseX}px ${mouseY}px,
                 rgba(255, 87, 34, 0.12),
-                rgba(0, 245, 212, 0.08) 35%,
+                rgba(255, 255, 255, 0.04) 40%,
                 transparent 75%
               )
             `,
@@ -68,7 +68,7 @@ export default function HomePage() {
         <div className="pointer-events-none absolute inset-0 z-0 bg-[linear-gradient(to_right,#ffffff04_1px,transparent_1px),linear-gradient(to_bottom,#ffffff04_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_40%,#000_65%,transparent_100%)]" />
 
         {/* TOP STATUS BADGES */}
-        <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-wrap items-center justify-between gap-3 pt-4">
+        <div className="relative z-10 mx-auto mb-8 sm:mb-12 flex w-full max-w-6xl flex-wrap items-center justify-between gap-3">
           <motion.div
             initial={{ opacity: 0, y: -15 }}
             animate={{ opacity: 1, y: 0 }}
@@ -97,6 +97,9 @@ export default function HomePage() {
 
         {/* CENTERPIECE: GIANT 'LALIT' DISPLAY TYPOGRAPHY */}
         <div className="relative z-10 my-auto flex flex-col items-center justify-center text-center">
+          {/* Subtle Radial Dark Vignette behind center typography for 100% legibility */}
+          <div className="pointer-events-none absolute -inset-x-24 -inset-y-16 -z-10 rounded-full bg-[#050508]/85 blur-3xl" />
+
           <motion.div
             initial={{ opacity: 0, scale: 0.92 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -117,13 +120,13 @@ export default function HomePage() {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="mt-4 max-w-xl text-xs sm:text-sm font-mono uppercase tracking-[0.25em] text-slate-400"
+            className="mt-6 sm:mt-8 max-w-2xl text-xs sm:text-sm font-mono uppercase tracking-[0.25em] text-zinc-300 font-medium"
           >
-            Full-Stack Software Engineer • Quantitative Researcher • AI Architect
+            FULL-STACK SOFTWARE ENGINEER • QUANTITATIVE RESEARCHER • AI ARCHITECT
           </motion.p>
 
           {/* DUAL CONTINUOUS MARQUEE RIBBONS CROSSING THE HERO */}
-          <div className="relative my-8 w-screen max-w-none -mx-4 sm:-mx-8 overflow-hidden py-2 select-none">
+          <div className="relative my-10 sm:my-14 w-screen max-w-none -mx-4 sm:-mx-8 overflow-hidden py-2 select-none">
             {/* Upper Ribbon (Dark Slate Monochrome) */}
             <div className="flex w-full overflow-hidden border-y border-white/10 bg-black/60 py-2.5 backdrop-blur-md">
               <div className="animate-marquee flex items-center gap-6 whitespace-nowrap text-xs sm:text-sm font-mono tracking-widest text-slate-300 uppercase">
@@ -166,7 +169,7 @@ export default function HomePage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="flex flex-wrap items-center justify-center gap-4"
+            className="mt-2 sm:mt-4 mb-4 sm:mb-6 flex flex-wrap items-center justify-center gap-4"
           >
             <a
               href="https://focus-flow0907.vercel.app/"
@@ -189,7 +192,7 @@ export default function HomePage() {
         </div>
 
         {/* HERO BOTTOM METADATA BAR */}
-        <div className="relative z-10 mx-auto flex w-full max-w-6xl items-end justify-between border-t border-white/10 pt-4 font-mono text-[11px] text-slate-400">
+        <div className="relative z-10 mx-auto mt-12 sm:mt-16 flex w-full max-w-6xl items-end justify-between border-t border-white/10 pt-5 font-mono text-[11px] text-slate-400">
           <div className="max-w-xs text-left">
             <span className="text-white font-semibold">QUANT & FULL-STACK</span>
             <p className="text-slate-500">
@@ -198,8 +201,8 @@ export default function HomePage() {
           </div>
 
           <div className="hidden sm:flex items-center gap-2 text-slate-500">
-            <span className="h-2 w-2 rounded-full bg-[#00F5D4] animate-ping" />
-            <span>MOVE CURSOR TO EXPLORE 3D CORE</span>
+            <span className="h-2 w-2 rounded-full bg-[#FF5722] animate-ping" />
+            <span>MOVE CURSOR TO EXPLORE AMBIENT PARTICLES</span>
           </div>
 
           <a

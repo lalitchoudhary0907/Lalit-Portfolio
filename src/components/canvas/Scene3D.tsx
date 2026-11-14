@@ -1,19 +1,18 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useRef, useMemo, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Float, Sparkles } from "@react-three/drei";
 import * as THREE from "three";
 
-function QuantumCore() {
-  const groupRef = useRef<THREE.Group>(null);
-  const innerCoreRef = useRef<THREE.Mesh>(null);
-  const crystalShellRef = useRef<THREE.Mesh>(null);
-  const outerWireRef = useRef<THREE.Mesh>(null);
-  const cyanRingRef = useRef<THREE.Mesh>(null);
-  const goldRingRef = useRef<THREE.Mesh>(null);
+// Pure deterministic pseudo-random generator complying with React 19 render purity
+function seededRandom(seed: number) {
+  const x = Math.sin(seed * 12.9898 + 78.233) * 43758.5453;
+  return x - Math.floor(x);
+}
 
-  // Global mouse and scroll state (bypasses pointer-events-none)
+// Fine topological dot-matrix wave plane
+function DotMatrixWave() {
+  const pointsRef = useRef<THREE.Points>(null);
   const pointer = useRef({ x: 0, y: 0 });
   const scrollRatio = useRef(0);
 
@@ -37,116 +36,219 @@ function QuantumCore() {
     };
   }, []);
 
-  useFrame((_, delta) => {
+  // Generate 52x52 grid coordinates for the topological wave
+  const { positions, colors } = useMemo(() => {
+    const cols = 52;
+    const rows = 52;
+    const count = cols * rows;
+    const pos = new Float32Array(count * 3);
+    const col = new Float32Array(count * 3);
+
+    const spacing = 0.38;
+    const offsetX = (cols * spacing) / 2;
+    const offsetZ = (rows * spacing) / 2;
+
+    const orangeColor = new THREE.Color("#FF5722");
+    const whiteColor = new THREE.Color("#E4E4E7");
+    const dimColor = new THREE.Color("#27272A");
+
+    let idx = 0;
+    for (let i = 0; i < cols; i++) {
+      for (let j = 0; j < rows; j++) {
+        const x = i * spacing - offsetX;
+        const z = j * spacing - offsetZ;
+        const y = 0;
+
+        pos[idx * 3] = x;
+        pos[idx * 3 + 1] = y;
+        pos[idx * 3 + 2] = z;
+
+        // Radial distance from center determines particle color accent
+        const dist = Math.sqrt(x * x + z * z);
+        const rVal = seededRandom(idx + 1);
+        let pickedColor = dimColor;
+
+        if (dist < 4.5 && rVal > 0.65) {
+          pickedColor = orangeColor;
+        } else if (dist < 7.5 && rVal > 0.8) {
+          pickedColor = whiteColor;
+        }
+
+        col[idx * 3] = pickedColor.r;
+        col[idx * 3 + 1] = pickedColor.g;
+        col[idx * 3 + 2] = pickedColor.b;
+
+        idx++;
+      }
+    }
+
+    return { positions: pos, colors: col };
+  }, []);
+
+  useFrame((state, delta) => {
     const dt = Math.min(delta, 0.1);
-    const pX = pointer.current.x;
-    const pY = pointer.current.y;
-    const s = scrollRatio.current;
+    const t = state.clock.getElapsedTime();
 
-    // Frame-rate independent continuous rotations
-    if (innerCoreRef.current) {
-      innerCoreRef.current.rotation.x += dt * 0.45;
-      innerCoreRef.current.rotation.y += dt * 0.6;
-    }
-    if (crystalShellRef.current) {
-      crystalShellRef.current.rotation.x -= dt * 0.25;
-      crystalShellRef.current.rotation.z += dt * 0.3;
-    }
-    if (outerWireRef.current) {
-      outerWireRef.current.rotation.x -= dt * 0.15;
-      outerWireRef.current.rotation.y -= dt * 0.22;
-    }
-    if (cyanRingRef.current) {
-      cyanRingRef.current.rotation.z += dt * 0.45;
-    }
-    if (goldRingRef.current) {
-      goldRingRef.current.rotation.z -= dt * 0.35;
-    }
+    if (pointsRef.current) {
+      const geo = pointsRef.current.geometry;
+      const posAttr = geo.attributes.position;
+      const arr = posAttr.array as Float32Array;
 
-    // Silky frame-rate independent damping for mouse parallax + scroll orbit
-    if (groupRef.current) {
-      const targetX = pX * 0.55;
-      const targetY = 0.15 + pY * 0.4 - s * 0.8;
-      const targetRotX = -pY * 0.3 + s * 0.8;
-      const targetRotY = pX * 0.4 + s * Math.PI * 1.2;
+      const pX = pointer.current.x;
+      const pY = pointer.current.y;
+      const s = scrollRatio.current;
 
-      groupRef.current.position.x = THREE.MathUtils.damp(groupRef.current.position.x, targetX, 4.5, dt);
-      groupRef.current.position.y = THREE.MathUtils.damp(groupRef.current.position.y, targetY, 4.5, dt);
-      groupRef.current.rotation.x = THREE.MathUtils.damp(groupRef.current.rotation.x, targetRotX, 4.5, dt);
-      groupRef.current.rotation.y = THREE.MathUtils.damp(groupRef.current.rotation.y, targetRotY, 4.5, dt);
+      // Animate fine topological wave
+      for (let i = 0; i < arr.length / 3; i++) {
+        const x = arr[i * 3];
+        const z = arr[i * 3 + 2];
+        arr[i * 3 + 1] =
+          Math.sin(x * 0.45 + t * 0.85) * 0.22 +
+          Math.cos(z * 0.4 + t * 0.7) * 0.2 +
+          Math.sin((x + z) * 0.25 + t * 0.5) * 0.15;
+      }
+      posAttr.needsUpdate = true;
+
+      // Smooth cursor parallax and scroll damping
+      const targetRotX = 1.05 - pY * 0.15 + s * 0.3;
+      const targetRotY = pX * 0.18;
+      const targetY = -0.8 + pY * 0.2 - s * 1.2;
+
+      pointsRef.current.rotation.x = THREE.MathUtils.damp(
+        pointsRef.current.rotation.x,
+        targetRotX,
+        3.5,
+        dt
+      );
+      pointsRef.current.rotation.y = THREE.MathUtils.damp(
+        pointsRef.current.rotation.y,
+        targetRotY,
+        3.5,
+        dt
+      );
+      pointsRef.current.position.y = THREE.MathUtils.damp(
+        pointsRef.current.position.y,
+        targetY,
+        3.5,
+        dt
+      );
     }
   });
 
   return (
-    <group ref={groupRef} position={[0, 0.15, 0]}>
-      <Float speed={1.8} rotationIntensity={0.35} floatIntensity={0.85}>
-        {/* Inner Radiating Glowing Core Sphere */}
-        <mesh>
-          <sphereGeometry args={[0.42, 32, 32]} />
-          <meshStandardMaterial
-            color="#ffffff"
-            emissive="#00f5d4"
-            emissiveIntensity={3.2}
-            roughness={0.05}
-          />
-        </mesh>
+    <points ref={pointsRef} position={[0, -0.8, -1]} rotation={[1.05, 0, 0]}>
+      <bufferGeometry>
+        <bufferAttribute
+          attach="attributes-position"
+          args={[positions, 3]}
+        />
+        <bufferAttribute
+          attach="attributes-color"
+          args={[colors, 3]}
+        />
+      </bufferGeometry>
+      <pointsMaterial
+        size={0.045}
+        vertexColors
+        transparent
+        opacity={0.28}
+        sizeAttenuation
+        depthWrite={false}
+      />
+    </points>
+  );
+}
 
-        <pointLight position={[0, 0, 0]} intensity={3.5} color="#00f5d4" distance={3.5} />
+// Ambient floating ember dust particles
+function EmberDustField() {
+  const dustRef = useRef<THREE.Points>(null);
+  const pointer = useRef({ x: 0, y: 0 });
 
-        {/* Hyper-Luminous Liquid Glass Quantum Knot */}
-        <mesh ref={innerCoreRef} scale={0.95}>
-          <torusKnotGeometry args={[0.9, 0.26, 96, 24]} />
-          <meshPhysicalMaterial
-            color="#00f5d4"
-            emissive="#0d9488"
-            emissiveIntensity={1.8}
-            roughness={0.08}
-            metalness={0.92}
-            clearcoat={1}
-            clearcoatRoughness={0.08}
-            transmission={0.3}
-            thickness={1.0}
-            ior={1.6}
-          />
-        </mesh>
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      pointer.current.x = (e.clientX / window.innerWidth) * 2 - 1;
+      pointer.current.y = -(e.clientY / window.innerHeight) * 2 + 1;
+    };
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
 
-        {/* Mid Faceted Crystalline Octahedron */}
-        <mesh ref={crystalShellRef} scale={1.55}>
-          <octahedronGeometry args={[1, 0]} />
-          <meshStandardMaterial
-            color="#00f5d4"
-            wireframe
-            transparent
-            opacity={0.35}
-          />
-        </mesh>
+  const { positions, colors } = useMemo(() => {
+    const count = 380;
+    const pos = new Float32Array(count * 3);
+    const col = new Float32Array(count * 3);
 
-        {/* Outer Geodesic Containment Cage */}
-        <mesh ref={outerWireRef} scale={2.1}>
-          <icosahedronGeometry args={[1, 1]} />
-          <meshStandardMaterial
-            color="#6366f1"
-            emissive="#4f46e5"
-            emissiveIntensity={0.45}
-            wireframe
-            transparent
-            opacity={0.25}
-          />
-        </mesh>
+    const orange = new THREE.Color("#FF5722");
+    const white = new THREE.Color("#FFFFFF");
+    const warmAmber = new THREE.Color("#F59E0B");
 
-        {/* Gyroscopic Ring 1: Bioluminescent Cyan */}
-        <mesh ref={cyanRingRef} rotation={[Math.PI / 3, Math.PI / 6, 0]} scale={2.45}>
-          <torusGeometry args={[1, 0.012, 12, 90]} />
-          <meshBasicMaterial color="#00f5d4" transparent opacity={0.7} />
-        </mesh>
+    for (let i = 0; i < count; i++) {
+      const r1 = seededRandom(i * 3 + 1);
+      const r2 = seededRandom(i * 3 + 2);
+      const r3 = seededRandom(i * 3 + 3);
 
-        {/* Gyroscopic Ring 2: WorldQuant Gold */}
-        <mesh ref={goldRingRef} rotation={[-Math.PI / 4, -Math.PI / 5, 0]} scale={2.75}>
-          <torusGeometry args={[1, 0.012, 12, 90]} />
-          <meshBasicMaterial color="#f59e0b" transparent opacity={0.65} />
-        </mesh>
-      </Float>
-    </group>
+      pos[i * 3] = (r1 - 0.5) * 16;
+      pos[i * 3 + 1] = (r2 - 0.5) * 10;
+      pos[i * 3 + 2] = (r3 - 0.5) * 8;
+
+      const rand = seededRandom(i * 5 + 7);
+      const picked = rand > 0.65 ? orange : rand > 0.35 ? warmAmber : white;
+
+      col[i * 3] = picked.r;
+      col[i * 3 + 1] = picked.g;
+      col[i * 3 + 2] = picked.b;
+    }
+
+    return { positions: pos, colors: col };
+  }, []);
+
+  useFrame((state, delta) => {
+    const dt = Math.min(delta, 0.1);
+    const t = state.clock.getElapsedTime();
+
+    if (dustRef.current) {
+      dustRef.current.rotation.y = t * 0.02 + pointer.current.x * 0.08;
+      dustRef.current.rotation.x = t * 0.015 - pointer.current.y * 0.06;
+
+      const targetX = pointer.current.x * 0.4;
+      const targetY = pointer.current.y * 0.25;
+
+      dustRef.current.position.x = THREE.MathUtils.damp(
+        dustRef.current.position.x,
+        targetX,
+        2.5,
+        dt
+      );
+      dustRef.current.position.y = THREE.MathUtils.damp(
+        dustRef.current.position.y,
+        targetY,
+        2.5,
+        dt
+      );
+    }
+  });
+
+  return (
+    <points ref={dustRef}>
+      <bufferGeometry>
+        <bufferAttribute
+          attach="attributes-position"
+          args={[positions, 3]}
+        />
+        <bufferAttribute
+          attach="attributes-color"
+          args={[colors, 3]}
+        />
+      </bufferGeometry>
+      <pointsMaterial
+        size={0.038}
+        vertexColors
+        transparent
+        opacity={0.25}
+        sizeAttenuation
+        depthWrite={false}
+      />
+    </points>
   );
 }
 
@@ -155,34 +257,21 @@ export default function Scene3D() {
     <div className="fixed inset-0 z-0 pointer-events-none">
       <Canvas
         dpr={[1, 1.5]}
-        camera={{ position: [0, 0, 6.2], fov: 45 }}
+        camera={{ position: [0, 0, 5.5], fov: 48 }}
         gl={{
           antialias: true,
           alpha: true,
           powerPreference: "high-performance",
           stencil: false,
-          depth: true,
+          depth: false,
         }}
       >
-        <ambientLight intensity={0.8} />
-        <directionalLight position={[5, 5, 5]} intensity={2.4} color="#00f5d4" />
-        <directionalLight position={[-5, -3, -2]} intensity={2.0} color="#f59e0b" />
-        <pointLight position={[0, 2, 3]} intensity={1.6} color="#6366f1" />
-
-        <QuantumCore />
-
-        {/* Single Lightweight Particle Field */}
-        <Sparkles
-          count={90}
-          scale={11}
-          size={1.6}
-          speed={0.25}
-          opacity={0.45}
-          color="#00f5d4"
-        />
+        <DotMatrixWave />
+        <EmberDustField />
       </Canvas>
 
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_25%,#050508_92%)]" />
+      {/* Global Vignette Radial Falloff */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_35%,#050508_95%)]" />
     </div>
   );
 }
