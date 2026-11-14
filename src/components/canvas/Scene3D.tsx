@@ -210,7 +210,7 @@ export default function Scene3D() {
       </Canvas>
 
       {/* Global Warm Charcoal Radial Falloff */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_35%,#121110_92%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_35%,#111010_92%)]" />
     </div>
   );
 }
