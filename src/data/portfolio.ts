@@ -6,9 +6,9 @@ export const PORTFOLIO_DATA = {
       "Architecting high-velocity web applications, autonomous AI workflows, and institutional-grade quantitative alphas.",
     location: "India",
     status: "Available for Hackathons & Engineering Roles",
-    email: "lalit@example.com", // Replace with your actual email
-    github: "https://github.com/", // Add your GitHub username
-    linkedin: "https://linkedin.com/in/", // Add your LinkedIn username
+    email: "lalitchoudhary0907@gmail.com",
+    github: "https://github.com/lalitchoudhary0907",
+    linkedin: "https://www.linkedin.com/in/lalitchoudhary0907",
   },
 
   metrics: [
@@ -46,7 +46,7 @@ export const PORTFOLIO_DATA = {
       description:
         "A high-performance productivity platform engineered for flow-state execution. Features real-time task telemetry, distraction-free session orchestration, fluid micro-interactions, and instant cloud synchronization.",
       liveUrl: "https://focus-flow0907.vercel.app/",
-      githubUrl: "https://github.com/", // Update with your exact FocusFlow repo link
+      githubUrl: "https://github.com/lalitchoudhary0907",
       image: "/assets/focusflow-preview.png",
       tags: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "Vercel"],
       metrics: [

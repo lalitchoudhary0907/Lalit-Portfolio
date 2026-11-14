@@ -194,7 +194,7 @@ export default function SkillsAndContact() {
               </div>
 
               <p className="mt-3 font-mono text-xs text-[#9E9890]">
-                @lalit0907 • FocusFlow & Open Source
+                @lalitchoudhary0907 • FocusFlow & Open Source
               </p>
             </div>
 

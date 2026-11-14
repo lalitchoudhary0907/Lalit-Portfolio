@@ -15,7 +15,6 @@ import ProjectsSection from "@/components/sections/ProjectsSection";
 import JourneySection from "@/components/sections/JourneySection";
 import CredentialsVault from "@/components/sections/CredentialsVault";
 import SkillsAndContact from "@/components/sections/SkillsAndContact";
-import CommandBar from "@/components/ui/CommandBar";
 import SkillMarquee from "@/components/ui/SkillMarquee";
 import { PORTFOLIO_DATA } from "@/data/portfolio";
 
@@ -34,7 +33,7 @@ export default function HomePage() {
   }
 
   return (
-    <main className="relative min-h-screen w-full overflow-x-hidden bg-[#121110] text-[#F5F3EF]">
+    <main id="top" className="relative min-h-screen w-full overflow-x-hidden bg-[#121110] text-[#F5F3EF]">
       <SmoothScroll />
       <CustomCursor />
       <Scene3D />
@@ -435,11 +434,6 @@ export default function HomePage() {
           05 / CONTACT & SKILLS FOOTER
          ======================================================== */}
       <SkillsAndContact />
-
-      {/* ========================================================
-          FLOATING CMD + K AI JUDGE COMMAND BAR
-         ======================================================== */}
-      <CommandBar />
     </main>
   );
 }

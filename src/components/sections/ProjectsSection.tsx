@@ -552,7 +552,7 @@ export default function ProjectsSection() {
 
                   <div className="flex items-center gap-2">
                     <a
-                      href="https://github.com"
+                      href={PORTFOLIO_DATA.personal.github}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center gap-1.5 rounded-full border border-white/[0.08] bg-white/5 px-2.5 py-1.5 text-xs font-mono text-[#9E9890] hover:border-white/20 hover:text-[#F5F3EF] transition-all"
