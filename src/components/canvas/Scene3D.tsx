@@ -65,10 +65,10 @@ function QuantumCore() {
 
     // Silky frame-rate independent damping for mouse parallax + scroll orbit
     if (groupRef.current) {
-      const targetX = 1.85 + pX * 0.75 + Math.sin(s * Math.PI * 2) * 0.85;
-      const targetY = 0.05 + pY * 0.55 - s * 0.6;
-      const targetRotX = -pY * 0.35 + s * 0.8;
-      const targetRotY = pX * 0.45 + s * Math.PI * 1.2;
+      const targetX = pX * 0.55;
+      const targetY = 0.15 + pY * 0.4 - s * 0.8;
+      const targetRotX = -pY * 0.3 + s * 0.8;
+      const targetRotY = pX * 0.4 + s * Math.PI * 1.2;
 
       groupRef.current.position.x = THREE.MathUtils.damp(groupRef.current.position.x, targetX, 4.5, dt);
       groupRef.current.position.y = THREE.MathUtils.damp(groupRef.current.position.y, targetY, 4.5, dt);
@@ -78,7 +78,7 @@ function QuantumCore() {
   });
 
   return (
-    <group ref={groupRef} position={[1.85, 0.05, 0]}>
+    <group ref={groupRef} position={[0, 0.15, 0]}>
       <Float speed={1.8} rotationIntensity={0.35} floatIntensity={0.85}>
         {/* Inner Radiating Glowing Core Sphere */}
         <mesh>

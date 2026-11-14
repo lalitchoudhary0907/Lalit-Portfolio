@@ -70,11 +70,12 @@ const SUGGESTED_CHIPS = [
 ];
 
 const NAVIGATION_TARGETS = [
-  { label: "01. Telemetry", href: "#about", icon: Cpu },
-  { label: "02. FocusFlow Sandbox", href: "#projects", icon: Layers },
-  { label: "03. Timeline", href: "#journey", icon: Sparkles },
-  { label: "04. Credentials Vault", href: "#credentials", icon: Award },
-  { label: "05. Tech Stack", href: "#skills", icon: Code2 },
+  { label: "01. About", href: "#about", icon: Cpu },
+  { label: "02. Communities", href: "#communities", icon: Sparkles },
+  { label: "03. Projects & FocusFlow", href: "#projects", icon: Layers },
+  { label: "04. Time Journey", href: "#journey", icon: Terminal },
+  { label: "05. Credentials Vault", href: "#credentials", icon: Award },
+  { label: "06. Contact & Stack", href: "#contact", icon: Code2 },
 ];
 
 export default function CommandBar() {

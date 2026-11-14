@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import {
   ArrowUpRight,
   CheckCircle2,
-  Code2,
   Cpu,
   Eye,
   Layers,
@@ -119,36 +118,86 @@ export default function ProjectsSection() {
   const quantProject = PORTFOLIO_DATA.projects.find((p) => p.id === "worldquant-alphas")!;
 
   return (
-    <section id="projects" className="relative z-10 mx-auto max-w-6xl px-6 py-24">
-      {/* Section Header */}
-      <div className="mb-14 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
-        <div>
-          <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[#00F5D4]">
-            <Code2 className="h-4 w-4" />
-            <span>02 // PRODUCTION ENGINEERING & QUANT RESEARCH</span>
-          </div>
-          <h2 className="mt-2 text-3xl sm:text-5xl font-bold tracking-tight text-white">
-            Flagship Systems.
-          </h2>
-        </div>
-        <p className="max-w-md text-sm text-slate-400">
-          Asymmetric Bento grid architecture—hover to activate dynamic cursor-following border lighting, or launch the{" "}
-          <span className="text-[#00F5D4]">FocusFlow Live Sandbox</span> right inside the card.
-        </p>
-      </div>
-
-      {/* Asymmetric Bento Grid Layout */}
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+    <section id="projects" className="relative z-10 mx-auto max-w-6xl px-6 py-28 border-t border-white/5">
+      {/* Split-View Layout inspired by Antriksh Reference */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
         {/* ========================================================
-            CARD 01: FocusFlow Flagship Hackathon App (col-span-12 lg:col-span-7)
+            LEFT COLUMN (STICKY ON DESKTOP)
            ======================================================== */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.6 }}
-          className="col-span-12 lg:col-span-7"
-        >
+        <div className="lg:col-span-4 lg:sticky lg:top-28 self-start">
+          <div className="flex items-center gap-3 font-mono text-xs uppercase tracking-widest text-[#FF5722] mb-4">
+            <span>03 / SELECTED WORK</span>
+            <div className="h-px flex-1 bg-white/10" />
+          </div>
+
+          <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-white leading-tight">
+            Things I&apos;ve <br className="hidden sm:inline" />
+            <span className="text-[#FF5722]">Built.</span>
+          </h2>
+
+          <p className="mt-4 text-sm sm:text-base text-slate-400 leading-relaxed">
+            Ideas made tangible across AI, full-stack software, and quantitative alpha research. Shipped to real users with latency-critical performance.
+          </p>
+
+          <div className="mt-8 flex flex-col gap-3">
+            <a
+              href="https://focus-flow0907.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center justify-between rounded-full bg-[#FF5722] px-6 py-3.5 text-sm font-bold text-white shadow-[0_0_25px_rgba(255,87,34,0.35)] hover:bg-[#ff7043] transition-all"
+            >
+              <span>LAUNCH FOCUSFLOW</span>
+              <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </a>
+
+            <a
+              href={PORTFOLIO_DATA.personal.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-between rounded-full border border-white/15 bg-white/5 px-6 py-3.5 text-sm font-medium text-slate-300 hover:border-white/30 hover:bg-white/10 hover:text-white transition-all"
+            >
+              <div className="flex items-center gap-2">
+                <GitHubIcon className="h-4 w-4" />
+                <span>ALL REPOSITORIES</span>
+              </div>
+              <ArrowUpRight className="h-4 w-4 text-slate-400" />
+            </a>
+          </div>
+
+          <div className="mt-8 pt-6 border-t border-white/10 hidden lg:block">
+            <div className="font-mono text-xs text-slate-500 uppercase tracking-wider mb-2">
+              FEATURED CAPABILITIES
+            </div>
+            <ul className="space-y-2 text-xs text-slate-400 font-mono">
+              <li className="flex items-center gap-2">
+                <span className="h-1.5 w-1.5 rounded-full bg-[#00F5D4]" />
+                Interactive In-Card Live Sandbox
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="h-1.5 w-1.5 rounded-full bg-[#F59E0B]" />
+                Institutional Alpha Simulation
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="h-1.5 w-1.5 rounded-full bg-[#FF5722]" />
+                In-Person Hackathon Deployments
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* ========================================================
+            RIGHT COLUMN: MULTI-CARD SHOWCASE GRID
+           ======================================================== */}
+        <div className="lg:col-span-8 flex flex-col gap-8">
+          {/* ========================================================
+              CARD 01: FocusFlow Flagship Hackathon App
+             ======================================================== */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.6 }}
+          >
           <BentoCard
             glowColor="rgba(0, 245, 212, 0.35)"
             surfaceGlow="rgba(0, 245, 212, 0.08)"
@@ -639,6 +688,7 @@ export default function ProjectsSection() {
             </div>
           </BentoCard>
         </motion.div>
+        </div>
       </div>
     </section>
   );

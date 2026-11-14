@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "build:css": "node scripts/build-css.js",
+    "prebuild": "node scripts/build-css.js",
+    "predev": "node scripts/build-css.js",
     "dev": "next dev",
     "build": "next build --webpack",
     "start": "next start",

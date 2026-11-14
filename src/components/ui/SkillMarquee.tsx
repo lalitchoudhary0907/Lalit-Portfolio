@@ -85,11 +85,11 @@ const CORE_SKILLS: SkillItem[] = [
     name: "Git",
     descriptor: "Distributed VCS & CI/CD",
     icon: Code2,
-    accentColor: "#F97316",
+    accentColor: "#FF5722",
     borderColor: "border-orange-500/40 hover:border-orange-400/80",
     bgColor: "bg-orange-500/10 hover:bg-orange-500/20",
-    textColor: "text-orange-300",
-    glowColor: "rgba(249, 115, 22, 0.28)",
+    textColor: "text-orange-400",
+    glowColor: "rgba(255, 87, 34, 0.28)",
   },
   {
     name: "Tailwind CSS",
@@ -101,6 +101,21 @@ const CORE_SKILLS: SkillItem[] = [
     textColor: "text-cyan-300",
     glowColor: "rgba(56, 189, 248, 0.25)",
   },
+];
+
+const TICKER_KEYWORDS = [
+  { text: "TYPESCRIPT", highlight: false },
+  { text: "PYTHON", highlight: true },
+  { text: "NEXT.JS 16", highlight: false },
+  { text: "REACT", highlight: true },
+  { text: "TAILWIND CSS", highlight: false },
+  { text: "QUANT ALPHAS", highlight: true },
+  { text: "AI/ML AGENTS", highlight: false },
+  { text: "THREE.JS", highlight: true },
+  { text: "GIT & GITHUB", highlight: false },
+  { text: "STATISTICAL ARBITRAGE", highlight: true },
+  { text: "EDGE COMPUTING", highlight: false },
+  { text: "SYSTEMS ARCHITECTURE", highlight: true },
 ];
 
 function SkillBadge({ skill }: { skill: SkillItem }) {
@@ -147,16 +162,16 @@ function SkillBadge({ skill }: { skill: SkillItem }) {
 }
 
 export default function SkillMarquee() {
-  // Triple duplicated list ensures mathematically continuous 60fps loop across all screen sizes
   const repeatedSkills = [...CORE_SKILLS, ...CORE_SKILLS, ...CORE_SKILLS];
+  const repeatedTicker = [...TICKER_KEYWORDS, ...TICKER_KEYWORDS, ...TICKER_KEYWORDS];
 
   return (
-    <section className="relative z-10 w-full overflow-hidden border-y border-white/10 bg-[#060811]/80 py-7 backdrop-blur-xl">
+    <section className="relative z-10 w-full overflow-hidden border-y border-white/10 bg-[#060811]/90 py-8 backdrop-blur-2xl">
       {/* Top Subtle Telemetry Header */}
-      <div className="mx-auto mb-5 flex max-w-6xl items-center justify-between px-6 font-mono text-[11px] text-slate-400">
+      <div className="mx-auto mb-6 flex max-w-6xl items-center justify-between px-6 font-mono text-[11px] text-slate-400">
         <div className="flex items-center gap-2">
-          <span className="h-1.5 w-1.5 rounded-full bg-[#00F5D4] animate-pulse" />
-          <span className="uppercase tracking-widest text-[#00F5D4]">
+          <span className="h-1.5 w-1.5 rounded-full bg-[#FF5722] animate-pulse" />
+          <span className="uppercase tracking-widest text-[#FF5722]">
             CORE ARSENAL & COMPUTATIONAL RUNTIMES
           </span>
         </div>
@@ -168,18 +183,37 @@ export default function SkillMarquee() {
       </div>
 
       {/* Left & Right Smooth Fade Masks */}
-      <div className="pointer-events-none absolute inset-y-0 left-0 z-20 w-24 sm:w-40 bg-gradient-to-r from-[#050508] via-[#050508]/80 to-transparent" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 z-20 w-24 sm:w-40 bg-gradient-to-l from-[#050508] via-[#050508]/80 to-transparent" />
+      <div className="pointer-events-none absolute inset-y-0 left-0 z-20 w-24 sm:w-44 bg-gradient-to-r from-[#050508] via-[#050508]/85 to-transparent" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 z-20 w-24 sm:w-44 bg-gradient-to-l from-[#050508] via-[#050508]/85 to-transparent" />
 
-      {/* 60FPS Infinite Marquee Track */}
-      <div className="flex w-full select-none overflow-hidden">
+      {/* Track 1: 60FPS Infinite Glowing Pill Badges */}
+      <div className="flex w-full select-none overflow-hidden mb-6">
         <div className="animate-marquee flex items-center gap-5 pr-5">
           {repeatedSkills.map((skill, index) => (
             <SkillBadge key={`${skill.name}-${index}`} skill={skill} />
           ))}
         </div>
       </div>
+
+      {/* Track 2: Bold Typography Ticker (Alternating White & Energetic Orange) */}
+      <div className="flex w-full select-none overflow-hidden border-t border-white/5 pt-4">
+        <div className="animate-marquee-reverse flex items-center gap-8 whitespace-nowrap pr-8 text-xl sm:text-2xl font-black font-sans tracking-tight">
+          {repeatedTicker.map((item, index) => (
+            <div key={`${item.text}-${index}`} className="flex items-center gap-8">
+              <span
+                className={
+                  item.highlight
+                    ? "text-[#FF5722] text-glow-orange"
+                    : "text-white/80"
+                }
+              >
+                {item.text}
+              </span>
+              <span className="text-white/20">•</span>
+            </div>
+          ))}
+        </div>
+      </div>
     </section>
   );
 }
-
