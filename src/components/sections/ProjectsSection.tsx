@@ -6,177 +6,243 @@ import {
   ArrowUpRight,
   CheckCircle2,
   Code2,
+  Cpu,
   Eye,
   Layers,
   Play,
+  Sparkles,
+  Terminal,
   TrendingUp,
+  Award,
 } from "lucide-react";
 import { PORTFOLIO_DATA } from "@/data/portfolio";
 
-function TiltProjectCard({
-  project,
-  index,
+// Inline GitHub SVG logo adhering to critical icon rules
+function GitHubIcon({ className = "h-3.5 w-3.5" }: { className?: string }) {
+  return (
+    <svg
+      className={`${className} fill-current`}
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+    >
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+      />
+    </svg>
+  );
+}
+
+// Reusable Bento Card Container with Frosted Glass & Dynamic Hover Border Lighting
+function BentoCard({
+  children,
+  className = "",
+  glowColor = "rgba(0, 245, 212, 0.25)",
+  surfaceGlow = "rgba(0, 245, 212, 0.05)",
+  disableTilt = false,
 }: {
-  project: (typeof PORTFOLIO_DATA.projects)[0];
-  index: number;
+  children: React.ReactNode;
+  className?: string;
+  glowColor?: string;
+  surfaceGlow?: string;
+  disableTilt?: boolean;
 }) {
   const cardRef = useRef<HTMLDivElement>(null);
-  const [showLiveEmbed, setShowLiveEmbed] = useState(false);
-  const isFocusFlow = project.id === "focusflow";
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current || showLiveEmbed) return;
+    if (!cardRef.current) return;
     const rect = cardRef.current.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
 
-    const rotateX = ((y - centerY) / centerY) * -4.5;
-    const rotateY = ((x - centerX) / centerX) * 4.5;
+    cardRef.current.style.setProperty("--mouse-x", `${x}px`);
+    cardRef.current.style.setProperty("--mouse-y", `${y}px`);
 
-    cardRef.current.style.transform = `perspective(1200px) rotateX(${rotateX.toFixed(
-      2
-    )}deg) rotateY(${rotateY.toFixed(2)}deg) scale3d(1.01, 1.01, 1.01)`;
+    if (!disableTilt) {
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      const rotateX = ((y - centerY) / centerY) * -2.5;
+      const rotateY = ((x - centerX) / centerX) * 2.5;
+      cardRef.current.style.transform = `perspective(1200px) rotateX(${rotateX.toFixed(
+        2
+      )}deg) rotateY(${rotateY.toFixed(2)}deg) scale3d(1.006, 1.006, 1.006)`;
+    }
   };
 
   const handleMouseLeave = () => {
     if (!cardRef.current) return;
-    cardRef.current.style.transform =
-      "perspective(1200px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)";
+    if (!disableTilt) {
+      cardRef.current.style.transform =
+        "perspective(1200px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)";
+    }
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 35 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.6, delay: index * 0.15 }}
+    <div
+      ref={cardRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className={`group relative overflow-hidden rounded-3xl bg-white/[0.03] backdrop-blur-xl border border-white/10 p-6 sm:p-8 transition-all duration-300 ease-out will-change-transform shadow-[0_8px_32px_0_rgba(0,0,0,0.4)] ${className}`}
     >
+      {/* Dynamic Cursor-Following Border Lighting */}
       <div
-        ref={cardRef}
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
-        className={`group relative overflow-hidden rounded-3xl p-6 sm:p-8 transition-transform duration-200 ease-out will-change-transform ${
-          isFocusFlow ? "glass-panel" : "glass-panel-gold"
-        }`}
-      >
-        {/* Top Metadata Bar */}
-        <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-5">
-          <div className="flex items-center gap-3">
-            <span
-              className={`flex h-9 w-9 items-center justify-center rounded-xl font-mono text-xs font-bold ${
-                isFocusFlow
-                  ? "bg-[#00F5D4]/15 text-[#00F5D4] border border-[#00F5D4]/40"
-                  : "bg-[#F59E0B]/15 text-[#F59E0B] border border-[#F59E0B]/40"
-              }`}
-            >
-              0{index + 1}
-            </span>
-            <div>
-              <h3 className="text-2xl font-bold tracking-tight text-white">
-                {project.title}
-              </h3>
-              <p className="text-xs font-mono text-slate-400">
-                {project.subtitle}
-              </p>
-            </div>
-          </div>
+        className="pointer-events-none absolute -inset-px rounded-3xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+        style={{
+          background: `radial-gradient(420px circle at var(--mouse-x, 150px) var(--mouse-y, 150px), ${glowColor}, transparent 65%)`,
+          mask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+          WebkitMask:
+            "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+          maskComposite: "exclude",
+          WebkitMaskComposite: "xor",
+          padding: "1.5px",
+          borderRadius: "1.5rem",
+        }}
+      />
 
-          {/* Interactive Action Controls */}
-          <div className="flex items-center gap-2.5">
-            {isFocusFlow && (
-              <button
-                onClick={() => setShowLiveEmbed(!showLiveEmbed)}
-                className={`flex items-center gap-1.5 rounded-full px-4 py-2 text-xs font-mono font-medium transition-all ${
-                  showLiveEmbed
-                    ? "bg-[#00F5D4] text-slate-950 shadow-[0_0_20px_rgba(0,245,212,0.4)]"
-                    : "border border-[#00F5D4]/40 bg-[#00F5D4]/10 text-[#00F5D4] hover:bg-[#00F5D4]/20"
-                }`}
-              >
-                {showLiveEmbed ? (
-                  <>
-                    <Layers className="h-3.5 w-3.5" />
-                    <span>Exit Live Sandbox</span>
-                  </>
-                ) : (
-                  <>
-                    <Play className="h-3.5 w-3.5 fill-current" />
-                    <span>Test Live App Inside Card</span>
-                  </>
-                )}
-              </button>
-            )}
+      {/* Subtle Inner Radial Ambient Surface Glow */}
+      <div
+        className="pointer-events-none absolute inset-0 rounded-3xl opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+        style={{
+          background: `radial-gradient(500px circle at var(--mouse-x, 150px) var(--mouse-y, 150px), ${surfaceGlow}, transparent 75%)`,
+        }}
+      />
 
-            <a
-              href={project.liveUrl}
-              target={project.liveUrl.startsWith("http") ? "_blank" : undefined}
-              rel="noopener noreferrer"
-              className="flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-mono text-white hover:border-white/40 hover:bg-white/10 transition-all"
-            >
-              <span>{isFocusFlow ? "Open Fullscreen" : "View Credential"}</span>
-              <ArrowUpRight className="h-3.5 w-3.5" />
-            </a>
+      <div className="relative z-10">{children}</div>
+    </div>
+  );
+}
+
+export default function ProjectsSection() {
+  const [showLiveEmbed, setShowLiveEmbed] = useState(false);
+  const focusFlowProject = PORTFOLIO_DATA.projects.find((p) => p.id === "focusflow")!;
+  const quantProject = PORTFOLIO_DATA.projects.find((p) => p.id === "worldquant-alphas")!;
+
+  return (
+    <section id="projects" className="relative z-10 mx-auto max-w-6xl px-6 py-24">
+      {/* Section Header */}
+      <div className="mb-14 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+        <div>
+          <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[#00F5D4]">
+            <Code2 className="h-4 w-4" />
+            <span>02 // PRODUCTION ENGINEERING & QUANT RESEARCH</span>
           </div>
+          <h2 className="mt-2 text-3xl sm:text-5xl font-bold tracking-tight text-white">
+            Flagship Systems.
+          </h2>
         </div>
+        <p className="max-w-md text-sm text-slate-400">
+          Asymmetric Bento grid architecture—hover to activate dynamic cursor-following border lighting, or launch the{" "}
+          <span className="text-[#00F5D4]">FocusFlow Live Sandbox</span> right inside the card.
+        </p>
+      </div>
 
-        {/* Main Content Grid */}
-        <div className="mt-6 grid grid-cols-1 gap-8 lg:grid-cols-12 items-center">
-          {/* Left Column: Description, Telemetry Metrics & Tech Tags */}
-          <div className="lg:col-span-5 space-y-5">
-            <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
-              {project.description}
-            </p>
-
-            {/* Key Engineering Highlights */}
-            <div className="space-y-2.5 pt-1">
-              <div className="text-xs font-mono uppercase tracking-wider text-slate-400">
-                System Benchmarks & Impact
-              </div>
-              {project.metrics.map((m, i) => (
-                <div
-                  key={i}
-                  className="flex items-center gap-2.5 text-xs sm:text-sm text-slate-200"
-                >
-                  <CheckCircle2
-                    className={`h-4 w-4 shrink-0 ${
-                      isFocusFlow ? "text-[#00F5D4]" : "text-[#F59E0B]"
-                    }`}
-                  />
-                  <span>{m}</span>
+      {/* Asymmetric Bento Grid Layout */}
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+        {/* ========================================================
+            CARD 01: FocusFlow Flagship Hackathon App (col-span-12 lg:col-span-7)
+           ======================================================== */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.6 }}
+          className="col-span-12 lg:col-span-7"
+        >
+          <BentoCard
+            glowColor="rgba(0, 245, 212, 0.35)"
+            surfaceGlow="rgba(0, 245, 212, 0.08)"
+            disableTilt={showLiveEmbed}
+            className="h-full flex flex-col justify-between"
+          >
+            {/* Top Bar: Title & Quick Actions */}
+            <div>
+              <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-4">
+                <div className="flex items-center gap-3">
+                  <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-[#00F5D4]/15 border border-[#00F5D4]/40 font-mono text-xs font-bold text-[#00F5D4]">
+                    01
+                  </span>
+                  <div>
+                    <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-white flex items-center gap-2">
+                      <span>{focusFlowProject.title}</span>
+                      <span className="rounded-full bg-[#00F5D4]/15 border border-[#00F5D4]/40 px-2.5 py-0.5 text-[10px] font-mono font-semibold text-[#00F5D4]">
+                        HACKATHON WINNER
+                      </span>
+                    </h3>
+                    <p className="text-xs font-mono text-slate-400">
+                      {focusFlowProject.subtitle}
+                    </p>
+                  </div>
                 </div>
-              ))}
-            </div>
 
-            {/* Tech Stack Pills */}
-            <div className="flex flex-wrap gap-2 pt-2">
-              {project.tags.map((tag, i) => (
-                <span
-                  key={i}
-                  className="rounded-lg border border-white/10 bg-white/[0.04] px-3 py-1 text-xs font-mono text-slate-300"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </div>
+                {/* Quick Action Buttons */}
+                <div className="flex flex-wrap items-center gap-2">
+                  {/* Test Live App Toggle */}
+                  <button
+                    onClick={() => setShowLiveEmbed(!showLiveEmbed)}
+                    className={`flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-xs font-mono font-medium transition-all ${
+                      showLiveEmbed
+                        ? "bg-[#00F5D4] text-slate-950 shadow-[0_0_20px_rgba(0,245,212,0.4)]"
+                        : "border border-[#00F5D4]/40 bg-[#00F5D4]/10 text-[#00F5D4] hover:bg-[#00F5D4]/20"
+                    }`}
+                  >
+                    {showLiveEmbed ? (
+                      <>
+                        <Layers className="h-3.5 w-3.5" />
+                        <span>Exit Sandbox</span>
+                      </>
+                    ) : (
+                      <>
+                        <Play className="h-3.5 w-3.5 fill-current" />
+                        <span>Test Live App Inside Card</span>
+                      </>
+                    )}
+                  </button>
 
-          {/* Right Column: Interactive Visual Preview / Live App Iframe / Quant Chart */}
-          <div className="lg:col-span-7">
-            {isFocusFlow ? (
-              <div className="relative overflow-hidden rounded-2xl border border-[#00F5D4]/30 bg-[#070913] shadow-2xl">
-                {/* Browser Window Top Bar */}
-                <div className="flex items-center justify-between border-b border-white/10 bg-black/60 px-4 py-2.5">
+                  {/* Quick-action Repository Link */}
+                  <a
+                    href={focusFlowProject.githubUrl || "https://github.com"}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-xs font-mono text-slate-300 hover:border-white/40 hover:bg-white/10 hover:text-white transition-all"
+                    title="View FocusFlow GitHub Repository"
+                  >
+                    <GitHubIcon className="h-3.5 w-3.5" />
+                    <span>Repo</span>
+                  </a>
+
+                  {/* Open Live External Link */}
+                  <a
+                    href={focusFlowProject.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-xs font-mono text-white hover:border-[#00F5D4]/50 hover:bg-[#00F5D4]/10 hover:text-[#00F5D4] transition-all"
+                  >
+                    <span>Launch</span>
+                    <ArrowUpRight className="h-3.5 w-3.5" />
+                  </a>
+                </div>
+              </div>
+
+              {/* Description */}
+              <p className="mt-4 text-sm text-slate-300 leading-relaxed">
+                {focusFlowProject.description}
+              </p>
+
+              {/* Interactive Visual Preview or Live Embed Window */}
+              <div className="mt-5 relative overflow-hidden rounded-2xl border border-[#00F5D4]/30 bg-[#070913] shadow-2xl">
+                {/* Browser Top Chrome */}
+                <div className="flex items-center justify-between border-b border-white/10 bg-black/60 px-4 py-2">
                   <div className="flex items-center gap-1.5">
-                    <span className="h-2.5 w-2.5 rounded-full bg-rose-500/80" />
-                    <span className="h-2.5 w-2.5 rounded-full bg-amber-500/80" />
-                    <span className="h-2.5 w-2.5 rounded-full bg-emerald-500/80" />
+                    <span className="h-2 w-2 rounded-full bg-rose-500/80" />
+                    <span className="h-2 w-2 rounded-full bg-amber-500/80" />
+                    <span className="h-2 w-2 rounded-full bg-emerald-500/80" />
                   </div>
                   <div className="rounded-md bg-white/5 px-3 py-0.5 text-[11px] font-mono text-[#00F5D4]">
                     https://focus-flow0907.vercel.app
                   </div>
                   <div className="text-[10px] font-mono text-slate-400">
-                    {showLiveEmbed ? "INTERACTIVE" : "PREVIEW"}
+                    {showLiveEmbed ? "INTERACTIVE" : "SANDBOX"}
                   </div>
                 </div>
 
@@ -184,13 +250,13 @@ function TiltProjectCard({
                   <iframe
                     src="https://focus-flow0907.vercel.app/"
                     title="FocusFlow Live Sandbox"
-                    className="h-[360px] w-full border-0 bg-slate-950"
+                    className="h-[340px] w-full border-0 bg-slate-950"
                     loading="lazy"
                   />
                 ) : (
-                  <div className="relative h-[320px] sm:h-[360px] w-full overflow-hidden flex flex-col justify-between p-6 bg-[radial-gradient(circle_at_top_right,rgba(0,245,212,0.16),transparent_55%),radial-gradient(circle_at_bottom_left,rgba(99,102,241,0.15),transparent_55%)]">
+                  <div className="relative h-[290px] w-full overflow-hidden flex flex-col justify-between p-5 bg-[radial-gradient(circle_at_top_right,rgba(0,245,212,0.18),transparent_55%),radial-gradient(circle_at_bottom_left,rgba(99,102,241,0.15),transparent_55%)]">
                     <div className="flex items-center justify-between">
-                      <span className="inline-flex items-center gap-1.5 rounded-full bg-[#00F5D4]/15 border border-[#00F5D4]/30 px-3 py-1 text-xs font-mono text-[#00F5D4]">
+                      <span className="inline-flex items-center gap-1.5 rounded-full bg-[#00F5D4]/15 border border-[#00F5D4]/30 px-3 py-0.5 text-xs font-mono text-[#00F5D4]">
                         <span className="h-2 w-2 rounded-full bg-[#00F5D4] animate-ping" />
                         FLOW STATE ENGINE ACTIVE
                       </span>
@@ -199,27 +265,27 @@ function TiltProjectCard({
                       </span>
                     </div>
 
-                    {/* Simulated FocusFlow HUD Preview Graphic */}
+                    {/* Simulated FocusFlow HUD */}
                     <div className="my-auto grid grid-cols-3 gap-3">
-                      <div className="col-span-2 rounded-xl border border-white/10 bg-black/45 p-4 backdrop-blur-md">
-                        <div className="text-xs font-mono text-slate-400">
-                          DEEP WORK SESSION TIMER
+                      <div className="col-span-2 rounded-xl border border-white/10 bg-black/50 p-3.5 backdrop-blur-md">
+                        <div className="text-[10px] font-mono text-slate-400">
+                          DEEP WORK TIMER
                         </div>
-                        <div className="mt-1 font-mono text-3xl sm:text-4xl font-bold text-white tracking-wider">
+                        <div className="mt-0.5 font-mono text-3xl font-bold text-white tracking-wider">
                           45:00{" "}
                           <span className="text-xs font-normal text-[#00F5D4]">
                             OPTIMAL
                           </span>
                         </div>
-                        <div className="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-white/10">
+                        <div className="mt-2.5 h-1.5 w-full overflow-hidden rounded-full bg-white/10">
                           <div className="h-full w-3/4 rounded-full bg-gradient-to-r from-[#00F5D4] to-indigo-500" />
                         </div>
                       </div>
-                      <div className="rounded-xl border border-white/10 bg-black/45 p-4 backdrop-blur-md flex flex-col justify-between">
-                        <div className="text-xs font-mono text-slate-400">
-                          COGNITIVE SCORE
+                      <div className="rounded-xl border border-white/10 bg-black/50 p-3.5 backdrop-blur-md flex flex-col justify-between">
+                        <div className="text-[10px] font-mono text-slate-400">
+                          FLOW INDEX
                         </div>
-                        <div className="font-mono text-2xl sm:text-3xl font-bold text-[#00F5D4]">
+                        <div className="font-mono text-2xl font-bold text-[#00F5D4]">
                           98.4%
                         </div>
                         <div className="text-[10px] font-mono text-emerald-400">
@@ -228,9 +294,9 @@ function TiltProjectCard({
                       </div>
                     </div>
 
-                    <div className="flex items-center justify-between border-t border-white/10 pt-3">
+                    <div className="flex items-center justify-between border-t border-white/10 pt-2.5">
                       <span className="text-xs text-slate-400">
-                        Click <strong className="text-white">Test Live App Inside Card</strong> above to interact with the real deployment.
+                        Click <strong className="text-white">Test Live App Inside Card</strong> to interact.
                       </span>
                       <button
                         onClick={() => setShowLiveEmbed(true)}
@@ -243,136 +309,336 @@ function TiltProjectCard({
                   </div>
                 )}
               </div>
-            ) : (
-              /* WorldQuant Alpha Quantitative Telemetry Visualizer */
-              <div className="relative overflow-hidden rounded-2xl border border-[#F59E0B]/35 bg-[#09080d] p-6 shadow-2xl">
-                <div className="flex items-center justify-between border-b border-white/10 pb-4">
-                  <div className="flex items-center gap-2">
-                    <TrendingUp className="h-4 w-4 text-[#F59E0B]" />
-                    <span className="font-mono text-xs uppercase tracking-wider text-[#F59E0B]">
-                      WORLDQUANT BRAIN • CUMULATIVE ALPHA SIMULATION
+            </div>
+
+            {/* Bottom Highlights & Tech Tags */}
+            <div className="mt-5 pt-4 border-t border-white/10 flex flex-wrap items-center justify-between gap-3">
+              <div className="flex flex-wrap gap-1.5">
+                {focusFlowProject.tags.map((tag, i) => (
+                  <span
+                    key={i}
+                    className="rounded-lg border border-white/10 bg-white/[0.04] px-2.5 py-1 text-[11px] font-mono text-slate-300"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              <div className="text-xs font-mono text-emerald-400 flex items-center gap-1.5">
+                <CheckCircle2 className="h-3.5 w-3.5" />
+                <span>Sub-100ms UI transitions</span>
+              </div>
+            </div>
+          </BentoCard>
+        </motion.div>
+
+        {/* ========================================================
+            CARD 02: WorldQuant BRAIN Alpha Suite (col-span-12 lg:col-span-5)
+           ======================================================== */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.6, delay: 0.15 }}
+          className="col-span-12 lg:col-span-5"
+        >
+          <BentoCard
+            glowColor="rgba(245, 158, 11, 0.4)"
+            surfaceGlow="rgba(245, 158, 11, 0.08)"
+            className="h-full flex flex-col justify-between"
+          >
+            <div>
+              {/* Header */}
+              <div className="flex items-center justify-between border-b border-white/10 pb-4">
+                <div className="flex items-center gap-3">
+                  <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-[#F59E0B]/15 border border-[#F59E0B]/40 font-mono text-xs font-bold text-[#F59E0B]">
+                    02
+                  </span>
+                  <div>
+                    <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-white">
+                      Quant Alpha Suite
+                    </h3>
+                    <p className="text-xs font-mono text-[#F59E0B]">
+                      WorldQuant BRAIN Models
+                    </p>
+                  </div>
+                </div>
+
+                <a
+                  href="#credentials"
+                  className="flex items-center gap-1.5 rounded-full border border-[#F59E0B]/35 bg-[#F59E0B]/10 px-3 py-1.5 text-xs font-mono text-[#F59E0B] hover:bg-[#F59E0B]/20 transition-all"
+                >
+                  <Award className="h-3.5 w-3.5" />
+                  <span>Gold Vault</span>
+                  <ArrowUpRight className="h-3.5 w-3.5" />
+                </a>
+              </div>
+
+              {/* Description */}
+              <p className="mt-4 text-sm text-slate-300 leading-relaxed">
+                {quantProject.description}
+              </p>
+
+              {/* Animated SVG Cumulative Alpha Equity Curve */}
+              <div className="relative my-5 overflow-hidden rounded-2xl border border-[#F59E0B]/30 bg-[#09080e] p-4 shadow-xl">
+                <div className="flex items-center justify-between pb-2">
+                  <div className="flex items-center gap-1.5">
+                    <TrendingUp className="h-3.5 w-3.5 text-[#F59E0B]" />
+                    <span className="font-mono text-[10px] text-slate-300">
+                      PnL & SHARPE SIMULATION
                     </span>
                   </div>
-                  <span className="rounded-md bg-[#F59E0B]/15 px-2.5 py-0.5 font-mono text-xs font-semibold text-[#F59E0B]">
-                    GOLD TIER
+                  <span className="rounded-md bg-[#F59E0B]/15 px-2 py-0.5 font-mono text-[10px] font-semibold text-[#F59E0B] flex items-center gap-1">
+                    <span className="h-1.5 w-1.5 rounded-full bg-[#F59E0B] animate-ping" />
+                    GOLD LEVEL
                   </span>
                 </div>
 
-                {/* Animated SVG Quantitative Equity Curve */}
-                <div className="relative my-6 overflow-hidden rounded-xl bg-black/40 p-4 border border-white/5">
-                  <div className="flex items-center justify-between pb-2">
-                    <span className="font-mono text-[10px] text-slate-400">
-                      CUMULATIVE PnL / ALPHA SHARPE TRAJECTORY
-                    </span>
-                    <span className="font-mono text-[10px] text-[#F59E0B] flex items-center gap-1.5">
-                      <span className="h-1.5 w-1.5 rounded-full bg-[#F59E0B] animate-ping" />
-                      ALPHA ACTIVE
-                    </span>
-                  </div>
+                <svg viewBox="0 0 500 150" className="h-36 w-full overflow-visible">
+                  <defs>
+                    <linearGradient id="bentoGoldGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                      <stop offset="0%" stopColor="#F59E0B" stopOpacity="0.45" />
+                      <stop offset="70%" stopColor="#F59E0B" stopOpacity="0.08" />
+                      <stop offset="100%" stopColor="#F59E0B" stopOpacity="0.0" />
+                    </linearGradient>
+                    <filter id="bentoGoldGlow" x="-20%" y="-20%" width="140%" height="140%">
+                      <feGaussianBlur stdDeviation="2.5" result="blur" />
+                      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                    </filter>
+                  </defs>
 
-                  <svg
-                    viewBox="0 0 500 150"
-                    className="h-36 w-full overflow-visible"
-                  >
-                    <defs>
-                      <linearGradient
-                        id="goldGrad"
-                        x1="0%"
-                        y1="0%"
-                        x2="0%"
-                        y2="100%"
-                      >
-                        <stop offset="0%" stopColor="#F59E0B" stopOpacity="0.45" />
-                        <stop offset="70%" stopColor="#F59E0B" stopOpacity="0.08" />
-                        <stop offset="100%" stopColor="#F59E0B" stopOpacity="0.0" />
-                      </linearGradient>
-                      <filter id="goldGlow" x="-20%" y="-20%" width="140%" height="140%">
-                        <feGaussianBlur stdDeviation="2.5" result="blur" />
-                        <feComposite in="SourceGraphic" in2="blur" operator="over" />
-                      </filter>
-                    </defs>
+                  <line x1="0" y1="40" x2="500" y2="40" stroke="rgba(255,255,255,0.06)" strokeDasharray="3 3" />
+                  <line x1="0" y1="80" x2="500" y2="80" stroke="rgba(255,255,255,0.06)" strokeDasharray="3 3" />
+                  <line x1="0" y1="120" x2="500" y2="120" stroke="rgba(255,255,255,0.06)" strokeDasharray="3 3" />
 
-                    {/* Subtle Grid Lines */}
-                    <line x1="0" y1="40" x2="500" y2="40" stroke="rgba(255,255,255,0.06)" strokeDasharray="3 3" />
-                    <line x1="0" y1="80" x2="500" y2="80" stroke="rgba(255,255,255,0.06)" strokeDasharray="3 3" />
-                    <line x1="0" y1="120" x2="500" y2="120" stroke="rgba(255,255,255,0.06)" strokeDasharray="3 3" />
+                  <motion.path
+                    d="M 0 135 Q 60 120, 110 100 T 220 75 T 330 45 T 430 25 L 500 10 L 500 150 L 0 150 Z"
+                    fill="url(#bentoGoldGrad)"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 1.2, delay: 0.2 }}
+                  />
+                  <motion.path
+                    d="M 0 135 Q 60 120, 110 100 T 220 75 T 330 45 T 430 25 L 500 10"
+                    fill="none"
+                    stroke="#F59E0B"
+                    strokeWidth="3.5"
+                    filter="url(#bentoGoldGlow)"
+                    initial={{ pathLength: 0 }}
+                    animate={{ pathLength: 1 }}
+                    transition={{ duration: 1.8, ease: "easeOut" }}
+                  />
 
-                    <motion.path
-                      d="M 0 135 Q 60 120, 110 100 T 220 75 T 330 45 T 430 25 L 500 10 L 500 150 L 0 150 Z"
-                      fill="url(#goldGrad)"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ duration: 1.2, delay: 0.2 }}
-                    />
-                    <motion.path
-                      d="M 0 135 Q 60 120, 110 100 T 220 75 T 330 45 T 430 25 L 500 10"
-                      fill="none"
-                      stroke="#F59E0B"
-                      strokeWidth="3.5"
-                      filter="url(#goldGlow)"
-                      initial={{ pathLength: 0 }}
-                      animate={{ pathLength: 1 }}
-                      transition={{ duration: 1.8, ease: "easeOut" }}
-                    />
+                  <circle cx="500" cy="10" r="4.5" fill="#F59E0B" />
+                  <circle
+                    cx="500"
+                    cy="10"
+                    r="9"
+                    fill="none"
+                    stroke="#F59E0B"
+                    strokeWidth="1.5"
+                    className="animate-ping"
+                  />
+                </svg>
 
-                    {/* Lead Pulsing Beacon Point */}
-                    <circle cx="500" cy="10" r="4.5" fill="#F59E0B" />
-                    <circle cx="500" cy="10" r="9" fill="none" stroke="#F59E0B" strokeWidth="1.5" className="animate-ping" />
-                  </svg>
-                </div>
-
-                <div className="grid grid-cols-3 gap-3 border-t border-white/10 pt-4 font-mono">
+                {/* Telemetry badges */}
+                <div className="grid grid-cols-3 gap-2 border-t border-white/10 pt-3 font-mono text-center">
                   <div>
-                    <div className="text-[10px] text-slate-400">CHALLENGE RANK</div>
-                    <div className="text-sm sm:text-base font-bold text-[#F59E0B]">
-                      GOLD LEVEL
-                    </div>
+                    <div className="text-[9px] text-slate-400">RANK</div>
+                    <div className="text-xs font-bold text-[#F59E0B]">GOLD LEVEL</div>
                   </div>
                   <div>
-                    <div className="text-[10px] text-slate-400">STRATEGY TYPE</div>
-                    <div className="text-sm sm:text-base font-bold text-white">
-                      Market-Neutral
-                    </div>
+                    <div className="text-[9px] text-slate-400">TYPE</div>
+                    <div className="text-xs font-bold text-white">Market-Neutral</div>
                   </div>
                   <div>
-                    <div className="text-[10px] text-slate-400">SIGNAL FOCUS</div>
-                    <div className="text-sm sm:text-base font-bold text-[#00F5D4]">
-                      High Sharpe / Low Turnover
-                    </div>
+                    <div className="text-[9px] text-slate-400">SIGNAL</div>
+                    <div className="text-xs font-bold text-[#00F5D4]">High Sharpe</div>
                   </div>
                 </div>
               </div>
-            )}
-          </div>
-        </div>
-      </div>
-    </motion.div>
-  );
-}
+            </div>
 
-export default function ProjectsSection() {
-  return (
-    <section id="projects" className="relative z-10 mx-auto max-w-6xl px-6 py-24">
-      <div className="mb-12 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
-        <div>
-          <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[#00F5D4]">
-            <Code2 className="h-4 w-4" />
-            <span>02 // PRODUCTION ENGINEERING & QUANT RESEARCH</span>
-          </div>
-          <h2 className="mt-2 text-3xl sm:text-5xl font-bold tracking-tight text-white">
-            Flagship Systems.
-          </h2>
-        </div>
-        <p className="max-w-md text-sm text-slate-400">
-          Interactive 3D cards—hover to tilt in perspective space, or launch the{" "}
-          <span className="text-[#00F5D4]">FocusFlow Live Sandbox</span> directly inside the card.
-        </p>
-      </div>
+            {/* Tech Tags */}
+            <div className="mt-4 pt-3 border-t border-white/10 flex flex-wrap gap-1.5">
+              {quantProject.tags.map((tag, i) => (
+                <span
+                  key={i}
+                  className="rounded-lg border border-[#F59E0B]/20 bg-[#F59E0B]/5 px-2.5 py-1 text-[11px] font-mono text-amber-200"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </BentoCard>
+        </motion.div>
 
-      <div className="space-y-10">
-        {PORTFOLIO_DATA.projects.map((project, index) => (
-          <TiltProjectCard key={project.id} project={project} index={index} />
-        ))}
+        {/* ========================================================
+            CARD 03: Hacktoberfest 2026 In-Person Hack Day (col-span-12 md:col-span-6 lg:col-span-5)
+           ======================================================== */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.6, delay: 0.25 }}
+          className="col-span-12 md:col-span-6 lg:col-span-5"
+        >
+          <BentoCard
+            glowColor="rgba(99, 102, 241, 0.4)"
+            surfaceGlow="rgba(99, 102, 241, 0.08)"
+            className="h-full flex flex-col justify-between"
+          >
+            <div>
+              <div className="flex items-center justify-between border-b border-white/10 pb-4">
+                <div className="flex items-center gap-3">
+                  <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-indigo-500/15 border border-indigo-500/40 font-mono text-xs font-bold text-indigo-400">
+                    03
+                  </span>
+                  <div>
+                    <h3 className="text-xl font-bold tracking-tight text-white">
+                      Hacktoberfest 2026
+                    </h3>
+                    <p className="text-xs font-mono text-indigo-300">
+                      Sonipat x Rishihood University
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <a
+                    href="https://github.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-2.5 py-1.5 text-xs font-mono text-slate-300 hover:border-white/40 hover:bg-white/10 hover:text-white transition-all"
+                    title="View Open Source Repositories"
+                  >
+                    <GitHubIcon className="h-3.5 w-3.5" />
+                    <span>Repo</span>
+                  </a>
+                  <a
+                    href="#credentials"
+                    className="flex items-center gap-1 rounded-full border border-indigo-500/35 bg-indigo-500/10 px-2.5 py-1.5 text-xs font-mono text-indigo-300 hover:bg-indigo-500/20 transition-all"
+                  >
+                    <span>Inspect</span>
+                    <ArrowUpRight className="h-3 w-3" />
+                  </a>
+                </div>
+              </div>
+
+              <p className="mt-4 text-sm text-slate-300 leading-relaxed">
+                Participated in-person at Hacktoberfest 2026 Hack Day Sonipat, collaborating with maintainers on production open-source software, presented by DigitalOcean and powered by MLH x DEV.
+              </p>
+
+              <div className="mt-5 space-y-2.5 rounded-2xl border border-white/5 bg-black/40 p-4 font-mono text-xs">
+                <div className="flex items-center justify-between text-slate-300">
+                  <span className="text-slate-400">VENUE:</span>
+                  <span className="text-white">Sonipat x Rishihood Uni</span>
+                </div>
+                <div className="flex items-center justify-between text-slate-300">
+                  <span className="text-slate-400">ORGANIZERS:</span>
+                  <span className="text-indigo-300">DigitalOcean x MLH & DEV</span>
+                </div>
+                <div className="flex items-center justify-between text-slate-300">
+                  <span className="text-slate-400">COLLABORATION:</span>
+                  <span className="text-emerald-400">PRs Merged On-Site</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-5 pt-3 border-t border-white/10 flex flex-wrap gap-1.5">
+              {["Open Source", "Git & GitHub", "Full-Stack", "Linux CLI", "Hackathon"].map((tag) => (
+                <span
+                  key={tag}
+                  className="rounded-lg border border-indigo-500/20 bg-indigo-500/10 px-2.5 py-1 text-[11px] font-mono text-indigo-300"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </BentoCard>
+        </motion.div>
+
+        {/* ========================================================
+            CARD 04: Cognitive Flow & Edge Architecture Telemetry (col-span-12 md:col-span-6 lg:col-span-7)
+           ======================================================== */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="col-span-12 md:col-span-6 lg:col-span-7"
+        >
+          <BentoCard
+            glowColor="rgba(0, 245, 212, 0.3)"
+            surfaceGlow="rgba(0, 245, 212, 0.06)"
+            className="h-full flex flex-col justify-between"
+          >
+            <div>
+              <div className="flex items-center justify-between border-b border-white/10 pb-4">
+                <div className="flex items-center gap-3">
+                  <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-[#00F5D4]/15 border border-[#00F5D4]/40 font-mono text-xs font-bold text-[#00F5D4]">
+                    04
+                  </span>
+                  <div>
+                    <h3 className="text-xl font-bold tracking-tight text-white flex items-center gap-2">
+                      <span>Flow-State Architecture</span>
+                      <Sparkles className="h-4 w-4 text-[#00F5D4]" />
+                    </h3>
+                    <p className="text-xs font-mono text-slate-400">
+                      Cognitive Engine & Edge Deployment Telemetry
+                    </p>
+                  </div>
+                </div>
+
+                <a
+                  href="https://focus-flow0907.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1.5 rounded-full bg-[#00F5D4] px-3.5 py-1.5 text-xs font-mono font-semibold text-slate-950 shadow-[0_0_20px_rgba(0,245,212,0.35)] hover:bg-white transition-all"
+                >
+                  <Terminal className="h-3.5 w-3.5" />
+                  <span>Launch Live</span>
+                  <ArrowUpRight className="h-3.5 w-3.5" />
+                </a>
+              </div>
+
+              <p className="mt-4 text-sm text-slate-300 leading-relaxed">
+                FocusFlow incorporates cognitive psychology pacing with high-performance edge compute. Built with Next.js 16 App Router, it synchronizes real-time session telemetry with sub-100ms latency across global edge points.
+              </p>
+
+              {/* 4-Stat Telemetry Matrix */}
+              <div className="mt-5 grid grid-cols-2 sm:grid-cols-4 gap-3 font-mono">
+                <div className="rounded-xl border border-white/10 bg-black/40 p-3">
+                  <div className="text-[10px] text-slate-400">EDGE P99 LATENCY</div>
+                  <div className="mt-1 text-lg font-bold text-[#00F5D4]">&lt; 45ms</div>
+                  <div className="text-[9px] text-emerald-400">Vercel Edge</div>
+                </div>
+                <div className="rounded-xl border border-white/10 bg-black/40 p-3">
+                  <div className="text-[10px] text-slate-400">OPTIMAL PACING</div>
+                  <div className="mt-1 text-lg font-bold text-white">45:00</div>
+                  <div className="text-[9px] text-slate-400">Deep Work Cycle</div>
+                </div>
+                <div className="rounded-xl border border-white/10 bg-black/40 p-3">
+                  <div className="text-[10px] text-slate-400">COGNITIVE SCORE</div>
+                  <div className="mt-1 text-lg font-bold text-[#00F5D4]">98.4%</div>
+                  <div className="text-[9px] text-emerald-400">Distraction-Free</div>
+                </div>
+                <div className="rounded-xl border border-white/10 bg-black/40 p-3">
+                  <div className="text-[10px] text-slate-400">TARGET FPS</div>
+                  <div className="mt-1 text-lg font-bold text-[#F59E0B]">60 - 120</div>
+                  <div className="text-[9px] text-amber-300">Hardware Accel</div>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-5 pt-3 border-t border-white/10 flex flex-wrap items-center justify-between gap-3 text-xs font-mono text-slate-400">
+              <div className="flex items-center gap-2">
+                <Cpu className="h-3.5 w-3.5 text-[#00F5D4]" />
+                <span>Zero-clutter cognitive UX architecture</span>
+              </div>
+              <span className="text-[#00F5D4]">VERIFIED PRODUCTION GRADE</span>
+            </div>
+          </BentoCard>
+        </motion.div>
       </div>
     </section>
   );
