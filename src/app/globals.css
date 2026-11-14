@@ -81,3 +81,41 @@ body {
 .text-glow-gold {
   text-shadow: 0 0 25px rgba(245, 158, 11, 0.45);
 }
+
+/* Infinite Seamless 60FPS Marquee */
+@keyframes marquee {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes marquee-reverse {
+  0% {
+    transform: translate3d(-50%, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 26s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee-reverse {
+  display: flex;
+  width: max-content;
+  animation: marquee-reverse 30s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee:hover,
+.animate-marquee-reverse:hover {
+  animation-play-state: paused;
+}

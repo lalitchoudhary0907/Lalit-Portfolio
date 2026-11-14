@@ -10,6 +10,7 @@ import ProjectsSection from "@/components/sections/ProjectsSection";
 import CredentialsVault from "@/components/sections/CredentialsVault";
 import SkillsAndContact from "@/components/sections/SkillsAndContact";
 import CommandBar from "@/components/ui/CommandBar";
+import SkillMarquee from "@/components/ui/SkillMarquee";
 import { PORTFOLIO_DATA } from "@/data/portfolio";
 
 export default function HomePage() {
@@ -189,6 +190,9 @@ export default function HomePage() {
           ))}
         </motion.div>
       </section>
+
+      {/* 01.5 INFINITE 60FPS SKILL MARQUEE BANNER */}
+      <SkillMarquee />
 
       {/* 02. FLAGSHIP PROJECTS & LIVE FOCUSFLOW SANDBOX */}
       <ProjectsSection />
