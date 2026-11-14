@@ -5,7 +5,6 @@ import {
   ArrowUpRight,
   Award,
   Cpu,
-  Sparkles,
 } from "lucide-react";
 import Scene3D from "@/components/canvas/Scene3D";
 import CustomCursor from "@/components/ui/CustomCursor";
@@ -40,23 +39,32 @@ export default function HomePage() {
       <Navbar />
 
       {/* ========================================================
-          HERO SECTION — RESTRAINED EDITORIAL AESTHETIC
-          Massive 'LALIT' Typography + Dual Continuous Marquee Ribbons
+          HERO SECTION — EXACT EDITORIAL COMPOSITION (ANTRIKSH REFERENCE)
+          Background Glow + Display Heading + Dual Ribbons + Portrait Cutout + Bottom Metadata
          ======================================================== */}
       <section
         onMouseMove={handleMouseMove}
-        className="group relative z-10 flex min-h-[100svh] w-full flex-col justify-between px-4 sm:px-8 pt-36 sm:pt-44 pb-16 sm:pb-20 overflow-hidden"
+        className="group relative z-10 flex min-h-[100svh] w-full flex-col justify-between overflow-hidden bg-[#121110] px-6 sm:px-10 pt-16 sm:pt-20 pb-6 sm:pb-8"
       >
+        {/* Soft Warm Ember Radial Glow Behind Portrait */}
+        <div
+          className="pointer-events-none absolute inset-0 z-0 select-none"
+          style={{
+            background:
+              "radial-gradient(circle at 50% 48%, rgba(255, 87, 34, 0.22) 0%, rgba(18, 17, 16, 0) 62%)",
+          }}
+        />
+
         {/* Dynamic Mouse-Tracking Subtle Spotlight */}
         <motion.div
           className="pointer-events-none absolute -inset-x-20 -top-20 -bottom-20 z-0 opacity-60 transition-opacity duration-500 group-hover:opacity-100"
           style={{
             background: useMotionTemplate`
               radial-gradient(
-                700px circle at ${mouseX}px ${mouseY}px,
+                650px circle at ${mouseX}px ${mouseY}px,
                 rgba(255, 87, 34, 0.08),
                 rgba(255, 255, 255, 0.02) 40%,
-                transparent 75%
+                transparent 72%
               )
             `,
           }}
@@ -65,139 +73,102 @@ export default function HomePage() {
         {/* Subtle Background Grid Lines */}
         <div className="pointer-events-none absolute inset-0 z-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_40%,#000_65%,transparent_100%)]" />
 
-        {/* TOP STATUS INDICATOR (Clean & Minimalist) */}
-        <div className="relative z-10 mx-auto mb-8 sm:mb-12 flex w-full max-w-6xl items-center justify-between">
-          <motion.div
-            initial={{ opacity: 0, y: -15 }}
+        {/* UPPER DISPLAY TITLE: 'LALIT' (Solid) + 'CHOUDHARY' (Outline Stroke) */}
+        <div className="pointer-events-none absolute top-14 sm:top-18 md:top-20 left-0 right-0 z-10 flex items-center justify-center select-none overflow-hidden px-4">
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2.5 rounded-full border border-white/[0.08] bg-[#181614] px-4 py-1.5 text-xs font-mono text-[#9E9890]"
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="font-sans font-black italic tracking-tighter text-5xl sm:text-7xl md:text-[10vw] lg:text-[11.5vw] leading-none whitespace-nowrap text-center"
           >
-            <span className="h-1.5 w-1.5 rounded-full bg-[#FF5722]" />
-            <span className="tracking-wide uppercase text-[#F5F3EF]">
-              {PORTFOLIO_DATA.personal.status}
+            <span className="text-[#F5F3EF] drop-shadow-[0_10px_35px_rgba(255,255,255,0.12)]">
+              LALIT
             </span>
-            <span className="text-white/20">•</span>
-            <span className="text-[#9E9890]">WORLDQUANT GOLD MEDALIST</span>
-          </motion.div>
+            <span className="text-transparent [-webkit-text-stroke:1.2px_rgba(245,243,239,0.55)] sm:[-webkit-text-stroke:1.8px_rgba(245,243,239,0.55)] ml-2 sm:ml-5">
+              CHOUDHARY
+            </span>
+          </motion.h1>
         </div>
 
-        {/* CENTERPIECE: GIANT 'LALIT' DISPLAY TYPOGRAPHY */}
-        <div className="relative z-10 my-auto flex flex-col items-center justify-center text-center">
-          {/* Subtle Radial Dark Vignette behind center typography for 100% legibility */}
-          <div className="pointer-events-none absolute -inset-x-24 -inset-y-16 -z-10 rounded-full bg-[#121110]/80 blur-3xl" />
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.92 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="select-none"
-          >
-            <h1 className="text-7xl sm:text-9xl md:text-[13vw] font-black tracking-tighter leading-none uppercase font-sans">
-              <span className="text-[#F5F3EF] drop-shadow-[0_10px_35px_rgba(255,255,255,0.15)]">
-                LA
-              </span>
-              <span className="text-transparent [-webkit-text-stroke:2px_rgba(245,243,239,0.85)] sm:[-webkit-text-stroke:3px_rgba(245,243,239,0.85)] hover:text-[#F5F3EF] transition-colors duration-300">
-                LIT
-              </span>
-            </h1>
-          </motion.div>
-
-          <motion.p
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="mt-6 sm:mt-8 max-w-2xl text-xs sm:text-sm font-mono uppercase tracking-[0.25em] text-[#9E9890] font-medium"
-          >
-            FULL-STACK SOFTWARE ENGINEER • QUANTITATIVE RESEARCHER • AI ARCHITECT
-          </motion.p>
-
-          {/* DUAL CONTINUOUS MARQUEE RIBBONS CROSSING THE HERO */}
-          <div className="relative my-10 sm:my-14 w-screen max-w-none -mx-4 sm:-mx-8 overflow-hidden py-2 select-none">
-            {/* Upper Ribbon (#181614 Elevated Surface) */}
-            <div className="flex w-full overflow-hidden border-y border-white/[0.08] bg-[#181614] py-2.5 backdrop-blur-md">
-              <div className="animate-marquee flex items-center gap-6 whitespace-nowrap text-xs sm:text-sm font-mono tracking-widest text-[#9E9890] uppercase">
-                {[...Array(4)].map((_, i) => (
-                  <span key={i} className="flex items-center gap-6">
-                    <span>QUANTITATIVE FINANCE</span>
-                    <span className="text-[#FF5722]">•</span>
-                    <span>FULL-STACK SYSTEMS</span>
-                    <span className="text-white/30">•</span>
-                    <span>AUTONOMOUS AI AGENTS</span>
-                    <span className="text-[#FF5722]">•</span>
-                    <span>THREE.JS & WEBGL</span>
-                    <span className="text-white/30">•</span>
-                    <span>STATISTICAL ARBITRAGE</span>
-                    <span className="text-[#FF5722]">•</span>
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            {/* Lower Ribbon (Signature Warm Ember Orange #FF5722) */}
-            <div className="flex w-full overflow-hidden bg-[#FF5722] py-2.5 text-[#121110]">
-              <div className="animate-marquee-reverse flex items-center gap-6 whitespace-nowrap text-xs sm:text-sm font-mono font-bold tracking-wider uppercase">
-                {[...Array(4)].map((_, i) => (
-                  <span key={i} className="flex items-center gap-6">
-                    <span>I BUILD HIGH-VELOCITY SYSTEMS & QUANT ALPHAS</span>
-                    <span className="text-black/50">★</span>
-                    <span>I LEARN BY BUILDING WHAT I WISH EXISTED</span>
-                    <span className="text-black/50">★</span>
-                    <span>PUSHING THE EDGES OF WEBGL & AI</span>
-                    <span className="text-black/50">★</span>
-                  </span>
-                ))}
-              </div>
+        {/* DUAL CONTINUOUS MARQUEE RIBBONS CROSSING MID-TORSO (BEHIND PORTRAIT) */}
+        <div className="pointer-events-none absolute top-[48%] sm:top-[50%] -translate-y-1/2 left-0 right-0 z-15 flex flex-col gap-2.5 sm:gap-3.5 w-full overflow-hidden select-none">
+          {/* Upper Ribbon (Muted Slate / Zinc Discipline Ticker) */}
+          <div className="flex w-full overflow-hidden py-1">
+            <div className="animate-marquee flex items-center gap-6 whitespace-nowrap font-sans font-extrabold text-2xl sm:text-4xl md:text-5xl lg:text-6xl tracking-wider uppercase text-white/20">
+              {[...Array(6)].map((_, i) => (
+                <span key={i} className="flex items-center gap-6">
+                  <span>SOFTWARE</span>
+                  <span>•</span>
+                  <span>AI</span>
+                  <span>•</span>
+                  <span>QUANTITATIVE RESEARCH</span>
+                  <span>•</span>
+                  <span>PRODUCT THINKING</span>
+                  <span>•</span>
+                  <span>FULL-STACK SYSTEMS</span>
+                  <span>•</span>
+                </span>
+              ))}
             </div>
           </div>
 
-          {/* ACTION CTA BUTTONS */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="mt-2 sm:mt-4 mb-4 sm:mb-6 flex flex-wrap items-center justify-center gap-4"
-          >
-            <a
-              href="https://focus-flow0907.vercel.app/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex items-center gap-2 rounded-full bg-[#FF5722] px-7 py-3.5 text-sm font-bold text-[#121110] hover:bg-[#ff6838] transition-all duration-300"
-            >
-              <span>Launch FocusFlow App</span>
-              <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </a>
-
-            <a
-              href="#credentials"
-              className="flex items-center gap-2 rounded-full border border-white/[0.08] bg-[#181614] px-7 py-3.5 text-sm font-medium text-[#F5F3EF] hover:border-white/20 transition-all duration-300"
-            >
-              <Sparkles className="h-4 w-4 text-[#FF5722]" />
-              <span>Inspect Gold Credentials</span>
-            </a>
-          </motion.div>
+          {/* Lower Ribbon (Solid #FF5722 Energetic Orange Full-Bleed Strip) */}
+          <div className="flex w-full overflow-hidden bg-[#FF5722] py-2 sm:py-3 text-[#121110] shadow-[0_10px_30px_rgba(255,87,34,0.3)]">
+            <div className="animate-marquee-reverse flex items-center gap-6 whitespace-nowrap font-mono font-black text-xs sm:text-sm md:text-base tracking-widest uppercase">
+              {[...Array(6)].map((_, i) => (
+                <span key={i} className="flex items-center gap-6">
+                  <span>I BUILD HIGH-VELOCITY SYSTEMS & QUANT ALPHAS</span>
+                  <span className="text-black/50">★</span>
+                  <span>PUSHING THE EDGES OF WEBGL & AI</span>
+                  <span className="text-black/50">★</span>
+                  <span>TURNING CURIOUS IDEAS INTO REALITY</span>
+                  <span className="text-black/50">★</span>
+                </span>
+              ))}
+            </div>
+          </div>
         </div>
 
-        {/* HERO BOTTOM METADATA BAR */}
-        <div className="relative z-10 mx-auto mt-12 sm:mt-16 flex w-full max-w-6xl items-end justify-between border-t border-white/[0.08] pt-5 font-mono text-[11px] text-[#9E9890]">
-          <div className="max-w-xs text-left">
-            <span className="text-[#F5F3EF] font-semibold">QUANT & FULL-STACK</span>
-            <p className="text-[#9E9890]">
-              Building useful systems at the edge of AI, WebGL & Quant.
+        {/* PORTRAIT CUTOUT SLOT (CENTERED LOWER HERO WITH BOTTOM VIGNETTE FADE) */}
+        <div className="relative z-20 mx-auto mt-auto flex flex-col items-center justify-end select-none pointer-events-none pt-24 sm:pt-28">
+          <motion.img
+            initial={{ opacity: 0, y: 30, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.9, ease: "easeOut" }}
+            src="/images/hero-cutout.png"
+            alt="Lalit Choudhary"
+            className="h-[50vh] sm:h-[62vh] md:h-[70vh] max-h-[740px] w-auto object-contain object-bottom"
+            style={{
+              maskImage: "linear-gradient(to bottom, black 72%, transparent 100%)",
+              WebkitMaskImage: "linear-gradient(to bottom, black 72%, transparent 100%)",
+            }}
+          />
+
+          {/* Subtle Center Telemetry / Interaction Hint */}
+          <div className="absolute -bottom-2 sm:bottom-0 flex items-center gap-2 font-mono text-[10px] tracking-[0.2em] uppercase text-[#9E9890]">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#FF5722] animate-pulse" />
+            <span>MOVE TO SUIT UP</span>
+          </div>
+        </div>
+
+        {/* HERO BOTTOM CORNERS METADATA & SCROLL BUTTON */}
+        <div className="relative z-30 mt-6 sm:mt-8 flex w-full items-end justify-between border-t border-white/[0.06] pt-4 font-mono text-[10px] sm:text-[11px] text-[#9E9890]">
+          {/* Bottom-left: 2-line compact metadata */}
+          <div className="max-w-xs text-left leading-relaxed">
+            <div className="text-[#F5F3EF] font-semibold tracking-[0.2em] mb-0.5">
+              SOFTWARE × QUANT
+            </div>
+            <p className="text-[#9E9890] text-[10px] sm:text-[11px] normal-case tracking-normal">
+              Building useful systems at the edge of AI, code & finance.
             </p>
           </div>
 
-          <div className="hidden sm:flex items-center gap-2 text-[#9E9890]">
-            <span className="h-1.5 w-1.5 rounded-full bg-[#FF5722]" />
-            <span>MOVE CURSOR TO EXPLORE LATTICE NETWORK</span>
-          </div>
-
+          {/* Bottom-right: crisp rectangular outlined button SCROLL TO WORK ↓ */}
           <a
             href="#about"
-            className="group flex items-center gap-1.5 font-mono text-xs uppercase tracking-wider text-[#FF5722] hover:text-[#F5F3EF] transition-colors"
+            className="border border-white/15 bg-white/[0.02] px-4 py-2.5 text-[11px] tracking-[0.2em] uppercase text-[#F5F3EF] hover:border-[#FF5722] hover:text-[#FF5722] transition-colors"
           >
-            <span>SCROLL TO WORK</span>
-            <span className="transition-transform group-hover:translate-y-1">↓</span>
+            SCROLL TO WORK ↓
           </a>
         </div>
       </section>

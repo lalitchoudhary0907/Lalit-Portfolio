@@ -14,18 +14,18 @@ export default function Navbar() {
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 w-full border-b border-white/[0.07] bg-[#121110]/85 backdrop-blur-md transition-all">
-      <div className="mx-auto flex h-16 sm:h-20 max-w-7xl items-center justify-between px-6 sm:px-10">
-        {/* Left Side: Brand Identity */}
+    <header className="fixed top-0 left-0 right-0 z-50 w-full h-12 border-b border-white/[0.06] bg-[#121110]/90 backdrop-blur-md">
+      <div className="mx-auto flex h-full max-w-7xl items-center justify-between px-6 sm:px-10">
+        {/* Left Side: Clean Uppercase Tracked Sans */}
         <a
           href="#top"
-          className="text-xs sm:text-sm tracking-[0.22em] uppercase text-[#F5F3EF] font-medium hover:text-[#FF5722] transition-colors"
+          className="text-[11px] sm:text-xs tracking-[0.24em] uppercase text-[#F5F3EF] font-medium hover:text-[#FF5722] transition-colors"
         >
           LALIT CHOUDHARY
         </a>
 
-        {/* Right Side: Editorial Text Links (Desktop) */}
-        <nav className="hidden md:flex items-center gap-6 sm:gap-10 font-mono text-xs tracking-[0.18em] uppercase text-[#9E9890]">
+        {/* Right Side: 4 Clean Uppercase Tracked Links */}
+        <nav className="hidden md:flex items-center gap-6 sm:gap-9 font-mono text-[11px] tracking-[0.2em] uppercase text-[#9E9890]">
           {navLinks.map((link) => (
             <a
               key={link.href}
@@ -41,21 +41,21 @@ export default function Navbar() {
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
-          className="flex md:hidden flex-col items-center justify-center gap-1.5 w-8 h-8 text-[#F5F3EF] focus:outline-none"
+          className="flex md:hidden flex-col items-center justify-center gap-1 w-7 h-7 text-[#F5F3EF] focus:outline-none"
         >
           <span
-            className={`block h-0.5 w-5 bg-current transition-transform duration-300 ${
-              mobileMenuOpen ? "translate-y-2 rotate-45" : ""
+            className={`block h-[1.5px] w-4 bg-current transition-transform duration-300 ${
+              mobileMenuOpen ? "translate-y-1.5 rotate-45" : ""
             }`}
           />
           <span
-            className={`block h-0.5 w-5 bg-current transition-opacity duration-300 ${
+            className={`block h-[1.5px] w-4 bg-current transition-opacity duration-300 ${
               mobileMenuOpen ? "opacity-0" : ""
             }`}
           />
           <span
-            className={`block h-0.5 w-5 bg-current transition-transform duration-300 ${
-              mobileMenuOpen ? "-translate-y-2 -rotate-45" : ""
+            className={`block h-[1.5px] w-4 bg-current transition-transform duration-300 ${
+              mobileMenuOpen ? "-translate-y-1.5 -rotate-45" : ""
             }`}
           />
         </button>
@@ -68,10 +68,10 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.25, ease: "easeOut" }}
-            className="md:hidden border-t border-white/[0.07] bg-[#121110] px-6 py-6"
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className="md:hidden border-b border-white/[0.08] bg-[#121110] px-6 py-4 shadow-xl"
           >
-            <div className="flex flex-col gap-5 font-mono text-xs tracking-[0.18em] uppercase text-[#9E9890]">
+            <div className="flex flex-col gap-4 font-mono text-[11px] tracking-[0.2em] uppercase text-[#9E9890]">
               {navLinks.map((link) => (
                 <a
                   key={link.href}
