@@ -7,6 +7,7 @@ import CustomCursor from "@/components/ui/CustomCursor";
 import Navbar from "@/components/ui/Navbar";
 import SmoothScroll from "@/components/ui/SmoothScroll";
 import ProjectsSection from "@/components/sections/ProjectsSection";
+import JourneySection from "@/components/sections/JourneySection";
 import CredentialsVault from "@/components/sections/CredentialsVault";
 import SkillsAndContact from "@/components/sections/SkillsAndContact";
 import CommandBar from "@/components/ui/CommandBar";
@@ -196,6 +197,9 @@ export default function HomePage() {
 
       {/* 02. FLAGSHIP PROJECTS & LIVE FOCUSFLOW SANDBOX */}
       <ProjectsSection />
+
+      {/* 02.5 CINEMATIC TIMELINE JOURNEY */}
+      <JourneySection />
 
       {/* 03. WORLDQUANT GOLD & HACKTOBERFEST HOLOGRAPHIC VAULT */}
       <CredentialsVault />

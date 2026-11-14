@@ -51,10 +51,19 @@ const KNOWLEDGE_BASE: Record<string, AnswerPayload> = {
       { label: "View Open Source Arsenal", href: "#skills" },
     ],
   },
+  journey: {
+    text: "Lalit is pursuing his B.Tech in Computer Science & Artificial Intelligence at Rishihood University (Newton School of Technology). His journey spans foundational 3D WebGL architecture, autonomous AI agents, in-person hackathon wins, and prestigious WorldQuant BRAIN Gold honors.",
+    actions: [
+      { label: "Inspect Timeline", href: "#journey" },
+      { label: "View Credentials Vault", href: "#credentials" },
+      { label: "Try FocusFlow Live", href: "https://focus-flow0907.vercel.app/", isExternal: true },
+    ],
+  },
 };
 
 const SUGGESTED_CHIPS = [
   { id: "pitch", label: "Pitch Lalit in 30 seconds" },
+  { id: "journey", label: "Tell me about his Rishihood CS & AI journey" },
   { id: "focusflow", label: "How was FocusFlow engineered?" },
   { id: "worldquant", label: "Tell me about his WorldQuant Gold rank" },
   { id: "hacktoberfest", label: "What did he build at Hacktoberfest 2026?" },
@@ -63,8 +72,9 @@ const SUGGESTED_CHIPS = [
 const NAVIGATION_TARGETS = [
   { label: "01. Telemetry", href: "#about", icon: Cpu },
   { label: "02. FocusFlow Sandbox", href: "#projects", icon: Layers },
-  { label: "03. Credentials Vault", href: "#credentials", icon: Award },
-  { label: "04. Tech Stack", href: "#skills", icon: Code2 },
+  { label: "03. Timeline", href: "#journey", icon: Sparkles },
+  { label: "04. Credentials Vault", href: "#credentials", icon: Award },
+  { label: "05. Tech Stack", href: "#skills", icon: Code2 },
 ];
 
 export default function CommandBar() {
@@ -147,6 +157,16 @@ export default function CommandBar() {
       matched = KNOWLEDGE_BASE.worldquant;
     } else if (q.includes("hack") || q.includes("october") || q.includes("event") || q.includes("mlh")) {
       matched = KNOWLEDGE_BASE.hacktoberfest;
+    } else if (
+      q.includes("rishihood") ||
+      q.includes("btech") ||
+      q.includes("journey") ||
+      q.includes("timeline") ||
+      q.includes("college") ||
+      q.includes("university") ||
+      q.includes("education")
+    ) {
+      matched = KNOWLEDGE_BASE.journey;
     } else if (q.includes("skill") || q.includes("stack") || q.includes("tech") || q.includes("react")) {
       matched = {
         text: `Lalit specializes in full-stack web and quant architecture: Next.js, React, TypeScript, Three.js / React Three Fiber, Tailwind CSS, Framer Motion, Python, and WorldQuant BRAIN alpha modeling.`,

@@ -146,22 +146,25 @@ export default function Navbar() {
         </a>
 
         {/* Navigation Links */}
-        <div className="hidden md:flex items-center gap-7 text-xs font-mono uppercase tracking-wider text-slate-300">
+        <div className="hidden md:flex items-center gap-6 text-xs font-mono uppercase tracking-wider text-slate-300">
           <a href="#about" className="hover:text-[#00F5D4] transition-colors">
             01. Telemetry
           </a>
           <a href="#projects" className="hover:text-[#00F5D4] transition-colors">
-            02. FocusFlow & Work
+            02. Work
+          </a>
+          <a href="#journey" className="hover:text-[#00F5D4] transition-colors">
+            03. Journey
           </a>
           <a
             href="#credentials"
             className="hover:text-[#F59E0B] transition-colors flex items-center gap-1"
           >
             <Sparkles className="h-3 w-3 text-[#F59E0B]" />
-            03. WorldQuant & Vault
+            04. Vault
           </a>
           <a href="#skills" className="hover:text-[#00F5D4] transition-colors">
-            04. Stack
+            05. Stack
           </a>
         </div>
 
