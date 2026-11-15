@@ -7,7 +7,6 @@ import {
   Cpu,
 } from "lucide-react";
 import Scene3D from "@/components/canvas/Scene3D";
-import CustomCursor from "@/components/ui/CustomCursor";
 import Navbar from "@/components/ui/Navbar";
 import SmoothScroll from "@/components/ui/SmoothScroll";
 import ProjectsSection from "@/components/sections/ProjectsSection";
@@ -21,7 +20,6 @@ export default function HomePage() {
   return (
     <main id="top" className="relative min-h-screen w-full overflow-x-hidden bg-[#111010] text-[#F5F3EF]">
       <SmoothScroll />
-      <CustomCursor />
       <Scene3D />
       <Navbar />
 

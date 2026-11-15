@@ -174,24 +174,24 @@ export default function SkillsAndContact() {
               </div>
             </div>
 
-            {/* Right side: Wide, sharp-edged stacked action cells filling the right half cleanly */}
-            <div className="lg:col-span-5 flex flex-col gap-3.5 sm:gap-4 w-full">
+            {/* Right side: Wide, sharp-edged stacked action cells (GitHub & LinkedIn only) */}
+            <div className="lg:col-span-5 flex flex-col justify-center gap-4 sm:gap-5 w-full h-full">
               {/* Cell 1: GitHub */}
               <a
                 href={PORTFOLIO_DATA.personal.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative flex items-center justify-between border border-white/[0.09] bg-[#151412]/80 hover:bg-[#181614] hover:border-[#FF5722]/60 px-6 py-4.5 transition-all duration-300 rounded-none w-full"
+                className="group relative flex items-center justify-between border border-white/[0.09] bg-[#151412]/80 hover:bg-[#181614] hover:border-[#FF5722]/60 px-6 sm:px-7 py-5 sm:py-6 transition-all duration-300 rounded-none w-full"
               >
                 <div>
-                  <span className="text-base sm:text-lg font-medium text-[#F5F3EF] tracking-tight group-hover:text-[#FF5722] transition-colors block">
+                  <span className="text-lg sm:text-xl font-medium text-[#F5F3EF] tracking-tight group-hover:text-[#FF5722] transition-colors block">
                     GitHub
                   </span>
-                  <span className="font-mono text-[10px] tracking-[0.16em] uppercase text-[#8E877E] group-hover:text-[#9E9890] transition-colors mt-0.5 block">
+                  <span className="font-mono text-[10px] sm:text-[11px] tracking-[0.16em] uppercase text-[#8E877E] group-hover:text-[#9E9890] transition-colors mt-1 block">
                     SEE WHAT I&apos;M BUILDING • @lalitchoudhary0907
                   </span>
                 </div>
-                <ArrowUpRight className="h-4 w-4 shrink-0 text-[#FF5722] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                <ArrowUpRight className="h-5 w-5 shrink-0 text-[#FF5722] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </a>
 
               {/* Cell 2: LinkedIn */}
@@ -199,35 +199,17 @@ export default function SkillsAndContact() {
                 href={PORTFOLIO_DATA.personal.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative flex items-center justify-between border border-white/[0.09] bg-[#151412]/80 hover:bg-[#181614] hover:border-[#FF5722]/60 px-6 py-4.5 transition-all duration-300 rounded-none w-full"
+                className="group relative flex items-center justify-between border border-white/[0.09] bg-[#151412]/80 hover:bg-[#181614] hover:border-[#FF5722]/60 px-6 sm:px-7 py-5 sm:py-6 transition-all duration-300 rounded-none w-full"
               >
                 <div>
-                  <span className="text-base sm:text-lg font-medium text-[#F5F3EF] tracking-tight group-hover:text-[#FF5722] transition-colors block">
+                  <span className="text-lg sm:text-xl font-medium text-[#F5F3EF] tracking-tight group-hover:text-[#FF5722] transition-colors block">
                     LinkedIn
                   </span>
-                  <span className="font-mono text-[10px] tracking-[0.16em] uppercase text-[#8E877E] group-hover:text-[#9E9890] transition-colors mt-0.5 block">
+                  <span className="font-mono text-[10px] sm:text-[11px] tracking-[0.16em] uppercase text-[#8E877E] group-hover:text-[#9E9890] transition-colors mt-1 block">
                     LET&apos;S CONNECT PROFESSIONALLY
                   </span>
                 </div>
-                <ArrowUpRight className="h-4 w-4 shrink-0 text-[#FF5722] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </a>
-
-              {/* Cell 3: FocusFlow Live App */}
-              <a
-                href="https://focus-flow0907.vercel.app/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group relative flex items-center justify-between border border-white/[0.09] bg-[#151412]/80 hover:bg-[#181614] hover:border-[#FF5722]/60 px-6 py-4.5 transition-all duration-300 rounded-none w-full"
-              >
-                <div>
-                  <span className="text-base sm:text-lg font-medium text-[#F5F3EF] tracking-tight group-hover:text-[#FF5722] transition-colors block">
-                    FocusFlow Live
-                  </span>
-                  <span className="font-mono text-[10px] tracking-[0.16em] uppercase text-[#8E877E] group-hover:text-[#9E9890] transition-colors mt-0.5 block">
-                    PRODUCTION PRODUCTIVITY PLATFORM ↗
-                  </span>
-                </div>
-                <ArrowUpRight className="h-4 w-4 shrink-0 text-[#FF5722] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                <ArrowUpRight className="h-5 w-5 shrink-0 text-[#FF5722] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </a>
             </div>
           </div>
@@ -237,23 +219,13 @@ export default function SkillsAndContact() {
         <div className="mt-12 sm:mt-16 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs text-[#8E877E] tracking-wider uppercase">
           <span>© 2026 LALIT CHOUDHARY • BUILT WITH CURIOSITY</span>
 
-          <div className="flex items-center gap-6">
-            <a
-              href="https://focus-flow0907.vercel.app/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-[#F5F3EF] transition-colors"
-            >
-              FOCUSFLOW LIVE ↗
-            </a>
-            <button
-              onClick={scrollToTop}
-              className="hover:text-[#FF5722] transition-colors flex items-center gap-1 cursor-pointer"
-            >
-              <span>BACK TO TOP</span>
-              <span>↑</span>
-            </button>
-          </div>
+          <button
+            onClick={scrollToTop}
+            className="hover:text-[#FF5722] transition-colors flex items-center gap-1 cursor-pointer"
+          >
+            <span>BACK TO TOP</span>
+            <span>↑</span>
+          </button>
         </div>
       </div>
     </section>

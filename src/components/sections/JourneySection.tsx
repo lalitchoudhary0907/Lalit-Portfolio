@@ -1,391 +1,368 @@
 "use client";
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useRef, useEffect, useCallback } from "react";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import {
   Award,
-  Calendar,
-  CheckCircle2,
   Code2,
   Cpu,
   Layers,
   Sparkles,
-  Terminal,
-  ArrowUpRight,
+  ShieldCheck,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 
 interface Milestone {
   id: string;
   year: string;
   period: string;
+  tag: string;
   title: string;
   subtitle: string;
-  category: string;
   description: string;
-  highlights: string[];
-  tags: string[];
-  badge: string;
-  action?: {
-    label: string;
-    href: string;
-    isExternal?: boolean;
-  };
+  snippet: string;
   icon: React.ComponentType<{ className?: string; style?: React.CSSProperties }>;
 }
 
+// EXACT CHRONOLOGICAL 2026 SEQUENCE (01 to 06)
 const MILESTONES: Milestone[] = [
+  {
+    id: "overtone",
+    year: "2026",
+    period: "2026 • COMMERCE & AUDIO",
+    tag: "2026 • COMMERCE & AUDIO",
+    title: "Overtone",
+    subtitle: "Global Instrument Commerce & Sound Catalog",
+    description:
+      "Crafted a luxury instrument commerce platform featuring bespoke sound profiles, interactive 432Hz acoustic preview players, and fluid responsive catalog browsing.",
+    snippet: "Global Instrument Commerce & Sound Catalog.",
+    icon: Layers,
+  },
+  {
+    id: "corealert-sos",
+    year: "2026",
+    period: "2026 • MOBILE & SAFETY",
+    tag: "2026 • MOBILE & SAFETY",
+    title: "CoreAlert SOS",
+    subtitle: "Emergency Response & Guardian Telemetry App",
+    description:
+      "Engineered a rapid personal safety platform with background hardware volume-down SOS triggers, sub-second GPS coordinate sync, and live guardian broadcasting.",
+    snippet: "Emergency Response & Guardian Telemetry App.",
+    icon: ShieldCheck,
+  },
+  {
+    id: "newton-school",
+    year: "2026",
+    period: "2026 • UNIVERSITY",
+    tag: "2026 • UNIVERSITY",
+    title: "Newton School of Technology",
+    subtitle: "Began B.Tech in CS & AI at Rishihood University",
+    description:
+      "Began a B.Tech in Computer Science and Artificial Intelligence at Rishihood University, diving deep into computer systems architecture, algorithmic complexity, numerical methods, and distributed pipelines.",
+    snippet: "Began B.Tech in CS & AI at Rishihood University.",
+    icon: Cpu,
+  },
+  {
+    id: "gati-predict",
+    year: "2026",
+    period: "2026 • SMART TRANSIT",
+    tag: "2026 • SMART TRANSIT",
+    title: "Gati-Predict — SIH 2026",
+    subtitle: "AI Multimodal Transit & Railway Delay Predictor",
+    description:
+      "Predictive transit intelligence and real-time railway telemetry platform engineered for Smart India Hackathon (SIH 2026) with congestion forecasting and dynamic dispatch optimization.",
+    snippet: "AI Multimodal Transit & Railway Delay Predictor.",
+    icon: Sparkles,
+  },
   {
     id: "worldquant-gold",
     year: "2026",
-    period: "2026 • CURRENT",
-    title: "WorldQuant BRAIN — Gold Level Honor",
-    subtitle: "Authorized by Nitish Maini, Chief Strategy Officer",
-    category: "Quantitative Finance & Statistical Arbitrage",
+    period: "2026 • QUANT HONORS",
+    tag: "2026 • QUANT HONORS",
+    title: "WorldQuant BRAIN — Gold Level",
+    subtitle: "Quantitative Alpha Research & Gold Level Honor",
     description:
-      "Formulated, backtested, and stress-tested predictive market-neutral quantitative alphas on the institutional WorldQuant BRAIN simulation platform. Rigorously balanced Sharpe ratio, statistical Fitness metrics, sub-universe stability, and low portfolio turnover.",
-    highlights: [
-      "Achieved elite GOLD LEVEL status in WorldQuant Challenge®",
-      "Engineered high-Sharpe mathematical stock selection alphas",
-      "Validated performance across historical multi-asset market datasets",
-    ],
-    tags: ["Alpha Simulation", "Statistical Arbitrage", "Python", "Risk Control", "Quant Finance"],
-    badge: "GOLD MEDALIST",
-    action: {
-      label: "Inspect Credential",
-      href: "#credentials",
-    },
+      "Achieved elite Gold Level Consultant status in the WorldQuant Challenge, formulating and backtesting predictive market-neutral quantitative alphas with institutional Sharpe ratios and low portfolio turnover.",
+    snippet: "Quantitative Alpha Research & Gold Level Honor.",
     icon: Award,
   },
   {
     id: "hacktoberfest-2026",
     year: "2026",
-    period: "OCTOBER 31, 2026",
-    title: "Hacktoberfest 2026 — In-Person Hack Day",
-    subtitle: "Sonipat x Rishihood University • DigitalOcean x MLH & DEV",
-    category: "Open Source Engineering & Live Collaboration",
+    period: "2026 • OPEN SOURCE",
+    tag: "2026 • OPEN SOURCE",
+    title: "Hacktoberfest 2026 — Hack Day",
+    subtitle: "In-Person Open-Source Hack Day at Sonipat × Rishihood University",
     description:
-      "Participated in-person at the official Hacktoberfest Hack Day hosted at Rishihood University in Sonipat. Collaborated on-site with open-source maintainers, building production software features and merging pull requests live.",
-    highlights: [
-      "Collaborated on-site with developers and open-source maintainers",
-      "Authored and merged production PRs under Hacktoberfest guidelines",
-      "Earned official verified event credential backed by MLH & DEV",
-    ],
-    tags: ["Open Source", "Git & GitHub", "Full-Stack Web", "Linux CLI", "Teamwork"],
-    badge: "IN-PERSON HACKATHON",
-    action: {
-      label: "Inspect Credential",
-      href: "#credentials",
-    },
+      "Collaborated live on-site with open-source maintainers at Rishihood University powered by DigitalOcean, MLH, and DEV, authoring and merging production pull requests for global community projects.",
+    snippet: "In-Person Open-Source Hack Day at Sonipat × Rishihood University.",
     icon: Code2,
-  },
-  {
-    id: "focusflow-production",
-    year: "2026",
-    period: "2026 • PRODUCTION SHIP",
-    title: "FocusFlow — Deep Work & Flow-State Engine",
-    subtitle: "Next-Gen Productivity Platform Deployed on Vercel",
-    category: "High-Performance Product Engineering",
-    description:
-      "Conceived, architected, and shipped FocusFlow—a cognitive flow-state orchestration engine designed to eradicate digital distraction. Built with Next.js 16 App Router, TypeScript, and Tailwind CSS, featuring sub-100ms state updates and global edge deployment.",
-    highlights: [
-      "Sub-100ms fluid UI state transitions and real-time telemetry",
-      "Interactive 3D preview HUD and zero-clutter cognitive ergonomics",
-      "Deployed on Vercel Edge Network with sub-45ms global P99 latency",
-    ],
-    tags: ["Next.js 16", "TypeScript", "Tailwind CSS", "Framer Motion", "Vercel Edge"],
-    badge: "PRODUCTION APP",
-    action: {
-      label: "Launch FocusFlow Live",
-      href: "https://focus-flow0907.vercel.app/",
-      isExternal: true,
-    },
-    icon: Layers,
-  },
-  {
-    id: "rishihood-btech",
-    year: "2025",
-    period: "2024 - 2028 (IN PROGRESS)",
-    title: "B.Tech in Computer Science & Artificial Intelligence",
-    subtitle: "Rishihood University • Newton School of Technology",
-    category: "Academic & Systems Rigor",
-    description:
-      "Pursuing a specialized engineering degree in CS & AI at Rishihood University (Newton School of Technology). Immersed in computer systems architecture, algorithmic complexity, numerical methods, distributed systems, and neural network foundations.",
-    highlights: [
-      "Advanced studies in Data Structures, Algorithms & Computational Complexity",
-      "AI/ML system architecture, mathematical modeling, and distributed pipelines",
-      "Active participant in collegiate hackathons, code jams, and tech symposiums",
-    ],
-    tags: ["Computer Science", "Artificial Intelligence", "Data Structures", "Algorithms", "Systems"],
-    badge: "B.TECH CS & AI",
-    action: {
-      label: "View Technical Arsenal",
-      href: "#skills",
-    },
-    icon: Cpu,
-  },
-  {
-    id: "ai-systems-deepening",
-    year: "2025",
-    period: "2025 • ARCHITECTURE",
-    title: "Autonomous AI Agents & Intelligent Pipelines",
-    subtitle: "Agentic Tool Use, Multi-Modal Reasoning & Automation",
-    category: "Applied AI Research",
-    description:
-      "Pioneered practical implementations of agentic architectures, multi-turn reasoning, and semantic tooling. Combined Gemini AI SDK and Python runtimes to construct autonomous developer workflows and real-time cognitive assistants.",
-    highlights: [
-      "Engineered multi-agent reasoning loops and structured LLM pipelines",
-      "Integrated real-world tool execution and sandboxed system workflows",
-      "Bridged interactive frontend interfaces with streaming AI backends",
-    ],
-    tags: ["Gemini AI SDK", "Python", "Autonomous Agents", "Prompt Engineering", "REST APIs"],
-    badge: "AI/ML SYSTEMS",
-    action: {
-      label: "Explore Tech Stack",
-      href: "#skills",
-    },
-    icon: Sparkles,
-  },
-  {
-    id: "foundations-3d-web",
-    year: "2024",
-    period: "2024 • FOUNDATIONS",
-    title: "Full-Stack Foundations & Hardware-Accelerated 3D Web",
-    subtitle: "Three.js, React Three Fiber & Modern WebGL",
-    category: "Creative Technology & Frontend Architecture",
-    description:
-      "Deepened technical mastery over hardware-accelerated 3D graphics on the web. Engineered fluid 60–120 FPS WebGL scenes using Three.js and React Three Fiber, exploring physical materials, lighting, and GPU-driven micro-interactions.",
-    highlights: [
-      "Mastered 3D scene graph orchestration, shaders, and procedural geometry",
-      "Adopted strict TypeScript typing across all full-stack repositories",
-      "Authored fluid UI components with Framer Motion and modern Tailwind CSS",
-    ],
-    tags: ["Three.js", "React Three Fiber", "TypeScript", "Tailwind CSS", "WebGL"],
-    badge: "CREATIVE WEBGL",
-    action: {
-      label: "Inspect Lattice Network",
-      href: "#about",
-    },
-    icon: Terminal,
   },
 ];
 
+// Directional slide-and-fade animation variants for center spotlight
+const spotlightVariants: Variants = {
+  enter: (direction: number) => ({
+    x: direction > 0 ? 70 : -70,
+    opacity: 0,
+    filter: "blur(5px)",
+  }),
+  center: {
+    x: 0,
+    opacity: 1,
+    filter: "blur(0px)",
+    transition: {
+      x: { type: "spring" as const, stiffness: 320, damping: 30 },
+      opacity: { duration: 0.28, ease: "easeOut" },
+      filter: { duration: 0.25 },
+    },
+  },
+  exit: (direction: number) => ({
+    x: direction > 0 ? -70 : 70,
+    opacity: 0,
+    filter: "blur(5px)",
+    transition: {
+      x: { type: "spring" as const, stiffness: 320, damping: 30 },
+      opacity: { duration: 0.2, ease: "easeIn" },
+      filter: { duration: 0.18 },
+    },
+  }),
+};
+
 export default function JourneySection() {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [[activeIndex, direction], setPage] = useState<[number, number]>([0, 0]);
+  const trackContainerRef = useRef<HTMLDivElement>(null);
+  const stationRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   const active = MILESTONES[activeIndex];
-  const IconComponent = active.icon;
+  const total = MILESTONES.length;
 
-  const handlePrev = () => {
-    setActiveIndex((prev) => (prev > 0 ? prev - 1 : MILESTONES.length - 1));
-  };
+  const paginate = useCallback(
+    (newDirection: number) => {
+      setPage(([prev]) => {
+        let nextIndex = prev + newDirection;
+        if (nextIndex < 0) nextIndex = total - 1;
+        if (nextIndex >= total) nextIndex = 0;
+        return [nextIndex, newDirection];
+      });
+    },
+    [total]
+  );
 
-  const handleNext = () => {
-    setActiveIndex((prev) => (prev < MILESTONES.length - 1 ? prev + 1 : 0));
-  };
+  const goToIndex = useCallback(
+    (newIndex: number) => {
+      if (newIndex === activeIndex) return;
+      setPage([newIndex, newIndex > activeIndex ? 1 : -1]);
+    },
+    [activeIndex]
+  );
+
+  const handlePrev = useCallback(() => paginate(-1), [paginate]);
+  const handleNext = useCallback(() => paginate(1), [paginate]);
+
+  // Center active station into view on track
+  useEffect(() => {
+    const el = stationRefs.current[activeIndex];
+    if (el && trackContainerRef.current) {
+      el.scrollIntoView({
+        behavior: "smooth",
+        inline: "center",
+        block: "nearest",
+      });
+    }
+  }, [activeIndex]);
+
+  // Keyboard left/right arrow navigation
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft") {
+        handlePrev();
+      } else if (e.key === "ArrowRight") {
+        handleNext();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [handlePrev, handleNext]);
+
+  // Progress percentage across stations (0% to 100%)
+  const progressPercent = total > 1 ? (activeIndex / (total - 1)) * 100 : 0;
 
   return (
     <section
       id="journey"
-      className="relative z-10 mx-auto max-w-6xl px-6 py-28 border-t border-white/[0.08] overflow-hidden"
+      className="relative z-10 mx-auto w-full max-w-[1380px] px-6 py-28 sm:px-10 lg:px-14 border-t border-white/[0.08] overflow-hidden"
     >
-      {/* SECTION HEADER & COUNTER CONTROLS */}
-      <div className="flex items-center gap-3 font-mono text-xs uppercase tracking-widest text-[#FF5722] mb-6">
-        <span>04 / TIME JOURNEY</span>
-        <div className="h-px flex-1 bg-white/[0.08]" />
-      </div>
+      {/* Subtle Ambient Ember Glow */}
+      <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[500px] w-[900px] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(255,87,34,0.05),transparent_70%)] blur-3xl -z-10" />
 
-      <div className="mb-14 flex flex-col sm:flex-row sm:items-end justify-between gap-6">
+      {/* ========================================================
+          SECTION HEADER & COUNTER / PREV-NEXT CONTROLS
+         ======================================================== */}
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-8 sm:mb-12 border-b border-white/[0.07] pb-6">
         <div>
-          <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-[#F5F3EF] leading-tight">
-            A path that keeps{" "}
-            <span className="text-[#FF5722]">growing.</span>
+          <div className="font-mono text-xs uppercase tracking-widest text-[#FF5722] mb-3 flex items-center gap-2">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#FF5722]" />
+            <span>04 / TIME JOURNEY</span>
+          </div>
+
+          <h2 className="text-4xl sm:text-6xl font-semibold tracking-[-0.035em] text-[#F5F3EF] leading-[1.04]">
+            A path that keeps <span className="text-[#FF5722]">growing.</span>
           </h2>
-          <p className="mt-3 max-w-xl text-sm sm:text-base text-[#9E9890]">
-            From algorithmic foundations and hardware-accelerated 3D graphics to academic CS & AI rigor, WorldQuant Gold honors, and live hackathon deployments.
+
+          <p className="mt-3 max-w-xl text-sm sm:text-base text-[#9E9890] leading-relaxed">
+            Key milestones, honors, and production deployments across 2026.
           </p>
         </div>
 
         {/* Counter and Navigation Controls */}
-        <div className="flex items-center gap-4">
-          <div className="font-mono text-sm tracking-wider text-[#9E9890]">
-            <span className="text-xl font-bold text-[#F5F3EF]">
-              0{activeIndex + 1}
-            </span>
+        <div className="flex items-center gap-4 shrink-0">
+          <div className="font-mono text-sm tracking-widest text-[#8E877E]">
+            <span className="text-xl font-bold text-[#F5F3EF]">0{activeIndex + 1}</span>
             <span className="text-white/20"> / </span>
-            <span>0{MILESTONES.length}</span>
+            <span>0{total}</span>
           </div>
 
           <div className="flex items-center gap-2">
             <button
               onClick={handlePrev}
               aria-label="Previous Milestone"
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-white/[0.08] bg-[#181614] text-[#9E9890] hover:border-white/20 hover:text-[#F5F3EF] transition-all"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-white/[0.12] bg-[#161412] text-[#F5F3EF] hover:border-[#FF5722] hover:text-[#FF5722] transition-colors cursor-pointer"
             >
-              ←
+              <ChevronLeft className="h-5 w-5" />
             </button>
             <button
               onClick={handleNext}
               aria-label="Next Milestone"
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-[#FF5722]/40 bg-[#FF5722]/10 text-[#FF5722] hover:bg-[#FF5722] hover:text-[#121110] transition-all"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-[#FF5722]/50 bg-[#FF5722]/10 text-[#FF5722] hover:bg-[#FF5722] hover:text-[#121110] transition-colors cursor-pointer"
             >
-              →
+              <ChevronRight className="h-5 w-5" />
             </button>
           </div>
         </div>
       </div>
 
-      {/* CENTRAL STAGE WITH GIANT WATERMARK YEAR IN BACKGROUND */}
-      <div className="relative min-h-[480px] sm:min-h-[420px] flex items-center justify-center">
-        {/* Giant Watermark Year */}
-        <div className="pointer-events-none absolute inset-0 flex items-center justify-center select-none overflow-hidden z-0">
-          <AnimatePresence mode="wait">
-            <motion.span
-              key={active.year}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 1.15 }}
-              transition={{ duration: 0.5 }}
-              className="font-serif text-[28vw] sm:text-[22vw] font-black text-white/[0.035] tracking-tighter leading-none"
-            >
-              {active.year}
-            </motion.span>
-          </AnimatePresence>
+      {/* ========================================================
+          CENTRAL SPOTLIGHT WITH STRONGER 2026 WATERMARK (REFERENCE CONTRAST)
+         ======================================================== */}
+      <div className="relative min-h-[300px] sm:min-h-[360px] flex items-center justify-center text-center py-8 sm:py-12 select-none">
+        {/* Giant Crisp 2026 Background Watermark (High Visibility Contrast text-white/[0.11]) */}
+        <div className="pointer-events-none absolute inset-0 flex items-center justify-center select-none overflow-hidden -z-10">
+          <span className="font-serif text-[36vw] sm:text-[28vw] md:text-[22vw] lg:text-[20vw] font-bold text-white/[0.11] tracking-tight leading-none">
+            2026
+          </span>
         </div>
 
-        {/* Active Milestone Card */}
-        <AnimatePresence mode="wait">
+        {/* Active Milestone Spotlight (Directional Left-to-Right Slide-and-Fade) */}
+        <AnimatePresence mode="wait" custom={direction}>
           <motion.div
             key={active.id}
-            initial={{ opacity: 0, y: 25 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -25 }}
-            transition={{ duration: 0.45 }}
-            className="relative z-10 w-full max-w-3xl rounded-3xl bg-[#181614] border border-white/[0.08] p-7 sm:p-10 shadow-[0_12px_48px_0_rgba(0,0,0,0.5)]"
+            custom={direction}
+            variants={spotlightVariants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            className="relative z-10 max-w-3xl px-4 flex flex-col items-center"
           >
-            {/* Top Bar: Badge & Period */}
-            <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/[0.08] pb-4">
-              <span
-                className="inline-flex items-center gap-1.5 rounded-full border border-[#FF5722]/30 bg-[#FF5722]/10 px-3.5 py-1 font-mono text-xs font-bold tracking-wider uppercase text-[#FF5722]"
-              >
-                <IconComponent className="h-3.5 w-3.5" />
-                <span>{active.badge}</span>
-              </span>
+            {/* Tag / Period Eyebrow */}
+            <span className="font-mono text-[11px] sm:text-xs tracking-[0.24em] uppercase text-[#FF5722] font-semibold mb-3">
+              {active.tag}
+            </span>
 
-              <span className="flex items-center gap-1.5 font-mono text-xs text-[#9E9890]">
-                <Calendar className="h-3.5 w-3.5 text-[#9E9890]/60" />
-                <span>{active.period}</span>
-              </span>
-            </div>
+            {/* Display Title */}
+            <h3 className="text-3xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-[#F5F3EF] leading-[1.08]">
+              {active.title}
+            </h3>
 
-            {/* Title & Category */}
-            <div className="mt-6">
-              <div className="font-mono text-xs uppercase tracking-wider text-[#9E9890]">
-                {active.category}
-              </div>
-              <h3 className="mt-2 text-2xl sm:text-3xl font-black tracking-tight text-[#F5F3EF]">
-                {active.title}
-              </h3>
-              <p className="mt-1 font-mono text-xs sm:text-sm text-[#FF5722]">
-                {active.subtitle}
-              </p>
-            </div>
-
-            {/* Description Narrative */}
-            <p className="mt-5 text-sm sm:text-base text-[#9E9890] leading-relaxed">
-              {active.description}
+            {/* Subtitle */}
+            <p className="mt-2.5 font-mono text-xs sm:text-sm text-[#FF5722]">
+              {active.subtitle}
             </p>
 
-            {/* Highlights with Checkmarks */}
-            <div className="mt-6 space-y-2.5 pt-4 border-t border-white/[0.06]">
-              {active.highlights.map((highlight, idx) => (
-                <div key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-[#F5F3EF]">
-                  <CheckCircle2
-                    className="h-4 w-4 shrink-0 mt-0.5 text-[#FF5722]"
-                  />
-                  <span>{highlight}</span>
-                </div>
-              ))}
-            </div>
-
-            {/* Bottom Tech Tags & Action Button */}
-            <div className="mt-7 pt-4 border-t border-white/[0.08] flex flex-wrap items-center justify-between gap-4">
-              <div className="flex flex-wrap gap-1.5">
-                {active.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="rounded-lg border border-white/[0.08] bg-white/[0.03] px-2.5 py-1 font-mono text-[11px] text-[#9E9890]"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-
-              {active.action && (
-                <a
-                  href={active.action.href}
-                  target={active.action.isExternal ? "_blank" : undefined}
-                  rel={active.action.isExternal ? "noopener noreferrer" : undefined}
-                  className="flex items-center gap-1.5 rounded-full px-4 py-2 font-mono text-xs font-semibold bg-[#FF5722]/15 text-[#FF5722] border border-[#FF5722]/40 hover:bg-[#FF5722] hover:text-[#121110] transition-all"
-                >
-                  <span>{active.action.label}</span>
-                  <ArrowUpRight className="h-3.5 w-3.5" />
-                </a>
-              )}
-            </div>
+            {/* Narrative Description */}
+            <p className="mt-4 text-sm sm:text-base text-[#9E9890] max-w-2xl leading-relaxed">
+              {active.description}
+            </p>
           </motion.div>
         </AnimatePresence>
       </div>
 
-      {/* HORIZONTAL INTERACTIVE TIMELINE SCRUBBER */}
-      <div className="relative mt-14 pt-8">
-        {/* Connecting track line */}
-        <div className="absolute top-1/2 left-4 right-4 h-0.5 -translate-y-1/2 bg-white/[0.08]" />
+      {/* ========================================================
+          DYNAMIC LEFT-TO-RIGHT HORIZONTAL TIMELINE TRACK / RAIL
+         ======================================================== */}
+      <div
+        ref={trackContainerRef}
+        className="relative mt-8 sm:mt-12 pt-10 overflow-x-auto no-scrollbar scroll-smooth"
+        style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+      >
+        <div className="relative min-w-[780px] lg:min-w-0 pb-4">
+          {/* Base Inactive Hairline Rail Line */}
+          <div className="absolute top-10 left-0 right-0 h-[1px] bg-white/[0.12]" />
 
-        {/* Milestone Node Dots */}
-        <div className="relative z-10 flex items-center justify-between">
-          {MILESTONES.map((item, idx) => {
-            const isActive = idx === activeIndex;
+          {/* Active #FF5722 Gliding Progress Line */}
+          <motion.div
+            className="absolute top-10 left-0 h-[1.5px] bg-gradient-to-r from-[#FF5722] via-[#FF5722] to-[#FF5722] shadow-[0_0_8px_#FF5722]"
+            initial={false}
+            animate={{ width: `${progressPercent}%` }}
+            transition={{ type: "spring", stiffness: 260, damping: 28 }}
+          />
 
-            return (
-              <button
-                key={item.id}
-                onClick={() => setActiveIndex(idx)}
-                className="group relative flex flex-col items-center focus:outline-none"
-              >
-                {/* Ping animation on active dot */}
-                {isActive && (
-                  <span className="absolute -inset-2 rounded-full bg-[#FF5722] opacity-40 animate-ping" />
-                )}
+          {/* 6-Station Left-to-Right Milestone Rail Grid */}
+          <div className="relative z-10 grid grid-cols-6 gap-4">
+            {MILESTONES.map((item, idx) => {
+              const isActive = idx === activeIndex;
 
-                {/* Scrubber Dot */}
+              return (
                 <div
-                  className={`relative flex h-5 w-5 sm:h-6 sm:w-6 items-center justify-center rounded-full border-2 transition-all duration-300 ${
-                    isActive
-                      ? "border-[#FF5722] bg-[#FF5722] scale-125 shadow-[0_0_20px_#FF5722]"
-                      : "border-white/20 bg-[#121110] group-hover:border-white/50 group-hover:scale-110"
-                  }`}
+                  key={item.id}
+                  ref={(el) => {
+                    stationRefs.current[idx] = el;
+                  }}
+                  onClick={() => goToIndex(idx)}
+                  className="group relative flex flex-col items-start pt-6 cursor-pointer select-none transition-all duration-300"
                 >
-                  {isActive && <div className="h-1.5 w-1.5 rounded-full bg-[#121110]" />}
+                  {/* Node Indicator Dot Sitting Exactly on the Rail Line */}
+                  <div className="absolute -top-[5px] left-0 flex items-center justify-center">
+                    {isActive ? (
+                      <motion.div
+                        layoutId="activeTimelineIndicator"
+                        className="relative flex h-3.5 w-3.5 items-center justify-center rounded-full bg-[#FF5722] shadow-[0_0_16px_#FF5722]"
+                        transition={{ type: "spring", stiffness: 350, damping: 28 }}
+                      >
+                        <span className="absolute -inset-1 rounded-full bg-[#FF5722]/40 animate-ping" />
+                      </motion.div>
+                    ) : (
+                      <div className="h-2.5 w-2.5 rounded-full border border-white/30 bg-[#121110] transition-transform duration-200 group-hover:scale-125 group-hover:border-[#FF5722]" />
+                    )}
+                  </div>
+
+                  {/* Tag */}
+                  <span
+                    className={`font-mono text-[10px] tracking-widest uppercase transition-colors ${
+                      isActive ? "text-[#FF5722] font-semibold" : "text-[#7A736A] group-hover:text-[#9E9890]"
+                    }`}
+                  >
+                    {item.tag}
+                  </span>
+
+                  {/* Milestone Title */}
+                  <h4
+                    className={`mt-1 text-xs sm:text-[13px] font-medium tracking-tight transition-colors line-clamp-1 ${
+                      isActive ? "text-[#F5F3EF] font-bold" : "text-[#D1CCC4] group-hover:text-[#FF5722]"
+                    }`}
+                  >
+                    {item.title}
+                  </h4>
+
+                  {/* Snippet */}
+                  <p className="mt-1 text-[11px] text-[#7A736A] leading-relaxed line-clamp-2">
+                    {item.snippet}
+                  </p>
                 </div>
-
-                {/* Year Label */}
-                <span
-                  className={`mt-3 font-mono text-[11px] sm:text-xs transition-colors ${
-                    isActive
-                      ? "font-bold text-[#FF5722]"
-                      : "text-[#9E9890] group-hover:text-[#F5F3EF]"
-                  }`}
-                >
-                  {item.year}
-                </span>
-
-                {/* Subtitle / badge teaser */}
-                <span className="hidden md:block mt-0.5 font-mono text-[9px] text-[#9E9890]/60 max-w-[90px] truncate text-center">
-                  {item.badge}
-                </span>
-              </button>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>
