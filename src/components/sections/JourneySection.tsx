@@ -134,6 +134,7 @@ export default function JourneySection() {
   const [[activeIndex, direction], setPage] = useState<[number, number]>([0, 0]);
   const trackContainerRef = useRef<HTMLDivElement>(null);
   const stationRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const isInitialMount = useRef(true);
 
   const active = MILESTONES[activeIndex];
   const total = MILESTONES.length;
@@ -161,14 +162,23 @@ export default function JourneySection() {
   const handlePrev = useCallback(() => paginate(-1), [paginate]);
   const handleNext = useCallback(() => paginate(1), [paginate]);
 
-  // Center active station into view on track
+  // Center active station horizontally on inner rail ONLY on explicit user interaction
+  // NEVER scroll on initial mount / hydration, and NEVER call scrollIntoView (which scrolls window)
   useEffect(() => {
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+      return;
+    }
+
+    const container = trackContainerRef.current;
     const el = stationRefs.current[activeIndex];
-    if (el && trackContainerRef.current) {
-      el.scrollIntoView({
+    if (el && container) {
+      const containerWidth = container.offsetWidth;
+      const elLeft = el.offsetLeft;
+      const elWidth = el.offsetWidth;
+      container.scrollTo({
+        left: elLeft - containerWidth / 2 + elWidth / 2,
         behavior: "smooth",
-        inline: "center",
-        block: "nearest",
       });
     }
   }, [activeIndex]);

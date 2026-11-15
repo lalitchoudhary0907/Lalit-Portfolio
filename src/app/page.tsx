@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import {
   ArrowUpRight,
@@ -17,6 +18,21 @@ import SkillMarquee from "@/components/ui/SkillMarquee";
 import { PORTFOLIO_DATA } from "@/data/portfolio";
 
 export default function HomePage() {
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      if ("scrollRestoration" in window.history) {
+        window.history.scrollRestoration = "manual";
+      }
+
+      // If user reloaded or navigated to root '/' with a leftover journey hash, clear it
+      if (window.location.hash === "#journey" || window.location.hash === "#time-journey") {
+        window.history.replaceState(null, "", window.location.pathname);
+      }
+
+      window.scrollTo({ top: 0, left: 0, behavior: "instant" as ScrollBehavior });
+    }
+  }, []);
+
   return (
     <main id="top" className="relative min-h-screen w-full overflow-x-hidden bg-[#111010] text-[#F5F3EF]">
       <SmoothScroll />

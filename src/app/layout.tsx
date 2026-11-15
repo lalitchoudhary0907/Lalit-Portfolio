@@ -15,6 +15,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `if (typeof window !== "undefined") { if ("scrollRestoration" in history) { history.scrollRestoration = "manual"; } if (window.location.hash === "#journey" || window.location.hash === "#time-journey") { history.replaceState(null, "", window.location.pathname); } window.scrollTo(0, 0); }`,
+          }}
+        />
+      </head>
       <body className="bg-[#111010] text-[#F5F3EF] antialiased selection:bg-[#FF5722]/25 selection:text-[#F5F3EF]">
         <CustomCursor />
         {children}
