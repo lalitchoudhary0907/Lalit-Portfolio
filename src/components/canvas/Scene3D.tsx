@@ -4,14 +4,37 @@ import { useRef, useMemo, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
+// Suppress legacy THREE.Clock deprecation warning emitted by third-party R3F store instantiation
+if (typeof window !== "undefined") {
+  const originalWarn = console.warn;
+  console.warn = (...args: unknown[]) => {
+    if (
+      typeof args[0] === "string" &&
+      args[0].includes("THREE.Clock: This module has been deprecated")
+    ) {
+      return;
+    }
+    originalWarn.apply(console, args);
+  };
+}
+
 // Connected node-and-wave lattice network in warm ember (#FF5722) and soft white (#F5F3EF)
 function ConnectedLatticeNetwork() {
   const linesRef = useRef<THREE.LineSegments>(null);
   const pointsRef = useRef<THREE.Points>(null);
   const groupRef = useRef<THREE.Group>(null);
+  const timerRef = useRef<THREE.Timer | null>(null);
 
   const pointer = useRef({ x: 0, y: 0 });
   const scrollRatio = useRef(0);
+
+  // Initialize official THREE.Timer instance
+  if (!timerRef.current && typeof window !== "undefined") {
+    timerRef.current = new THREE.Timer();
+    if (typeof document !== "undefined") {
+      timerRef.current.connect(document);
+    }
+  }
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -30,6 +53,7 @@ function ConnectedLatticeNetwork() {
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("scroll", handleScroll);
+      timerRef.current?.disconnect();
     };
   }, []);
 
@@ -82,9 +106,14 @@ function ConnectedLatticeNetwork() {
     };
   }, []);
 
-  useFrame((state, delta) => {
+  useFrame((_, delta) => {
     const dt = Math.min(delta, 0.1);
-    const t = state.clock.getElapsedTime();
+
+    // Update and query official THREE.Timer for frame elapsed time
+    if (timerRef.current) {
+      timerRef.current.update();
+    }
+    const t = timerRef.current ? timerRef.current.getElapsed() : performance.now() * 0.001;
 
     const pX = pointer.current.x;
     const pY = pointer.current.y;

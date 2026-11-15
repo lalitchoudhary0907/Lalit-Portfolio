@@ -22,20 +22,18 @@
   box-sizing: border-box;
 }
 
-@media (pointer: fine) {
-  html,
-  body,
-  *,
-  *::before,
-  *::after {
-    cursor: none !important;
-  }
-}
-
-html {
+html,
+body {
+  cursor: default;
   background-color: #111010;
   color: #f5f3ef;
   color-scheme: dark;
+}
+
+button,
+a,
+[role="button"] {
+  cursor: pointer;
 }
 
 body {
@@ -146,5 +144,44 @@ body {
 .animate-ticker-reverse:hover,
 .group:hover .animate-ticker,
 .group:hover .animate-ticker-reverse {
+  animation-play-state: paused;
+}
+
+@keyframes marquee-up {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, -50%, 0);
+  }
+}
+
+@keyframes marquee-down {
+  0% {
+    transform: translate3d(0, -50%, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.animate-marquee-up {
+  display: flex;
+  flex-direction: column;
+  animation: marquee-up 16s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee-down {
+  display: flex;
+  flex-direction: column;
+  animation: marquee-down 16s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee-up:hover,
+.animate-marquee-down:hover,
+.marquee-column:hover .animate-marquee-up,
+.marquee-column:hover .animate-marquee-down {
   animation-play-state: paused;
 }

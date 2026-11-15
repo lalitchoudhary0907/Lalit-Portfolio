@@ -18,13 +18,13 @@ export default function Navbar() {
       {/* Left Corner: Clean Uppercase Tracked Sans */}
       <a
         href="#top"
-        className="text-xs tracking-[0.24em] uppercase text-[#F5F3EF] font-medium hover:text-[#FF5722] transition-colors"
+        className="text-xs tracking-[0.24em] uppercase text-[#F5F3EF] font-medium hover:text-[#FF5722] transition-colors shrink-0"
       >
         LALIT CHOUDHARY
       </a>
 
       {/* Right Corner: Clean Uppercase Tracked Links */}
-      <nav className="hidden md:flex items-center gap-8 sm:gap-12 font-mono text-xs tracking-[0.2em] uppercase text-[#9E9890]">
+      <nav className="hidden md:flex items-center gap-8 sm:gap-12 font-mono text-xs tracking-[0.2em] uppercase text-[#9E9890] shrink-0">
         {navLinks.map((link) => (
           <a
             key={link.href}
