@@ -22,6 +22,16 @@
   box-sizing: border-box;
 }
 
+@media (pointer: fine) {
+  html,
+  body,
+  *,
+  *::before,
+  *::after {
+    cursor: none !important;
+  }
+}
+
 html {
   background-color: #111010;
   color: #f5f3ef;
@@ -102,14 +112,14 @@ body {
 .animate-marquee {
   display: flex;
   width: max-content;
-  animation: marquee 42s linear infinite;
+  animation: marquee 70s linear infinite;
   will-change: transform;
 }
 
 .animate-marquee-reverse {
   display: flex;
   width: max-content;
-  animation: marquee-reverse 42s linear infinite;
+  animation: marquee-reverse 70s linear infinite;
   will-change: transform;
 }
 

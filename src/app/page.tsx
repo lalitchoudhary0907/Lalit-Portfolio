@@ -30,9 +30,6 @@ export default function HomePage() {
           Clean Matte Canvas + Concentrated Glow + Title + Transparent Ribbons + Portrait Cutout + Bottom Metadata
          ======================================================== */}
       <section className="relative z-10 flex min-h-[100svh] w-full flex-col justify-between overflow-hidden bg-[#111010] pt-16">
-        {/* Tight Concentrated Ember Glow Strictly Behind Portrait Upper Torso/Shoulders */}
-        <div className="pointer-events-none absolute left-1/2 top-[46%] -translate-x-1/2 -translate-y-1/2 w-[460px] h-[460px] rounded-full bg-[radial-gradient(circle,rgba(255,87,34,0.32)_0%,rgba(255,87,34,0.10)_42%,transparent_70%)] blur-2xl z-5" />
-
         {/* UPPER DISPLAY TITLE: 'LALIT' (Solid) + 'CHOUDHARY' (Outline Stroke) with Horizontal Safe Padding */}
         <div className="pointer-events-none absolute top-20 sm:top-24 md:top-28 left-0 right-0 z-10 flex items-center justify-center select-none overflow-hidden px-8 sm:px-14 max-w-[1440px] mx-auto text-center">
           <motion.h1
@@ -50,10 +47,10 @@ export default function HomePage() {
           </motion.h1>
         </div>
 
-        {/* DUAL CONTINUOUS MARQUEE RIBBONS (TRANSPARENT BACKGROUNDS, IDENTICAL 42S SPEED, BEHIND PORTRAIT) */}
-        <div className="pointer-events-none absolute top-[48%] sm:top-[50%] -translate-y-1/2 left-0 right-0 z-15 flex flex-col gap-3 sm:gap-4 w-full overflow-hidden select-none">
+        {/* DUAL CONTINUOUS MARQUEE RIBBONS (TRANSPARENT BACKGROUNDS, IDENTICAL 70S SPEED, BEHIND PORTRAIT) */}
+        <div className="pointer-events-none absolute top-[48%] sm:top-[50%] -translate-y-1/2 left-0 right-0 z-15 flex flex-col gap-1 w-full overflow-hidden select-none">
           {/* Upper Ribbon (Large Uppercase Semi-Transparent White Display Text) */}
-          <div className="flex w-full overflow-hidden bg-transparent py-1">
+          <div className="flex w-full overflow-hidden bg-transparent py-0.5">
             <div className="animate-marquee flex items-center gap-8 whitespace-nowrap font-sans font-semibold text-4xl sm:text-6xl tracking-tight uppercase text-white/[0.22]">
               {[...Array(6)].map((_, i) => (
                 <span key={i} className="flex items-center gap-8">
@@ -73,36 +70,47 @@ export default function HomePage() {
           </div>
 
           {/* Lower Ribbon (Large Uppercase Solid #FF5722 Orange Text on Transparent Background) */}
-          <div className="flex w-full overflow-hidden bg-transparent py-1">
+          <div className="flex w-full overflow-hidden bg-transparent py-0.5">
             <div className="animate-marquee-reverse flex items-center gap-8 whitespace-nowrap font-sans font-bold text-4xl sm:text-6xl tracking-tight uppercase text-[#FF5722]">
               {[...Array(6)].map((_, i) => (
                 <span key={i} className="flex items-center gap-8">
                   <span>I LEARN BY BUILDING WHAT I WISH EXISTED</span>
-                  <span>★</span>
+                  <span>•</span>
                   <span>I BUILD HIGH-VELOCITY SYSTEMS &amp; QUANT ALPHAS</span>
-                  <span>★</span>
+                  <span>•</span>
                   <span>PUSHING THE EDGES OF WEBGL &amp; AI</span>
-                  <span>★</span>
+                  <span>•</span>
                 </span>
               ))}
             </div>
           </div>
         </div>
 
-        {/* PORTRAIT CUTOUT SLOT (CENTERED LOWER HERO WITH BOTTOM VIGNETTE FADE) */}
+        {/* PORTRAIT CUTOUT SLOT (CENTERED LOWER HERO WITH ANCHORED WARM EMBER GLOW) */}
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center justify-end select-none pointer-events-none">
-          <motion.img
-            initial={{ opacity: 0, y: 30, scale: 0.98 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ duration: 0.9, ease: "easeOut" }}
-            src="/images/hero-cutout.png"
-            alt="Lalit Choudhary"
-            className="h-[58vh] sm:h-[70vh] md:h-[76vh] lg:h-[80vh] max-h-[820px] w-auto object-contain object-bottom"
-            style={{
-              maskImage: "linear-gradient(to bottom, black 72%, transparent 100%)",
-              WebkitMaskImage: "linear-gradient(to bottom, black 72%, transparent 100%)",
-            }}
-          />
+          <div className="relative flex flex-col items-center justify-end">
+            {/* Broad Vertical-Oval Warm Ember Aura Behind Torso & Arms */}
+            <div
+              className="pointer-events-none absolute left-1/2 top-[26%] -translate-x-1/2 -translate-y-1/2 w-[560px] sm:w-[680px] h-[520px] sm:h-[620px] rounded-full blur-3xl z-0"
+              style={{
+                background:
+                  "radial-gradient(ellipse 52% 58% at 50% 52%, rgba(255, 87, 34, 0.34) 0%, rgba(255, 87, 34, 0.16) 38%, rgba(18, 17, 16, 0) 74%)",
+              }}
+            />
+
+            <motion.img
+              initial={{ opacity: 0, y: 30, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.9, ease: "easeOut" }}
+              src="/images/hero-cutout.png"
+              alt="Lalit Choudhary"
+              className="relative z-10 h-[58vh] sm:h-[70vh] md:h-[76vh] lg:h-[80vh] max-h-[820px] w-auto object-contain object-bottom"
+              style={{
+                maskImage: "linear-gradient(to bottom, black 72%, transparent 100%)",
+                WebkitMaskImage: "linear-gradient(to bottom, black 72%, transparent 100%)",
+              }}
+            />
+          </div>
         </div>
 
         {/* HERO BOTTOM CORNERS METADATA & BUTTON (ANCHORED TO CORNERS) */}
@@ -114,12 +122,6 @@ export default function HomePage() {
           <p className="text-[#9E9890] text-[10px] sm:text-[11px] uppercase tracking-wider leading-relaxed">
             BUILDING USEFUL SYSTEMS AT THE EDGE OF AI, CODE &amp; FINANCE.
           </p>
-        </div>
-
-        {/* Center: subtle interaction hint */}
-        <div className="absolute left-1/2 -translate-x-1/2 bottom-8 z-30 hidden sm:flex items-center gap-2 font-mono text-[10px] tracking-[0.2em] uppercase text-[#9E9890]">
-          <span className="h-1.5 w-1.5 rounded-full bg-[#FF5722] animate-pulse" />
-          <span>MOVE TO SUIT UP</span>
         </div>
 
         {/* Bottom-right: crisp rectangular outlined button SCROLL TO WORK ↓ */}
