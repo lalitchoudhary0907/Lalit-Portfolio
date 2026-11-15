@@ -19,7 +19,7 @@ export const PORTFOLIO_DATA = {
       accent: "orange",
     },
     {
-      label: "Flagship Production App",
+      label: "Production Web App",
       value: "FocusFlow",
       subtext: "Live on Vercel Edge Network",
       accent: "orange",
@@ -28,12 +28,6 @@ export const PORTFOLIO_DATA = {
       label: "Open Source & Hackathons",
       value: "2026",
       subtext: "Hacktoberfest x MLH & DEV",
-      accent: "orange",
-    },
-    {
-      label: "Target Frame Rate",
-      value: "60 FPS",
-      subtext: "Hardware-Accelerated WebGL",
       accent: "orange",
     },
   ],
