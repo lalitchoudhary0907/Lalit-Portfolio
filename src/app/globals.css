@@ -127,3 +127,24 @@ body {
 .animate-marquee-reverse:hover {
   animation-play-state: paused;
 }
+
+.animate-ticker {
+  display: flex;
+  width: max-content;
+  animation: marquee 100s linear infinite;
+  will-change: transform;
+}
+
+.animate-ticker-reverse {
+  display: flex;
+  width: max-content;
+  animation: marquee-reverse 100s linear infinite;
+  will-change: transform;
+}
+
+.animate-ticker:hover,
+.animate-ticker-reverse:hover,
+.group:hover .animate-ticker,
+.group:hover .animate-ticker-reverse {
+  animation-play-state: paused;
+}
