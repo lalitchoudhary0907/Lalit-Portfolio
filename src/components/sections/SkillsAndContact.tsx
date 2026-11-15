@@ -12,7 +12,7 @@ export default function SkillsAndContact() {
   return (
     <section id="contact" className="relative z-10 mx-auto max-w-6xl px-6 py-28 border-t border-white/[0.08]">
       {/* ========================================================
-          01. BENTO TECHNICAL ARSENAL
+          01. ARCHITECTURAL TECHNICAL ARSENAL
          ======================================================== */}
       <div id="skills" className="mb-28">
         <div className="flex items-center gap-3 font-mono text-xs uppercase tracking-widest text-[#FF5722] mb-4">
@@ -21,61 +21,80 @@ export default function SkillsAndContact() {
           <div className="h-px flex-1 bg-white/[0.08]" />
         </div>
 
-        <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-[#F5F3EF] leading-tight">
+        <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-[#F5F3EF] leading-tight">
           Full-Stack, 3D Web & <br className="hidden sm:inline" />
           <span className="text-[#FF5722]">Quant Stack.</span>
         </h2>
 
-        <p className="mt-4 max-w-2xl text-sm sm:text-base text-[#9E9890]">
+        <p className="mt-4 max-w-2xl text-sm sm:text-base text-[#9E9890] leading-relaxed">
           Curated proficiencies bridging hardware-accelerated frontend engineering, autonomous AI agent tooling, and mathematical quantitative alpha research.
         </p>
 
-        {/* Bento Grid */}
-        <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
-          {PORTFOLIO_DATA.skills.map((group, idx) => {
+        {/* Sharp Minimal Architectural 3-Column Grid */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6 }}
+          className="mt-12 rounded-none border border-white/[0.09] bg-[#121110]/90 shadow-[0_20px_60px_rgba(0,0,0,0.5)] grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/[0.08]"
+        >
+          {PORTFOLIO_DATA.skills.map((group, colIdx) => {
             const isQuant = group.category.toLowerCase().includes("quant");
             const isFrontend = group.category.toLowerCase().includes("frontend");
 
             return (
-              <motion.div
+              <div
                 key={group.category}
-                initial={{ opacity: 0, y: 25 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="relative overflow-hidden rounded-3xl border border-white/[0.08] bg-[#181614] p-7 transition-all duration-300 hover:border-white/20 hover:-translate-y-1"
+                className="p-6 sm:p-8 flex flex-col justify-between transition-colors duration-300 hover:bg-white/[0.01]"
               >
-                <div className="flex items-center justify-between">
-                  <div className="font-mono text-xs uppercase tracking-wider text-[#FF5722]">
-                    {`// 0${idx + 1}`}
-                  </div>
-                  {isQuant ? (
-                    <Sparkles className="h-4 w-4 text-[#FF5722]" />
-                  ) : isFrontend ? (
-                    <Layers className="h-4 w-4 text-[#9E9890]" />
-                  ) : (
-                    <Terminal className="h-4 w-4 text-[#9E9890]" />
-                  )}
-                </div>
-
-                <h3 className="mt-4 text-xl font-bold text-[#F5F3EF] tracking-tight">
-                  {group.category}
-                </h3>
-
-                <div className="mt-6 flex flex-wrap gap-2">
-                  {group.items.map((skill) => (
-                    <span
-                      key={skill}
-                      className="rounded-xl border border-white/[0.08] bg-white/[0.03] px-3 py-1.5 font-mono text-xs text-[#F5F3EF] transition-all duration-200 hover:border-[#FF5722]/60 hover:bg-[#FF5722]/10 hover:text-[#FF5722]"
-                    >
-                      {skill}
+                <div>
+                  {/* Clean Header Bar */}
+                  <div className="flex items-center justify-between border-b border-white/[0.07] pb-4 mb-6">
+                    <span className="font-mono text-[11px] uppercase tracking-wider text-[#FF5722] font-semibold">
+                      {`// 0${colIdx + 1}`}
                     </span>
-                  ))}
+                    {isQuant ? (
+                      <Sparkles className="h-4 w-4 text-[#FF5722]" />
+                    ) : isFrontend ? (
+                      <Layers className="h-4 w-4 text-[#FF5722]" />
+                    ) : (
+                      <Terminal className="h-4 w-4 text-[#FF5722]" />
+                    )}
+                  </div>
+
+                  <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-[#F5F3EF]">
+                    {group.category}
+                  </h3>
+
+                  {/* Refined Minimal Skill Tags with Interactive Hover & Staggered Motion */}
+                  <div className="mt-6 flex flex-wrap gap-2 sm:gap-2.5">
+                    {group.items.map((skill, itemIdx) => (
+                      <motion.span
+                        key={skill}
+                        initial={{ opacity: 0, y: 10 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{
+                          duration: 0.35,
+                          delay: colIdx * 0.12 + itemIdx * 0.04,
+                        }}
+                        className="rounded-none border border-white/[0.08] bg-white/[0.02] px-3.5 py-2 font-mono text-xs text-[#9E9890] transition-all duration-200 hover:border-[#FF5722]/70 hover:bg-[#FF5722]/[0.06] hover:text-[#F5F3EF] cursor-default select-none"
+                      >
+                        {skill}
+                      </motion.span>
+                    ))}
+                  </div>
                 </div>
-              </motion.div>
+
+                {/* Pillar Micro-Footer */}
+                <div className="mt-8 pt-4 border-t border-white/[0.05] flex items-center justify-between font-mono text-[10px] text-[#8E877E] uppercase tracking-widest">
+                  <span>{group.items.length} TECHNOLOGIES</span>
+                  <span className="text-[#FF5722] font-semibold">VERIFIED STACK</span>
+                </div>
+              </div>
             );
           })}
-        </div>
+        </motion.div>
       </div>
 
       {/* ========================================================

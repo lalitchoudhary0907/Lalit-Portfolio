@@ -16,7 +16,7 @@ function HolographicSealCard({
 
   return (
     <div
-      className={`relative w-full overflow-hidden rounded-2xl border border-white/[0.08] bg-[#141312] p-6 sm:p-8 flex flex-col items-center justify-between text-center ${
+      className={`relative w-full overflow-hidden rounded-none border border-white/[0.08] bg-[#141312] p-6 sm:p-8 flex flex-col items-center justify-between text-center ${
         isModal ? "min-h-[420px]" : "h-full"
       }`}
     >
@@ -51,9 +51,7 @@ function HolographicSealCard({
 
       {/* Center Holographic Seal & Info */}
       <div className="relative z-10 my-4 flex flex-col items-center space-y-3">
-        <div
-          className="relative flex h-20 w-20 items-center justify-center rounded-full border border-[#FF5722]/50 bg-[#FF5722]/10 text-[#FF5722] shadow-[0_0_35px_rgba(255,87,34,0.25)]"
-        >
+        <div className="relative flex h-20 w-20 items-center justify-center rounded-full border border-[#FF5722]/50 bg-[#FF5722]/10 text-[#FF5722] shadow-[0_0_35px_rgba(255,87,34,0.25)]">
           <Award className="h-10 w-10 animate-pulse" />
           <div
             className="absolute inset-0 rounded-full border border-dashed border-[#FF5722]/60 animate-spin"
@@ -62,9 +60,7 @@ function HolographicSealCard({
         </div>
 
         <div>
-          <span
-            className="inline-block rounded-full px-3 py-0.5 text-[10px] font-mono font-bold tracking-wider uppercase bg-[#FF5722]/15 text-[#FF5722] border border-[#FF5722]/30"
-          >
+          <span className="inline-block rounded-none px-3 py-0.5 text-[10px] font-mono font-bold tracking-wider uppercase bg-[#FF5722]/15 text-[#FF5722] border border-[#FF5722]/30">
             {cred.badgeText}
           </span>
           <h4 className="mt-2 text-xl font-bold text-[#F5F3EF] tracking-tight">
@@ -81,7 +77,7 @@ function HolographicSealCard({
       </div>
 
       {/* Bottom Authority Attestation */}
-      <div className="relative z-10 w-full rounded-xl border border-white/[0.08] bg-[#181614] p-3 text-left">
+      <div className="relative z-10 w-full rounded-none border border-white/[0.08] bg-[#181614] p-3 text-left">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-[11px] font-mono text-[#9E9890]">
           <div>
             <span className="text-[#9E9890]/60">AUTHORIZED BY: </span>
@@ -117,12 +113,12 @@ export default function CredentialsVault() {
         <h2 className="mt-3 text-3xl sm:text-5xl font-bold tracking-tight text-[#F5F3EF]">
           Credentials & Achievements.
         </h2>
-        <p className="mt-3 max-w-2xl text-sm sm:text-base text-[#9E9890]">
+        <p className="mt-3 max-w-2xl text-sm sm:text-base text-[#9E9890] leading-relaxed">
           Verified institutional recognition in quantitative finance and in-person open-source hackathon engineering. Click any credential to inspect the official certificate.
         </p>
       </div>
 
-      {/* 2-Column Holographic Vault Grid */}
+      {/* 2-Column Architectural Vault Grid */}
       <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
         {PORTFOLIO_DATA.credentials.map((cred, idx) => {
           return (
@@ -130,70 +126,89 @@ export default function CredentialsVault() {
               key={cred.id}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.55, delay: idx * 0.15 }}
               onClick={() => setSelectedCert(cred)}
-              className="group cursor-pointer relative overflow-hidden rounded-3xl border border-white/[0.08] bg-[#181614] p-7 transition-all duration-300 hover:border-white/20 hover:-translate-y-1.5"
+              className="group cursor-pointer relative overflow-hidden rounded-none border border-white/[0.09] bg-[#131210]/90 p-6 sm:p-8 transition-all duration-300 hover:border-[#FF5722]/60 hover:bg-[#151412] shadow-[0_12px_40px_rgba(0,0,0,0.4)] flex flex-col justify-between"
             >
-              {/* Top Badge & Date */}
-              <div className="flex items-center justify-between gap-2">
-                <span
-                  className="inline-flex items-center gap-1.5 rounded-full px-3.5 py-1 font-mono text-xs font-semibold bg-[#FF5722]/15 text-[#FF5722] border border-[#FF5722]/30"
-                >
-                  <ShieldCheck className="h-3.5 w-3.5" />
-                  {cred.badgeText}
-                </span>
+              <div>
+                {/* Top Badge, Date & Inspect Trigger */}
+                <div className="flex items-center justify-between gap-3 border-b border-white/[0.07] pb-4">
+                  <span className="inline-flex items-center gap-1.5 font-mono text-[11px] font-semibold tracking-wider uppercase text-[#FF5722]">
+                    <ShieldCheck className="h-3.5 w-3.5" />
+                    {cred.badgeText}
+                  </span>
 
-                <span className="flex items-center gap-1.5 font-mono text-xs text-[#9E9890]">
-                  <Calendar className="h-3.5 w-3.5" />
-                  {cred.date}
-                </span>
+                  <div className="flex items-center gap-4">
+                    <span className="flex items-center gap-1.5 font-mono text-[11px] text-[#8E877E]">
+                      <Calendar className="h-3 w-3" />
+                      {cred.date}
+                    </span>
+                    <span className="inline-flex items-center gap-1 font-mono text-[11px] text-[#9E9890] group-hover:text-[#FF5722] transition-colors">
+                      <span>Inspect</span>
+                      <ArrowUpRight className="h-3 w-3 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    </span>
+                  </div>
+                </div>
+
+                {/* Certificate Title & Issuer */}
+                <div className="mt-5 mb-5">
+                  <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-[#F5F3EF] group-hover:text-[#FF5722] transition-colors">
+                    {cred.title}
+                  </h3>
+                  <p className="mt-1 font-mono text-xs text-[#8E877E] uppercase tracking-wider">
+                    {cred.issuer}
+                  </p>
+                </div>
+
+                {/* Dedicated Aspect-[16/10] Certificate Frame — ZERO overlapping text */}
+                <div className="relative aspect-[16/10] w-full overflow-hidden border border-white/[0.08] bg-[#0E0D0C] flex items-center justify-center rounded-none group/cert shadow-inner">
+                  {!imgError[cred.id] ? (
+                    /* eslint-disable-next-line @next/next/no-img-element */
+                    <img
+                      src={cred.certificateImage}
+                      alt={cred.title}
+                      onError={() =>
+                        setImgError((prev) => ({ ...prev, [cred.id]: true }))
+                      }
+                      className="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-[1.03]"
+                    />
+                  ) : (
+                    <HolographicSealCard cred={cred} />
+                  )}
+
+                  {/* Subtle interactive hover sheen */}
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-[#FF5722]/[0.05] via-transparent to-white/[0.04] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                </div>
+
+                {/* Description */}
+                <p className="mt-5 text-xs sm:text-sm text-[#9E9890] leading-relaxed">
+                  {cred.description}
+                </p>
               </div>
 
-              {/* Certificate Title & Issuer */}
-              <h3 className="mt-5 text-2xl font-bold text-[#F5F3EF] group-hover:text-[#FF5722] transition-colors">
-                {cred.title}
-              </h3>
-              <p className="mt-1 font-mono text-xs text-[#9E9890]">
-                {cred.issuer}
-              </p>
-
-              {/* Visual Certificate Preview Frame */}
-              <div className="mt-5 relative h-56 w-full overflow-hidden rounded-2xl border border-white/[0.08] bg-[#121110] flex items-center justify-center">
-                {!imgError[cred.id] ? (
-                  /* eslint-disable-next-line @next/next/no-img-element */
-                  <img
-                    src={cred.certificateImage}
-                    alt={cred.title}
-                    onError={() =>
-                      setImgError((prev) => ({ ...prev, [cred.id]: true }))
-                    }
-                    className="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
-                  />
-                ) : (
-                  <HolographicSealCard cred={cred} />
-                )}
-
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end justify-between p-4 pointer-events-none">
-                  <span className="font-mono text-[11px] text-[#9E9890]">
-                    Auth: {cred.authorizedBy}
+              {/* Structured Metadata Micro-Rows Below (Zero Clipping) */}
+              <div className="mt-6 pt-4 border-t border-white/[0.07] flex flex-col gap-2 font-mono text-[11px]">
+                <div className="flex items-center justify-between gap-2 text-[#8E877E]">
+                  <span className="tracking-wider uppercase text-[10px] shrink-0">AUTHORIZED BY:</span>
+                  <span className="text-[#F5F3EF] font-medium truncate text-right">
+                    {cred.authorizedBy}
                   </span>
-                  <span className="inline-flex items-center gap-1 rounded-full bg-white/10 border border-white/[0.08] px-3 py-1 font-mono text-[11px] text-[#F5F3EF] backdrop-blur-md">
-                    <span>Inspect</span>
-                    <ArrowUpRight className="h-3 w-3" />
+                </div>
+                <div className="flex items-center justify-between gap-2 text-[#8E877E]">
+                  <span className="tracking-wider uppercase text-[10px] shrink-0">STATUS:</span>
+                  <span className="flex items-center gap-1.5 text-[#FF5722] font-semibold text-right">
+                    <CheckCircle2 className="h-3.5 w-3.5 shrink-0" />
+                    <span>VERIFIED ON-RECORD</span>
                   </span>
                 </div>
               </div>
-
-              <p className="mt-4 text-sm text-[#9E9890] leading-relaxed">
-                {cred.description}
-              </p>
             </motion.div>
           );
         })}
       </div>
 
-      {/* Fullscreen Holographic Lightbox Modal */}
+      {/* Fullscreen Architectural Lightbox Modal */}
       <AnimatePresence>
         {selectedCert && (
           <motion.div
@@ -201,18 +216,19 @@ export default function CredentialsVault() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setSelectedCert(null)}
-            className="fixed inset-0 z-[200] flex items-center justify-center bg-black/85 p-4 backdrop-blur-xl"
+            className="fixed inset-0 z-[200] flex items-center justify-center bg-black/85 p-4 sm:p-6 backdrop-blur-xl"
           >
             <motion.div
-              initial={{ scale: 0.92, opacity: 0 }}
+              initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.92, opacity: 0 }}
+              exit={{ scale: 0.95, opacity: 0 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative max-w-3xl w-full overflow-hidden rounded-3xl border border-white/[0.08] bg-[#181614] p-6 sm:p-8 shadow-2xl"
+              className="relative max-w-4xl w-full overflow-hidden rounded-none border border-white/[0.12] bg-[#121110] p-6 sm:p-8 shadow-2xl"
             >
+              {/* Modal Header */}
               <div className="flex items-center justify-between border-b border-white/[0.08] pb-4">
                 <div>
-                  <span className="font-mono text-xs uppercase text-[#FF5722]">
+                  <span className="font-mono text-xs uppercase tracking-wider text-[#FF5722]">
                     OFFICIAL VERIFIED CREDENTIAL
                   </span>
                   <h3 className="text-xl sm:text-2xl font-bold text-[#F5F3EF]">
@@ -221,13 +237,15 @@ export default function CredentialsVault() {
                 </div>
                 <button
                   onClick={() => setSelectedCert(null)}
-                  className="rounded-full border border-white/[0.08] bg-white/5 p-2 text-[#9E9890] hover:bg-white/10 hover:text-[#F5F3EF]"
+                  className="rounded-none border border-white/[0.10] bg-white/[0.03] p-2 text-[#9E9890] hover:text-[#FF5722] hover:border-[#FF5722]/50 transition-colors cursor-pointer"
+                  aria-label="Close modal"
                 >
                   <X className="h-5 w-5" />
                 </button>
               </div>
 
-              <div className="my-6 overflow-hidden rounded-2xl border border-white/[0.08] bg-[#121110] flex items-center justify-center min-h-[340px]">
+              {/* Modal Certificate View */}
+              <div className="my-6 overflow-hidden rounded-none border border-white/[0.08] bg-[#0E0D0C] flex items-center justify-center min-h-[300px] max-h-[65vh]">
                 {!imgError[selectedCert.id] ? (
                   /* eslint-disable-next-line @next/next/no-img-element */
                   <img
@@ -236,16 +254,17 @@ export default function CredentialsVault() {
                     onError={() =>
                       setImgError((prev) => ({ ...prev, [selectedCert.id]: true }))
                     }
-                    className="max-h-[65vh] w-auto object-contain rounded-xl"
+                    className="max-h-[65vh] w-auto max-w-full object-contain rounded-none"
                   />
                 ) : (
                   <HolographicSealCard cred={selectedCert} isModal />
                 )}
               </div>
 
-              <div className="flex flex-wrap items-center justify-between gap-4 text-xs font-mono text-[#9E9890]">
-                <span>ISSUER: {selectedCert.issuer}</span>
-                <span>AUTHORIZED BY: {selectedCert.authorizedBy}</span>
+              {/* Modal Footer Metadata */}
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs font-mono text-[#8E877E] border-t border-white/[0.08] pt-4">
+                <span>ISSUER: <strong className="text-[#F5F3EF]">{selectedCert.issuer}</strong></span>
+                <span>AUTHORIZED: <strong className="text-[#F5F3EF]">{selectedCert.authorizedBy}</strong></span>
               </div>
             </motion.div>
           </motion.div>
