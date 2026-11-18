@@ -21,7 +21,7 @@ export default function SkillsAndContact() {
              ======================================================== */}
           <div className="lg:col-span-4 lg:sticky lg:top-24 flex flex-col justify-start">
             {/* Eyebrow */}
-            <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[#FF5722] mb-3">
+            <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-accent mb-3">
               <Cpu className="h-4 w-4" />
               <span>06 / TECHNICAL ARSENAL</span>
             </div>
@@ -29,7 +29,7 @@ export default function SkillsAndContact() {
             {/* Heading */}
             <h2 className="text-4xl sm:text-5xl font-semibold tracking-[-0.03em] text-[#F5F3EF] leading-[1.12]">
               Full-Stack, 3D Web &amp; <br className="hidden lg:inline" />
-              <span className="text-[#FF5722]">Quant Stack.</span>
+              <span className="text-accent">Quant Stack.</span>
             </h2>
 
             {/* Subcopy */}
@@ -45,7 +45,7 @@ export default function SkillsAndContact() {
               </div>
               <div className="flex items-center justify-between text-[#8E877E]">
                 <span className="uppercase tracking-widest text-[10px]">CORE ENGINES</span>
-                <span className="text-[#FF5722] font-semibold">17 PRODUCTION TOOLS</span>
+                <span className="text-accent font-semibold">17 PRODUCTION TOOLS</span>
               </div>
               <div className="flex items-center justify-between text-[#8E877E]">
                 <span className="uppercase tracking-widest text-[10px]">ARCHITECTURE</span>
@@ -77,15 +77,15 @@ export default function SkillsAndContact() {
                     <div>
                       {/* Clean Header Bar */}
                       <div className="flex items-center justify-between border-b border-white/[0.07] pb-4 mb-5">
-                        <span className="font-mono text-[11px] uppercase tracking-wider text-[#FF5722] font-semibold">
+                        <span className="font-mono text-[11px] uppercase tracking-wider text-accent font-semibold">
                           {`// 0${colIdx + 1}`}
                         </span>
                         {isQuant ? (
-                          <Sparkles className="h-4 w-4 text-[#FF5722]" />
+                          <Sparkles className="h-4 w-4 text-accent" />
                         ) : isFrontend ? (
-                          <Layers className="h-4 w-4 text-[#FF5722]" />
+                          <Layers className="h-4 w-4 text-accent" />
                         ) : (
-                          <Terminal className="h-4 w-4 text-[#FF5722]" />
+                          <Terminal className="h-4 w-4 text-accent" />
                         )}
                       </div>
 
@@ -105,7 +105,7 @@ export default function SkillsAndContact() {
                               duration: 0.35,
                               delay: colIdx * 0.12 + itemIdx * 0.04,
                             }}
-                            className="rounded-none border border-white/[0.08] bg-white/[0.02] px-3 py-1.5 font-mono text-xs text-[#9E9890] transition-all duration-200 hover:border-[#FF5722]/70 hover:bg-[#FF5722]/[0.06] hover:text-[#F5F3EF] cursor-default select-none"
+                            className="rounded-none border border-white/[0.08] bg-white/[0.02] px-3 py-1.5 font-mono text-xs text-[#9E9890] transition-all duration-200 hover:border-accent/40 hover:bg-accent/[0.06] hover:text-[#F5F3EF] cursor-default select-none"
                           >
                             {skill}
                           </motion.span>
@@ -116,7 +116,7 @@ export default function SkillsAndContact() {
                     {/* Pillar Micro-Footer */}
                     <div className="mt-8 pt-4 border-t border-white/[0.05] flex items-center justify-between font-mono text-[10px] text-[#8E877E] uppercase tracking-widest">
                       <span>{group.items.length} TECHNOLOGIES</span>
-                      <span className="text-[#FF5722] font-semibold">VERIFIED STACK</span>
+                      <span className="text-accent font-semibold">VERIFIED STACK</span>
                     </div>
                   </div>
                 );
@@ -138,18 +138,18 @@ export default function SkillsAndContact() {
           className="relative overflow-hidden border border-white/[0.09] bg-[#121110]/90 backdrop-blur-xs rounded-none p-8 sm:p-12 lg:p-14 shadow-[0_20px_60px_rgba(0,0,0,0.5)]"
         >
           {/* Subtle top-right warm ember ambient glow */}
-          <div className="pointer-events-none absolute -top-24 -right-24 h-96 w-96 rounded-full bg-[radial-gradient(circle,rgba(255,87,34,0.06),transparent_70%)] blur-2xl" />
+          <div className="pointer-events-none absolute -top-24 -right-24 h-96 w-96 rounded-full bg-[radial-gradient(circle,rgba(198,255,0,0.05),transparent_70%)] blur-2xl" />
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
             {/* Left side: Eyebrow, Title, Subcopy, Divider, and FULL untruncated email */}
             <div className="lg:col-span-7 flex flex-col justify-between">
               <div>
-                <div className="font-mono text-[11px] tracking-[0.24em] uppercase text-[#FF5722] font-medium mb-3">
+                <div className="font-mono text-[11px] tracking-[0.24em] uppercase text-accent font-medium mb-3">
                   07 / CONTACT
                 </div>
 
                 <h2 className="text-4xl sm:text-6xl lg:text-7xl font-semibold tracking-[-0.035em] text-[#F5F3EF] leading-[1.02]">
-                  Let&apos;s <span className="text-[#FF5722]">connect.</span>
+                  Let&apos;s <span className="text-accent">connect.</span>
                 </h2>
 
                 <p className="mt-3 text-sm sm:text-base text-[#9E9890] leading-relaxed max-w-lg">
@@ -166,10 +166,10 @@ export default function SkillsAndContact() {
                 </span>
                 <a
                   href={`mailto:${PORTFOLIO_DATA.personal.email}`}
-                  className="group inline-flex items-center gap-2.5 text-lg sm:text-2xl md:text-3xl font-medium tracking-tight text-[#F5F3EF] hover:text-[#FF5722] transition-colors whitespace-nowrap"
+                  className="group inline-flex items-center gap-2.5 text-lg sm:text-2xl md:text-3xl font-medium tracking-tight text-[#F5F3EF] hover:text-accent transition-colors whitespace-nowrap"
                 >
                   <span>{PORTFOLIO_DATA.personal.email}</span>
-                  <ArrowUpRight className="h-5 w-5 sm:h-6 sm:w-6 shrink-0 text-[#FF5722] transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+                  <ArrowUpRight className="h-5 w-5 sm:h-6 sm:w-6 shrink-0 text-accent transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
                 </a>
               </div>
             </div>
@@ -181,17 +181,17 @@ export default function SkillsAndContact() {
                 href={PORTFOLIO_DATA.personal.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative flex items-center justify-between border border-white/[0.09] bg-[#151412]/80 hover:bg-[#181614] hover:border-[#FF5722]/60 px-6 sm:px-7 py-5 sm:py-6 transition-all duration-300 rounded-none w-full"
+                className="group relative flex items-center justify-between border border-white/[0.09] bg-[#151412]/80 hover:bg-[#181614] hover:border-accent/40 px-6 sm:px-7 py-5 sm:py-6 transition-all duration-300 rounded-none w-full"
               >
                 <div>
-                  <span className="text-lg sm:text-xl font-medium text-[#F5F3EF] tracking-tight group-hover:text-[#FF5722] transition-colors block">
+                  <span className="text-lg sm:text-xl font-medium text-[#F5F3EF] tracking-tight group-hover:text-accent transition-colors block">
                     GitHub
                   </span>
                   <span className="font-mono text-[10px] sm:text-[11px] tracking-[0.16em] uppercase text-[#8E877E] group-hover:text-[#9E9890] transition-colors mt-1 block">
                     SEE WHAT I&apos;M BUILDING • @lalitchoudhary0907
                   </span>
                 </div>
-                <ArrowUpRight className="h-5 w-5 shrink-0 text-[#FF5722] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                <ArrowUpRight className="h-5 w-5 shrink-0 text-accent transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </a>
 
               {/* Cell 2: LinkedIn */}
@@ -199,17 +199,17 @@ export default function SkillsAndContact() {
                 href={PORTFOLIO_DATA.personal.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative flex items-center justify-between border border-white/[0.09] bg-[#151412]/80 hover:bg-[#181614] hover:border-[#FF5722]/60 px-6 sm:px-7 py-5 sm:py-6 transition-all duration-300 rounded-none w-full"
+                className="group relative flex items-center justify-between border border-white/[0.09] bg-[#151412]/80 hover:bg-[#181614] hover:border-accent/40 px-6 sm:px-7 py-5 sm:py-6 transition-all duration-300 rounded-none w-full"
               >
                 <div>
-                  <span className="text-lg sm:text-xl font-medium text-[#F5F3EF] tracking-tight group-hover:text-[#FF5722] transition-colors block">
+                  <span className="text-lg sm:text-xl font-medium text-[#F5F3EF] tracking-tight group-hover:text-accent transition-colors block">
                     LinkedIn
                   </span>
                   <span className="font-mono text-[10px] sm:text-[11px] tracking-[0.16em] uppercase text-[#8E877E] group-hover:text-[#9E9890] transition-colors mt-1 block">
                     LET&apos;S CONNECT PROFESSIONALLY
                   </span>
                 </div>
-                <ArrowUpRight className="h-5 w-5 shrink-0 text-[#FF5722] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                <ArrowUpRight className="h-5 w-5 shrink-0 text-accent transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </a>
             </div>
           </div>
@@ -221,7 +221,7 @@ export default function SkillsAndContact() {
 
           <button
             onClick={scrollToTop}
-            className="hover:text-[#FF5722] transition-colors flex items-center gap-1 cursor-pointer"
+            className="hover:text-accent transition-colors flex items-center gap-1 cursor-pointer"
           >
             <span>BACK TO TOP</span>
             <span>↑</span>

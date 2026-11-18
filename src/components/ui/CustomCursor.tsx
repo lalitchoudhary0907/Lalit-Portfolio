@@ -64,21 +64,21 @@ export default function CustomCursor() {
           ringRef.current.style.width = size;
           ringRef.current.style.height = size;
           ringRef.current.style.borderColor = isHovered
-            ? "rgba(255, 87, 34, 0.85)"
-            : "rgba(255, 87, 34, 0.55)";
+            ? "rgba(198, 255, 0, 0.85)"
+            : "rgba(198, 255, 0, 0.55)";
           ringRef.current.style.backgroundColor = isHovered
-            ? "rgba(255, 87, 34, 0.09)"
+            ? "rgba(198, 255, 0, 0.08)"
             : "transparent";
           ringRef.current.style.boxShadow = isHovered
-            ? "0 0 24px rgba(255, 87, 34, 0.28), inset 0 0 12px rgba(255, 87, 34, 0.15)"
-            : "0 0 8px rgba(255, 87, 34, 0.1)";
+            ? "0 0 20px rgba(198, 255, 0, 0.22), inset 0 0 10px rgba(198, 255, 0, 0.12)"
+            : "0 0 6px rgba(198, 255, 0, 0.10)";
         }
 
         if (auraRef.current) {
           const auraSize = isHovered ? "88px" : "44px";
           auraRef.current.style.width = auraSize;
           auraRef.current.style.height = auraSize;
-          auraRef.current.style.opacity = isHovered ? "0.35" : "0.15";
+          auraRef.current.style.opacity = isHovered ? "0.25" : "0.10";
         }
 
         if (iconRef.current) {
@@ -137,7 +137,7 @@ export default function CustomCursor() {
           dotRef.current.style.transform = `translate3d(${dot.x.toFixed(2)}px, ${dot.y.toFixed(2)}px, 0) translate(-50%, -50%)`;
         }
 
-        // Ambient ember radial aura
+        // Ambient lime radial aura
         if (auraRef.current) {
           auraRef.current.style.transform = `translate3d(${ring.x.toFixed(2)}px, ${ring.y.toFixed(2)}px, 0) translate(-50%, -50%)`;
         }
@@ -172,23 +172,23 @@ export default function CustomCursor() {
 
   return (
     <div className="pointer-events-none fixed inset-0 z-[999] overflow-hidden select-none">
-      {/* Soft ambient ember radial aura */}
+      {/* Soft ambient lime radial aura */}
       <div
         ref={auraRef}
         style={{ width: 44, height: 44 }}
-        className="pointer-events-none fixed top-0 left-0 rounded-full bg-[#FF5722] opacity-0 blur-md transition-[width,height,opacity] duration-300 ease-out will-change-transform"
+        className="pointer-events-none fixed top-0 left-0 rounded-full bg-accent opacity-0 blur-md transition-[width,height,opacity] duration-300 ease-out will-change-transform"
       />
 
       {/* Outer gliding follower ring with velocity stretch and magnetic hover expansion */}
       <div
         ref={ringRef}
         style={{ width: 32, height: 32 }}
-        className="pointer-events-none fixed top-0 left-0 flex items-center justify-center rounded-full border border-[#FF5722]/60 opacity-0 transition-[width,height,background-color,border-color,box-shadow] duration-200 ease-out will-change-transform"
+        className="pointer-events-none fixed top-0 left-0 flex items-center justify-center rounded-full border border-accent/60 opacity-0 transition-[width,height,background-color,border-color,box-shadow] duration-200 ease-out will-change-transform"
       >
         {/* Subtle arrow indicator appearing on link hover */}
         <span
           ref={iconRef}
-          className="font-mono text-[11px] font-bold text-[#FF5722] opacity-0 transition-[opacity,transform] duration-200"
+          className="font-mono text-[11px] font-bold text-accent opacity-0 transition-[opacity,transform] duration-200"
         >
           ↗
         </span>
@@ -197,7 +197,7 @@ export default function CustomCursor() {
       {/* Crisp inner trailing dot */}
       <div
         ref={dotRef}
-        className="pointer-events-none fixed top-0 left-0 h-1.5 w-1.5 rounded-full bg-[#FF5722] opacity-0 transition-opacity duration-200 will-change-transform shadow-[0_0_8px_#FF5722]"
+        className="pointer-events-none fixed top-0 left-0 h-1.5 w-1.5 rounded-full bg-accent opacity-0 transition-opacity duration-200 will-change-transform shadow-[0_0_8px_#C6FF00]"
       />
     </div>
   );

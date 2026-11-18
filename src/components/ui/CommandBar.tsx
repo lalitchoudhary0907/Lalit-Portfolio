@@ -209,13 +209,13 @@ export default function CommandBar() {
       >
         <button
           onClick={() => setIsOpen(true)}
-          className="group flex items-center gap-3 rounded-full border border-white/[0.08] bg-[#181614]/90 px-5 py-2.5 text-xs font-mono text-[#9E9890] shadow-[0_10px_30px_rgba(0,0,0,0.6)] backdrop-blur-xl transition-all duration-300 hover:border-[#FF5722]/60 hover:bg-[#181614] hover:shadow-[0_0_30px_rgba(255,87,34,0.2)]"
+          className="group flex items-center gap-3 rounded-full border border-white/[0.08] bg-[#181614]/90 px-5 py-2.5 text-xs font-mono text-[#9E9890] shadow-[0_10px_30px_rgba(0,0,0,0.6)] backdrop-blur-xl transition-all duration-300 hover:border-accent/40 hover:bg-[#181614] hover:shadow-[0_0_24px_rgba(198,255,0,0.16)]"
         >
-          <span className="flex h-2 w-2 rounded-full bg-[#FF5722] animate-pulse" />
-          <span className="text-[#F5F3EF] group-hover:text-[#FF5722] transition-colors">
+          <span className="flex h-2 w-2 rounded-full bg-accent animate-pulse" />
+          <span className="text-[#F5F3EF] group-hover:text-accent transition-colors">
             Ask Lalit&apos;s AI Twin or Jump to Section
           </span>
-          <span className="flex items-center gap-1 rounded-md border border-white/10 bg-white/5 px-2 py-0.5 text-[10px] font-semibold text-[#9E9890] group-hover:border-[#FF5722]/50 group-hover:text-[#FF5722]">
+          <span className="flex items-center gap-1 rounded-md border border-white/10 bg-white/5 px-2 py-0.5 text-[10px] font-semibold text-[#9E9890] group-hover:border-accent/40 group-hover:text-accent">
             <Command className="h-3 w-3" />
             <span>K</span>
           </span>
@@ -245,7 +245,7 @@ export default function CommandBar() {
                 onSubmit={handleCustomQuery}
                 className="flex items-center border-b border-white/[0.08] px-5 py-4"
               >
-                <Search className="h-5 w-5 shrink-0 text-[#FF5722]" />
+                <Search className="h-5 w-5 shrink-0 text-accent" />
                 <input
                   ref={inputRef}
                   type="text"
@@ -284,9 +284,9 @@ export default function CommandBar() {
                       <button
                         key={target.href}
                         onClick={() => handleNavigate(target.href)}
-                        className="flex items-center gap-2 rounded-xl border border-white/[0.08] bg-white/5 px-2.5 py-1.5 text-left text-xs font-mono text-[#9E9890] hover:border-[#FF5722]/50 hover:bg-[#FF5722]/10 hover:text-[#FF5722] transition-all"
+                        className="flex items-center gap-2 rounded-xl border border-white/[0.08] bg-white/5 px-2.5 py-1.5 text-left text-xs font-mono text-[#9E9890] hover:border-accent/35 hover:bg-accent/12 hover:text-accent transition-all"
                       >
-                        <IconComp className="h-3.5 w-3.5 shrink-0 text-[#FF5722]" />
+                        <IconComp className="h-3.5 w-3.5 shrink-0 text-accent" />
                         <span className="truncate">{target.label}</span>
                       </button>
                     );
@@ -297,7 +297,7 @@ export default function CommandBar() {
               {/* AI Concierge Response Area */}
               <div className="p-5 space-y-4 max-h-[380px] overflow-y-auto">
                 <div className="flex items-center justify-between text-xs font-mono text-[#9E9890]">
-                  <span className="inline-flex items-center gap-1.5 text-[#FF5722]">
+                  <span className="inline-flex items-center gap-1.5 text-accent">
                     <Sparkles className="h-3.5 w-3.5" />
                     <span>LALIT&apos;S AI CONCIERGE (AUTONOMOUS AGENT)</span>
                   </span>
@@ -313,7 +313,7 @@ export default function CommandBar() {
                   <p className="text-sm sm:text-base leading-relaxed text-[#F5F3EF]">
                     {streamedText}
                     {isTyping && (
-                      <span className="inline-block h-4 w-1.5 translate-y-0.5 bg-[#FF5722] animate-pulse ml-1" />
+                      <span className="inline-block h-4 w-1.5 translate-y-0.5 bg-accent animate-pulse ml-1" />
                     )}
                   </p>
 
@@ -329,7 +329,7 @@ export default function CommandBar() {
                           onClick={() => {
                             if (!act.isExternal) handleNavigate(act.href);
                           }}
-                          className="flex items-center gap-1.5 rounded-full border border-[#FF5722]/30 bg-[#FF5722]/10 px-3 py-1.5 text-xs font-mono font-medium text-[#FF5722] hover:bg-[#FF5722] hover:text-[#121110] transition-all"
+                          className="flex items-center gap-1.5 rounded-full border border-accent/35 bg-accent/12 px-3 py-1.5 text-xs font-mono font-medium text-accent hover:bg-accent hover:text-on-accent transition-all"
                         >
                           <span>{act.label}</span>
                           <ArrowUpRight className="h-3 w-3" />
@@ -349,9 +349,9 @@ export default function CommandBar() {
                       <button
                         key={chip.id}
                         onClick={() => handleSelectPrompt(chip.id)}
-                        className="flex items-center gap-1.5 rounded-full border border-white/[0.08] bg-white/5 px-3 py-1.5 text-xs font-mono text-[#9E9890] hover:border-[#FF5722]/50 hover:bg-[#FF5722]/10 hover:text-[#FF5722] transition-all"
+                        className="flex items-center gap-1.5 rounded-full border border-white/[0.08] bg-white/5 px-3 py-1.5 text-xs font-mono text-[#9E9890] hover:border-accent/35 hover:bg-accent/12 hover:text-accent transition-all"
                       >
-                        <Terminal className="h-3 w-3 text-[#FF5722]" />
+                        <Terminal className="h-3 w-3 text-accent" />
                         <span>{chip.label}</span>
                       </button>
                     ))}

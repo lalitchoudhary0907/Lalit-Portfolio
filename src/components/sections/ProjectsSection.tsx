@@ -55,7 +55,7 @@ export default function ProjectsSection() {
           {/* Primary CTA navigating in SAME TAB to /projects */}
           <Link
             href="/projects"
-            className="mt-8 inline-flex items-center justify-between gap-3 rounded-md bg-[#FF5722] px-6 py-4 text-xs font-semibold tracking-[0.18em] uppercase text-[#121110] shadow-[0_0_24px_rgba(255,87,34,0.35)] transition-all hover:bg-[#ff6838]"
+            className="mt-8 inline-flex items-center justify-between gap-3 rounded-md bg-accent px-6 py-4 text-xs font-semibold tracking-[0.18em] uppercase text-on-accent shadow-[0_0_24px_rgba(198,255,0,0.22)] transition-all hover:bg-accent-hover"
           >
             <span>VIEW ALL PROJECTS</span>
             <ArrowUpRight className="h-4 w-4" />
@@ -116,7 +116,7 @@ function ProjectCard({ project }: { project: ProjectCardData }) {
   return (
     <Link
       href="/projects"
-      className="group relative block cursor-pointer overflow-hidden rounded-none border border-white/[0.08] bg-[#100F0E]/90 transition-all duration-300 hover:border-[#FF5722]/60 hover:shadow-[0_12px_36px_rgba(255,87,34,0.14)] shrink-0 h-[330px] sm:h-[352px]"
+      className="group relative block cursor-pointer overflow-hidden rounded-none border border-white/[0.08] bg-[#100F0E]/90 transition-all duration-300 hover:border-accent/40 hover:shadow-[0_12px_36px_rgba(198,255,0,0.12)] shrink-0 h-[330px] sm:h-[352px]"
     >
       {/* Full-Bleed Artwork / Preview Canvas Edge-to-Edge */}
       <div className="absolute inset-0 select-none overflow-hidden">
@@ -142,25 +142,25 @@ function ProjectCard({ project }: { project: ProjectCardData }) {
         <div className="absolute inset-1.5 border border-white/[0.07] border-dashed transition-colors duration-300 group-hover:border-white/[0.14]" />
 
         {/* 4 Corner Crosshairs */}
-        <span className="absolute top-0.5 left-0.5 font-mono text-[9px] text-white/30 leading-none select-none transition-colors group-hover:text-[#FF5722]/60">+</span>
-        <span className="absolute top-0.5 right-0.5 font-mono text-[9px] text-white/30 leading-none select-none transition-colors group-hover:text-[#FF5722]/60">+</span>
-        <span className="absolute bottom-0.5 left-0.5 font-mono text-[9px] text-white/30 leading-none select-none transition-colors group-hover:text-[#FF5722]/60">+</span>
-        <span className="absolute bottom-0.5 right-0.5 font-mono text-[9px] text-white/30 leading-none select-none transition-colors group-hover:text-[#FF5722]/60">+</span>
+        <span className="absolute top-0.5 left-0.5 font-mono text-[9px] text-white/30 leading-none select-none transition-colors group-hover:text-accent/60">+</span>
+        <span className="absolute top-0.5 right-0.5 font-mono text-[9px] text-white/30 leading-none select-none transition-colors group-hover:text-accent/60">+</span>
+        <span className="absolute bottom-0.5 left-0.5 font-mono text-[9px] text-white/30 leading-none select-none transition-colors group-hover:text-accent/60">+</span>
+        <span className="absolute bottom-0.5 right-0.5 font-mono text-[9px] text-white/30 leading-none select-none transition-colors group-hover:text-accent/60">+</span>
 
         {/* Perimeter Axis Tick Marks */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3 h-[1px] bg-white/20 transition-colors group-hover:bg-[#FF5722]/50" />
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3 h-[1px] bg-white/20 transition-colors group-hover:bg-[#FF5722]/50" />
-        <div className="absolute left-0 top-1/2 -translate-y-1/2 h-3 w-[1px] bg-white/20 transition-colors group-hover:bg-[#FF5722]/50" />
-        <div className="absolute right-0 top-1/2 -translate-y-1/2 h-3 w-[1px] bg-white/20 transition-colors group-hover:bg-[#FF5722]/50" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3 h-[1px] bg-white/20 transition-colors group-hover:bg-accent/40" />
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3 h-[1px] bg-white/20 transition-colors group-hover:bg-accent/40" />
+        <div className="absolute left-0 top-1/2 -translate-y-1/2 h-3 w-[1px] bg-white/20 transition-colors group-hover:bg-accent/40" />
+        <div className="absolute right-0 top-1/2 -translate-y-1/2 h-3 w-[1px] bg-white/20 transition-colors group-hover:bg-accent/40" />
       </div>
 
       {/* Integrated Title & Tag Sitting Directly Over Black Fade (Zero Text Collisions) */}
       <div className="absolute inset-x-0 bottom-0 z-30 px-3.5 sm:px-4 pb-3.5 sm:pb-4 pt-3 flex items-baseline justify-between gap-2.5 w-full">
         <div className="flex items-center gap-1.5 min-w-0">
-          <span className="text-xs sm:text-[13px] font-medium text-[#F5F3EF] tracking-tight leading-snug truncate transition-colors group-hover:text-[#FF5722]">
+          <span className="text-xs sm:text-[13px] font-medium text-[#F5F3EF] tracking-tight leading-snug truncate transition-colors group-hover:text-accent">
             {displayTitle}
           </span>
-          <ArrowUpRight className="h-3 w-3 sm:h-3.5 sm:w-3.5 shrink-0 text-[#9E9890] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-[#FF5722]" />
+          <ArrowUpRight className="h-3 w-3 sm:h-3.5 sm:w-3.5 shrink-0 text-[#9E9890] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent" />
         </div>
         <span className="shrink-0 whitespace-nowrap font-mono text-[9px] sm:text-[10px] tracking-[0.12em] uppercase text-[#E5B85C] font-medium text-right">
           {rightTag}

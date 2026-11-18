@@ -204,21 +204,21 @@ export default function JourneySection() {
       id="journey"
       className="relative z-10 mx-auto w-full max-w-[1380px] px-6 py-28 sm:px-10 lg:px-14 border-t border-white/[0.08] overflow-hidden"
     >
-      {/* Subtle Ambient Ember Glow */}
-      <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[500px] w-[900px] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(255,87,34,0.05),transparent_70%)] blur-3xl -z-10" />
+      {/* Subtle Ambient Accent Glow */}
+      <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[500px] w-[900px] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(198,255,0,0.04),transparent_70%)] blur-3xl -z-10" />
 
       {/* ========================================================
           SECTION HEADER & COUNTER / PREV-NEXT CONTROLS
          ======================================================== */}
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-8 sm:mb-12 border-b border-white/[0.07] pb-6">
         <div>
-          <div className="font-mono text-xs uppercase tracking-widest text-[#FF5722] mb-3 flex items-center gap-2">
-            <span className="h-1.5 w-1.5 rounded-full bg-[#FF5722]" />
+          <div className="font-mono text-xs uppercase tracking-widest text-accent mb-3 flex items-center gap-2">
+            <span className="h-1.5 w-1.5 rounded-full bg-accent" />
             <span>04 / TIME JOURNEY</span>
           </div>
 
           <h2 className="text-4xl sm:text-6xl font-semibold tracking-[-0.035em] text-[#F5F3EF] leading-[1.04]">
-            A path that keeps <span className="text-[#FF5722]">growing.</span>
+            A path that keeps <span className="text-accent">growing.</span>
           </h2>
 
           <p className="mt-3 max-w-xl text-sm sm:text-base text-[#9E9890] leading-relaxed">
@@ -238,14 +238,14 @@ export default function JourneySection() {
             <button
               onClick={handlePrev}
               aria-label="Previous Milestone"
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-white/[0.12] bg-[#161412] text-[#F5F3EF] hover:border-[#FF5722] hover:text-[#FF5722] transition-colors cursor-pointer"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-white/[0.12] bg-[#161412] text-[#F5F3EF] hover:border-accent hover:text-accent transition-colors cursor-pointer"
             >
               <ChevronLeft className="h-5 w-5" />
             </button>
             <button
               onClick={handleNext}
               aria-label="Next Milestone"
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-[#FF5722]/50 bg-[#FF5722]/10 text-[#FF5722] hover:bg-[#FF5722] hover:text-[#121110] transition-colors cursor-pointer"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-accent/35 bg-accent/12 text-accent hover:bg-accent hover:text-on-accent transition-colors cursor-pointer"
             >
               <ChevronRight className="h-5 w-5" />
             </button>
@@ -276,7 +276,7 @@ export default function JourneySection() {
             className="relative z-10 max-w-3xl px-4 flex flex-col items-center"
           >
             {/* Tag / Period Eyebrow */}
-            <span className="font-mono text-[11px] sm:text-xs tracking-[0.24em] uppercase text-[#FF5722] font-semibold mb-3">
+            <span className="font-mono text-[11px] sm:text-xs tracking-[0.24em] uppercase text-accent font-semibold mb-3">
               {active.tag}
             </span>
 
@@ -286,7 +286,7 @@ export default function JourneySection() {
             </h3>
 
             {/* Subtitle */}
-            <p className="mt-2.5 font-mono text-xs sm:text-sm text-[#FF5722]">
+            <p className="mt-2.5 font-mono text-xs sm:text-sm text-accent">
               {active.subtitle}
             </p>
 
@@ -310,9 +310,9 @@ export default function JourneySection() {
           {/* Base Inactive Hairline Rail Line */}
           <div className="absolute top-10 left-0 right-0 h-[1px] bg-white/[0.12]" />
 
-          {/* Active #FF5722 Gliding Progress Line */}
+          {/* Active Accent Gliding Progress Line */}
           <motion.div
-            className="absolute top-10 left-0 h-[1.5px] bg-gradient-to-r from-[#FF5722] via-[#FF5722] to-[#FF5722] shadow-[0_0_8px_#FF5722]"
+            className="absolute top-10 left-0 h-[1.5px] bg-gradient-to-r from-accent via-accent to-accent shadow-[0_0_8px_rgba(198,255,0,0.25)]"
             initial={false}
             animate={{ width: `${progressPercent}%` }}
             transition={{ type: "spring", stiffness: 260, damping: 28 }}
@@ -337,20 +337,20 @@ export default function JourneySection() {
                     {isActive ? (
                       <motion.div
                         layoutId="activeTimelineIndicator"
-                        className="relative flex h-3.5 w-3.5 items-center justify-center rounded-full bg-[#FF5722] shadow-[0_0_16px_#FF5722]"
+                        className="relative flex h-3.5 w-3.5 items-center justify-center rounded-full bg-accent shadow-[0_0_14px_rgba(198,255,0,0.35)]"
                         transition={{ type: "spring", stiffness: 350, damping: 28 }}
                       >
-                        <span className="absolute -inset-1 rounded-full bg-[#FF5722]/40 animate-ping" />
+                        <span className="absolute -inset-1 rounded-full bg-accent/35 animate-ping" />
                       </motion.div>
                     ) : (
-                      <div className="h-2.5 w-2.5 rounded-full border border-white/30 bg-[#121110] transition-transform duration-200 group-hover:scale-125 group-hover:border-[#FF5722]" />
+                      <div className="h-2.5 w-2.5 rounded-full border border-white/30 bg-[#121110] transition-transform duration-200 group-hover:scale-125 group-hover:border-accent" />
                     )}
                   </div>
 
                   {/* Tag */}
                   <span
                     className={`font-mono text-[10px] tracking-widest uppercase transition-colors ${
-                      isActive ? "text-[#FF5722] font-semibold" : "text-[#7A736A] group-hover:text-[#9E9890]"
+                      isActive ? "text-accent font-semibold" : "text-[#7A736A] group-hover:text-[#9E9890]"
                     }`}
                   >
                     {item.tag}
@@ -359,7 +359,7 @@ export default function JourneySection() {
                   {/* Milestone Title */}
                   <h4
                     className={`mt-1 text-xs sm:text-[13px] font-medium tracking-tight transition-colors line-clamp-1 ${
-                      isActive ? "text-[#F5F3EF] font-bold" : "text-[#D1CCC4] group-hover:text-[#FF5722]"
+                      isActive ? "text-[#F5F3EF] font-bold" : "text-[#D1CCC4] group-hover:text-accent"
                     }`}
                   >
                     {item.title}

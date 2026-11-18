@@ -12,7 +12,7 @@ function HolographicSealCard({
   cred: (typeof PORTFOLIO_DATA.credentials)[0];
   isModal?: boolean;
 }) {
-  const accentColor = "#FF5722";
+  const accentColor = "#C6FF00";
 
   return (
     <div
@@ -42,7 +42,7 @@ function HolographicSealCard({
 
       {/* Top Header */}
       <div className="relative z-10 flex w-full items-center justify-between border-b border-white/[0.08] pb-3 text-[11px] font-mono">
-        <span className="flex items-center gap-1.5 text-[#FF5722]">
+        <span className="flex items-center gap-1.5 text-accent">
           <ShieldCheck className="h-3.5 w-3.5" />
           <span>CRYPTOGRAPHIC VERIFICATION SEAL</span>
         </span>
@@ -51,16 +51,16 @@ function HolographicSealCard({
 
       {/* Center Holographic Seal & Info */}
       <div className="relative z-10 my-4 flex flex-col items-center space-y-3">
-        <div className="relative flex h-20 w-20 items-center justify-center rounded-full border border-[#FF5722]/50 bg-[#FF5722]/10 text-[#FF5722] shadow-[0_0_35px_rgba(255,87,34,0.25)]">
+        <div className="relative flex h-20 w-20 items-center justify-center rounded-full border border-accent/35 bg-accent/12 text-accent shadow-[0_0_24px_rgba(198,255,0,0.18)]">
           <Award className="h-10 w-10 animate-pulse" />
           <div
-            className="absolute inset-0 rounded-full border border-dashed border-[#FF5722]/60 animate-spin"
+            className="absolute inset-0 rounded-full border border-dashed border-accent/35 animate-spin"
             style={{ animationDuration: "16s" }}
           />
         </div>
 
         <div>
-          <span className="inline-block rounded-none px-3 py-0.5 text-[10px] font-mono font-bold tracking-wider uppercase bg-[#FF5722]/15 text-[#FF5722] border border-[#FF5722]/30">
+          <span className="inline-block rounded-none px-3 py-0.5 text-[10px] font-mono font-bold tracking-wider uppercase bg-accent/12 text-accent border border-accent/35">
             {cred.badgeText}
           </span>
           <h4 className="mt-2 text-xl font-bold text-[#F5F3EF] tracking-tight">
@@ -83,7 +83,7 @@ function HolographicSealCard({
             <span className="text-[#9E9890]/60">AUTHORIZED BY: </span>
             <span className="text-[#F5F3EF]">{cred.authorizedBy}</span>
           </div>
-          <div className="flex items-center gap-1 text-[#FF5722]">
+          <div className="flex items-center gap-1 text-accent">
             <CheckCircle2 className="h-3.5 w-3.5" />
             <span>VERIFIED ON-RECORD</span>
           </div>
@@ -110,7 +110,7 @@ export default function CredentialsVault() {
            ======================================================== */}
         <div className="lg:col-span-4 lg:sticky lg:top-24 flex flex-col justify-start">
           {/* Eyebrow */}
-          <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[#FF5722] mb-3">
+          <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-accent mb-3">
             <Award className="h-4 w-4" />
             <span>05 / CREDENTIALS VAULT</span>
           </div>
@@ -133,12 +133,12 @@ export default function CredentialsVault() {
             </div>
             <div className="flex items-center justify-between text-[#8E877E]">
               <span className="uppercase tracking-widest text-[10px]">ISSUING BODIES</span>
-              <span className="text-[#FF5722] font-semibold">WORLDQUANT • MLH / DEV</span>
+              <span className="text-accent font-semibold">WORLDQUANT • MLH / DEV</span>
             </div>
             <div className="flex items-center justify-between text-[#8E877E]">
               <span className="uppercase tracking-widest text-[10px]">STATUS</span>
               <span className="flex items-center gap-1.5 text-[#F5F3EF]">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#FF5722] animate-pulse" />
+                <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />
                 ACTIVE ON-RECORD
               </span>
             </div>
@@ -158,12 +158,12 @@ export default function CredentialsVault() {
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.55, delay: idx * 0.15 }}
                 onClick={() => setSelectedCert(cred)}
-                className="group cursor-pointer relative overflow-hidden rounded-none border border-white/[0.09] bg-[#131210]/90 p-5 sm:p-6 lg:p-7 transition-all duration-300 hover:border-[#FF5722]/60 hover:bg-[#151412] shadow-[0_12px_40px_rgba(0,0,0,0.4)] flex flex-col justify-between"
+                className="group cursor-pointer relative overflow-hidden rounded-none border border-white/[0.09] bg-[#131210]/90 p-5 sm:p-6 lg:p-7 transition-all duration-300 hover:border-accent/35 hover:bg-[#151412] shadow-[0_12px_40px_rgba(0,0,0,0.4)] flex flex-col justify-between"
               >
                 <div>
                   {/* Top Badge, Date & Inspect Trigger */}
                   <div className="flex items-center justify-between gap-3 border-b border-white/[0.07] pb-4">
-                    <span className="inline-flex items-center gap-1.5 font-mono text-[11px] font-semibold tracking-wider uppercase text-[#FF5722]">
+                    <span className="inline-flex items-center gap-1.5 font-mono text-[11px] font-semibold tracking-wider uppercase text-accent">
                       <ShieldCheck className="h-3.5 w-3.5" />
                       {cred.badgeText}
                     </span>
@@ -173,7 +173,7 @@ export default function CredentialsVault() {
                         <Calendar className="h-3 w-3" />
                         {cred.date}
                       </span>
-                      <span className="inline-flex items-center gap-1 font-mono text-[11px] text-[#9E9890] group-hover:text-[#FF5722] transition-colors">
+                      <span className="inline-flex items-center gap-1 font-mono text-[11px] text-[#9E9890] group-hover:text-accent transition-colors">
                         <span>Inspect</span>
                         <ArrowUpRight className="h-3 w-3 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                       </span>
@@ -182,7 +182,7 @@ export default function CredentialsVault() {
 
                   {/* Certificate Title & Issuer */}
                   <div className="mt-5 mb-4">
-                    <h3 className="text-lg sm:text-xl font-bold tracking-tight text-[#F5F3EF] group-hover:text-[#FF5722] transition-colors">
+                    <h3 className="text-lg sm:text-xl font-bold tracking-tight text-[#F5F3EF] group-hover:text-accent transition-colors">
                       {cred.title}
                     </h3>
                     <p className="mt-1 font-mono text-[11px] text-[#8E877E] uppercase tracking-wider">
@@ -207,7 +207,7 @@ export default function CredentialsVault() {
                     )}
 
                     {/* Subtle interactive hover sheen */}
-                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-[#FF5722]/[0.05] via-transparent to-white/[0.04] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-accent/[0.04] via-transparent to-white/[0.04] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                   </div>
 
                   {/* Description */}
@@ -226,7 +226,7 @@ export default function CredentialsVault() {
                   </div>
                   <div className="flex items-center justify-between gap-2 text-[#8E877E]">
                     <span className="tracking-wider uppercase text-[10px] shrink-0">STATUS:</span>
-                    <span className="flex items-center gap-1.5 text-[#FF5722] font-semibold text-right">
+                    <span className="flex items-center gap-1.5 text-accent font-semibold text-right">
                       <CheckCircle2 className="h-3.5 w-3.5 shrink-0" />
                       <span>VERIFIED ON-RECORD</span>
                     </span>
@@ -258,7 +258,7 @@ export default function CredentialsVault() {
               {/* Modal Header */}
               <div className="flex items-center justify-between border-b border-white/[0.08] pb-4">
                 <div>
-                  <span className="font-mono text-xs uppercase tracking-wider text-[#FF5722]">
+                  <span className="font-mono text-xs uppercase tracking-wider text-accent">
                     OFFICIAL VERIFIED CREDENTIAL
                   </span>
                   <h3 className="text-xl sm:text-2xl font-bold text-[#F5F3EF]">
@@ -267,7 +267,7 @@ export default function CredentialsVault() {
                 </div>
                 <button
                   onClick={() => setSelectedCert(null)}
-                  className="rounded-none border border-white/[0.10] bg-white/[0.03] p-2 text-[#9E9890] hover:text-[#FF5722] hover:border-[#FF5722]/50 transition-colors cursor-pointer"
+                  className="rounded-none border border-white/[0.10] bg-white/[0.03] p-2 text-[#9E9890] hover:text-accent hover:border-accent/35 transition-colors cursor-pointer"
                   aria-label="Close modal"
                 >
                   <X className="h-5 w-5" />

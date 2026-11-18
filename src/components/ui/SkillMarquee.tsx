@@ -56,7 +56,7 @@ export default function SkillMarquee() {
   return (
     <section
       ref={containerRef}
-      className="relative z-10 w-full overflow-hidden border-t border-b border-[#FF5722] shadow-[0_0_24px_-10px_rgba(255,87,34,0.45)] bg-[#111010]/80 backdrop-blur-[2px] py-0 select-none"
+      className="relative z-10 w-full overflow-hidden border-t border-b border-accent shadow-[0_0_20px_-10px_rgba(198,255,0,0.30)] bg-[#111010]/80 backdrop-blur-[2px] py-0 select-none"
     >
       {/* Horizontal Gradient Vignette Mask Across Viewport Edges */}
       <div
@@ -78,7 +78,7 @@ export default function SkillMarquee() {
               <span key={`r1-${idx}`} className="inline-flex items-center">
                 <span
                   className={
-                    idx % 2 === 0 ? "text-[#FF5722]" : "text-[#F5F3EF]"
+                    idx % 2 === 0 ? "text-accent" : "text-[#F5F3EF]"
                   }
                 >
                   {skill}
@@ -101,7 +101,7 @@ export default function SkillMarquee() {
               <span key={`r2-${idx}`} className="inline-flex items-center">
                 <span
                   className={
-                    idx % 2 === 0 ? "text-[#F5F3EF]" : "text-[#FF5722]"
+                    idx % 2 === 0 ? "text-[#F5F3EF]" : "text-accent"
                   }
                 >
                   {skill}

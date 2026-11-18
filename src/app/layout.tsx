@@ -22,7 +22,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="bg-[#111010] text-[#F5F3EF] antialiased selection:bg-[#FF5722]/25 selection:text-[#F5F3EF]">
+      <body className="bg-[#111010] text-[#F5F3EF] antialiased selection:bg-accent/20 selection:text-on-accent">
         <CustomCursor />
         {children}
       </body>

@@ -83,9 +83,9 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Lower Ribbon (Large Uppercase Solid #FF5722 Orange Text on Transparent Background) */}
+          {/* Lower Ribbon (Large Uppercase Solid Accent Lime Text on Transparent Background) */}
           <div className="flex w-full overflow-hidden bg-transparent py-0.5">
-            <div className="animate-marquee-reverse flex items-center gap-8 whitespace-nowrap font-sans font-bold text-4xl sm:text-6xl tracking-tight uppercase text-[#FF5722]">
+            <div className="animate-marquee-reverse flex items-center gap-8 whitespace-nowrap font-sans font-bold text-4xl sm:text-6xl tracking-tight uppercase text-accent">
               {[...Array(6)].map((_, i) => (
                 <span key={i} className="flex items-center gap-8">
                   <span>I LEARN BY BUILDING WHAT I WISH EXISTED</span>
@@ -100,15 +100,15 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* PORTRAIT CUTOUT SLOT (CENTERED LOWER HERO WITH ANCHORED WARM EMBER GLOW) */}
+        {/* PORTRAIT CUTOUT SLOT (CENTERED LOWER HERO WITH ANCHORED ACCENT LIME GLOW) */}
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center justify-end select-none pointer-events-none">
           <div className="relative flex flex-col items-center justify-end">
-            {/* Broad Vertical-Oval Warm Ember Aura Behind Torso & Arms */}
+            {/* Broad Vertical-Oval Accent Lime Aura Behind Torso & Arms (~8-10% alpha) */}
             <div
               className="pointer-events-none absolute left-1/2 top-[26%] -translate-x-1/2 -translate-y-1/2 w-[560px] sm:w-[680px] h-[520px] sm:h-[620px] rounded-full blur-3xl z-0"
               style={{
                 background:
-                  "radial-gradient(ellipse 52% 58% at 50% 52%, rgba(255, 87, 34, 0.34) 0%, rgba(255, 87, 34, 0.16) 38%, rgba(18, 17, 16, 0) 74%)",
+                  "radial-gradient(ellipse 52% 58% at 50% 52%, rgba(198, 255, 0, 0.10) 0%, rgba(198, 255, 0, 0.05) 38%, rgba(18, 17, 16, 0) 74%)",
               }}
             />
 
@@ -141,7 +141,7 @@ export default function HomePage() {
         {/* Bottom-right: crisp rectangular outlined button SCROLL TO WORK ↓ */}
         <a
           href="#about"
-          className="absolute right-8 sm:right-12 bottom-8 z-30 border border-white/15 bg-transparent px-5 py-3 font-mono text-[11px] tracking-[0.2em] uppercase text-[#F5F3EF] hover:border-[#FF5722] hover:text-[#FF5722] transition-colors"
+          className="absolute right-8 sm:right-12 bottom-8 z-30 border border-white/15 bg-transparent px-5 py-3 font-mono text-[11px] tracking-[0.2em] uppercase text-[#F5F3EF] hover:border-accent hover:text-accent transition-colors"
         >
           SCROLL TO WORK ↓
         </a>
@@ -155,7 +155,7 @@ export default function HomePage() {
         id="about"
         className="relative z-10 mx-auto max-w-6xl px-6 py-28 border-t border-white/[0.08]"
       >
-        <div className="font-mono text-xs uppercase tracking-widest text-[#FF5722] mb-8">
+        <div className="font-mono text-xs uppercase tracking-widest text-accent mb-8">
           01 / ABOUT
         </div>
 
@@ -168,8 +168,8 @@ export default function HomePage() {
         >
           <h2 className="text-3xl sm:text-5xl lg:text-[3.5rem] font-medium tracking-tight text-[#F5F3EF] leading-[1.18] sm:leading-[1.18]">
             Hi, I&apos;m Lalit. I&apos;m a student at{" "}
-            <span className="text-[#FF5722]">Newton School of Technology</span>, exploring{" "}
-            <span className="text-[#FF5722]">AI, software, and quantitative systems</span>. I like turning curious ideas into things people can actually use.
+            <span className="text-accent">Newton School of Technology</span>, exploring{" "}
+            <span className="text-accent">AI, software, and quantitative systems</span>. I like turning curious ideas into things people can actually use.
           </h2>
         </motion.div>
 
@@ -189,7 +189,7 @@ export default function HomePage() {
               <div className="flex items-center justify-between text-xs font-mono uppercase tracking-wider text-[#9E9890]">
                 <span>{metric.label}</span>
                 {idx === 0 ? (
-                  <Award className="h-4 w-4 text-[#FF5722]" />
+                  <Award className="h-4 w-4 text-accent" />
                 ) : (
                   <Cpu className="h-4 w-4 text-[#9E9890]" />
                 )}
@@ -211,7 +211,7 @@ export default function HomePage() {
         id="communities"
         className="relative z-10 mx-auto max-w-6xl px-6 py-28 border-t border-white/[0.08]"
       >
-        <div className="font-mono text-xs uppercase tracking-widest text-[#FF5722] mb-6">
+        <div className="font-mono text-xs uppercase tracking-widest text-accent mb-6">
           02 / COMMUNITIES
         </div>
 
@@ -236,12 +236,12 @@ export default function HomePage() {
           >
             <div>
               <div className="flex items-center justify-between">
-                <span className="font-mono text-[10px] uppercase tracking-wider text-[#FF5722] font-semibold">
+                <span className="font-mono text-[10px] uppercase tracking-wider text-accent font-semibold">
                   QUANT RESEARCH
                 </span>
                 <a
                   href="#credentials"
-                  className="flex h-8 w-8 items-center justify-center rounded-full bg-white/[0.05] border border-white/[0.08] text-[#F5F3EF] group-hover:bg-[#FF5722] group-hover:text-[#121110] transition-all"
+                  className="flex h-8 w-8 items-center justify-center rounded-full bg-white/[0.05] border border-white/[0.08] text-[#F5F3EF] group-hover:bg-accent group-hover:text-on-accent transition-all"
                   aria-label="Inspect WorldQuant Credential"
                 >
                   <ArrowUpRight className="h-4 w-4" />
@@ -260,7 +260,7 @@ export default function HomePage() {
               </p>
             </div>
 
-            <div className="mt-6 pt-4 border-t border-white/[0.06] flex items-center justify-between text-xs font-mono text-[#FF5722]">
+            <div className="mt-6 pt-4 border-t border-white/[0.06] flex items-center justify-between text-xs font-mono text-accent">
               <span>VERIFIED HONOR</span>
               <a href="#credentials" className="hover:underline flex items-center gap-1">
                 <span>Inspect</span>
@@ -279,12 +279,12 @@ export default function HomePage() {
           >
             <div>
               <div className="flex items-center justify-between">
-                <span className="font-mono text-[10px] uppercase tracking-wider text-[#FF5722] font-semibold">
+                <span className="font-mono text-[10px] uppercase tracking-wider text-accent font-semibold">
                   OPEN SOURCE • IN-PERSON
                 </span>
                 <a
                   href="#credentials"
-                  className="flex h-8 w-8 items-center justify-center rounded-full bg-white/[0.05] border border-white/[0.08] text-[#F5F3EF] group-hover:bg-[#FF5722] group-hover:text-[#121110] transition-all"
+                  className="flex h-8 w-8 items-center justify-center rounded-full bg-white/[0.05] border border-white/[0.08] text-[#F5F3EF] group-hover:bg-accent group-hover:text-on-accent transition-all"
                   aria-label="Inspect Hacktoberfest Credential"
                 >
                   <ArrowUpRight className="h-4 w-4" />
@@ -303,7 +303,7 @@ export default function HomePage() {
               </p>
             </div>
 
-            <div className="mt-6 pt-4 border-t border-white/[0.06] flex items-center justify-between text-xs font-mono text-[#FF5722]">
+            <div className="mt-6 pt-4 border-t border-white/[0.06] flex items-center justify-between text-xs font-mono text-accent">
               <span>OFFICIAL ATTENDEE</span>
               <a href="#credentials" className="hover:underline flex items-center gap-1">
                 <span>Inspect</span>
@@ -322,12 +322,12 @@ export default function HomePage() {
           >
             <div>
               <div className="flex items-center justify-between">
-                <span className="font-mono text-[10px] uppercase tracking-wider text-[#FF5722] font-semibold">
+                <span className="font-mono text-[10px] uppercase tracking-wider text-accent font-semibold">
                   ACADEMIC RIGOR
                 </span>
                 <a
                   href="#journey"
-                  className="flex h-8 w-8 items-center justify-center rounded-full bg-white/[0.05] border border-white/[0.08] text-[#F5F3EF] group-hover:bg-[#FF5722] group-hover:text-[#121110] transition-all"
+                  className="flex h-8 w-8 items-center justify-center rounded-full bg-white/[0.05] border border-white/[0.08] text-[#F5F3EF] group-hover:bg-accent group-hover:text-on-accent transition-all"
                   aria-label="Explore Academic Journey"
                 >
                   <ArrowUpRight className="h-4 w-4" />
@@ -346,7 +346,7 @@ export default function HomePage() {
               </p>
             </div>
 
-            <div className="mt-6 pt-4 border-t border-white/[0.06] flex items-center justify-between text-xs font-mono text-[#FF5722]">
+            <div className="mt-6 pt-4 border-t border-white/[0.06] flex items-center justify-between text-xs font-mono text-accent">
               <span>ACTIVE STUDENT</span>
               <a href="#journey" className="hover:underline flex items-center gap-1">
                 <span>Journey</span>

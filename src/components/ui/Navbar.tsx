@@ -18,7 +18,7 @@ export default function Navbar() {
       {/* Left Corner: Clean Uppercase Tracked Sans */}
       <a
         href="#top"
-        className="text-xs tracking-[0.24em] uppercase text-[#F5F3EF] font-medium hover:text-[#FF5722] transition-colors shrink-0"
+        className="text-xs tracking-[0.24em] uppercase text-[#F5F3EF] font-medium hover:text-accent transition-colors shrink-0"
       >
         LALIT CHOUDHARY
       </a>

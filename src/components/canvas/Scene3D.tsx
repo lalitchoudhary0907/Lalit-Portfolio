@@ -18,7 +18,10 @@ if (typeof window !== "undefined") {
   };
 }
 
-// Connected node-and-wave lattice network in warm ember (#FF5722) and soft white (#F5F3EF)
+// Shared Three.js color instance for centralized electric acid lime accent
+const ACCENT_COLOR = new THREE.Color("#C6FF00");
+
+// Connected node-and-wave lattice network in electric acid lime (#C6FF00) and soft white (#F5F3EF)
 function ConnectedLatticeNetwork() {
   const linesRef = useRef<THREE.LineSegments>(null);
   const pointsRef = useRef<THREE.Points>(null);
@@ -180,7 +183,7 @@ function ConnectedLatticeNetwork() {
 
   return (
     <group ref={groupRef} position={[0, 0.15, -1]} rotation={[0.62, 0, 0]}>
-      {/* 1. Connected Lattice Lines (Warm Ember #FF5722 at ~18% opacity) */}
+      {/* 1. Connected Lattice Lines (Electric Acid Lime #C6FF00 at ~8% opacity for razor-sharp, non-bloomy contrast) */}
       <lineSegments ref={linesRef}>
         <bufferGeometry>
           <bufferAttribute
@@ -193,9 +196,9 @@ function ConnectedLatticeNetwork() {
           />
         </bufferGeometry>
         <lineBasicMaterial
-          color="#FF5722"
+          color={ACCENT_COLOR}
           transparent
-          opacity={0.18}
+          opacity={0.08}
           depthWrite={false}
         />
       </lineSegments>

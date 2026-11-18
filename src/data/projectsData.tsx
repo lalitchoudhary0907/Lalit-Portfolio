@@ -155,12 +155,12 @@ export function FocusFlowArtwork() {
   return (
     <div className="relative h-full w-full flex flex-col justify-between p-4 sm:p-5 pb-16 bg-gradient-to-b from-[#181512] via-[#121110] to-[#0D0C0B] overflow-hidden">
       {/* Ambient radial glow */}
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,87,34,0.22),transparent_65%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(198,255,0,0.12),transparent_65%)]" />
 
       {/* Top micro status bar */}
       <div className="relative z-10 flex items-center justify-between">
-        <span className="inline-flex items-center gap-1.5 rounded-full bg-[#FF5722]/15 border border-[#FF5722]/30 px-2.5 py-0.5 text-[9px] font-mono text-[#FF5722]">
-          <span className="h-1.5 w-1.5 rounded-full bg-[#FF5722] animate-ping" />
+        <span className="inline-flex items-center gap-1.5 rounded-full bg-accent/12 border border-accent/35 px-2.5 py-0.5 text-[9px] font-mono text-accent">
+          <span className="h-1.5 w-1.5 rounded-full bg-accent animate-ping" />
           FLOW ENGINE ACTIVE
         </span>
         <span className="font-mono text-[9px] text-[#9E9890] tracking-wider">v2.4 PROD</span>
@@ -170,7 +170,7 @@ export function FocusFlowArtwork() {
       <div className="relative z-10 mt-2">
         <h4 className="text-base sm:text-lg font-bold tracking-tight text-[#F5F3EF] leading-snug">
           Deep focus, <br />
-          <span className="text-[#FF5722]">zero friction.</span>
+          <span className="text-accent">zero friction.</span>
         </h4>
         <p className="text-[10px] sm:text-[11px] text-[#9E9890] mt-0.5 line-clamp-1">
           Cognitive telemetry with sub-100ms edge sync.
@@ -184,19 +184,19 @@ export function FocusFlowArtwork() {
             <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
             SPRINT // ARCHITECTURE
           </span>
-          <span className="text-[#FF5722] font-semibold">45:00</span>
+          <span className="text-accent font-semibold">45:00</span>
         </div>
 
         {/* Progress bar */}
         <div className="h-1.5 w-full overflow-hidden rounded-full bg-white/10">
-          <div className="h-full w-4/5 rounded-full bg-gradient-to-r from-[#FF5722] to-amber-400" />
+          <div className="h-full w-4/5 rounded-full bg-gradient-to-r from-accent to-emerald-400" />
         </div>
 
         {/* Task telemetry list */}
         <div className="space-y-1 pt-1 text-[9px] font-mono">
           <div className="flex items-center justify-between text-[#F5F3EF]">
             <span className="truncate">✓ Sub-45ms Edge Cache</span>
-            <span className="text-[#FF5722] shrink-0 font-bold">98.4%</span>
+            <span className="text-accent shrink-0 font-bold">98.4%</span>
           </div>
           <div className="flex items-center justify-between text-[#9E9890]">
             <span className="truncate">● WebGL Canvas Compute</span>
@@ -208,7 +208,7 @@ export function FocusFlowArtwork() {
       {/* Micro metrics footer row */}
       <div className="relative z-10 flex items-center justify-between font-mono text-[9px] text-[#9E9890] pt-1">
         <span>EDGE LATENCY: &lt;45ms</span>
-        <span className="text-[#FF5722]">DISTRACTION-FREE</span>
+        <span className="text-accent">DISTRACTION-FREE</span>
       </div>
     </div>
   );
@@ -309,7 +309,7 @@ export function OvertoneArtwork() {
             <div
               key={i}
               style={{ height: `${h}%` }}
-              className="flex-1 rounded-full bg-gradient-to-t from-amber-600/40 to-[#FF5722]"
+              className="flex-1 rounded-full bg-gradient-to-t from-amber-600/40 to-accent"
             />
           ))}
         </div>
@@ -337,12 +337,12 @@ export function WorldQuantArtwork() {
   return (
     <div className="relative h-full w-full flex flex-col justify-between p-4 sm:p-5 pb-16 bg-gradient-to-b from-[#181310] via-[#120E0C] to-[#0D0A08] overflow-hidden">
       {/* Ambient financial glow */}
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,87,34,0.22),transparent_65%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(198,255,0,0.12),transparent_65%)]" />
 
       {/* Top status */}
       <div className="relative z-10 flex items-center justify-between">
-        <span className="inline-flex items-center gap-1.5 rounded-full bg-[#FF5722]/15 border border-[#FF5722]/30 px-2.5 py-0.5 text-[9px] font-mono text-[#FF5722]">
-          <Award className="h-2.5 w-2.5 text-[#FF5722]" />
+        <span className="inline-flex items-center gap-1.5 rounded-full bg-accent/12 border border-accent/35 px-2.5 py-0.5 text-[9px] font-mono text-accent">
+          <Award className="h-2.5 w-2.5 text-accent" />
           GOLD MEDALIST
         </span>
         <span className="font-mono text-[9px] text-[#9E9890]">BRAIN ALPHAS</span>
@@ -352,7 +352,7 @@ export function WorldQuantArtwork() {
       <div className="relative z-10 mt-2">
         <h4 className="text-base sm:text-lg font-bold tracking-tight text-[#F5F3EF] leading-snug">
           Market-neutral alphas <br />
-          <span className="text-[#FF5722]">at scale.</span>
+          <span className="text-accent">at scale.</span>
         </h4>
         <p className="text-[10px] sm:text-[11px] text-[#9E9890] mt-0.5 line-clamp-1">
           High-fitness statistical arbitrage & predictive modeling.
@@ -366,8 +366,8 @@ export function WorldQuantArtwork() {
           <svg viewBox="0 0 200 50" className="h-full w-full overflow-visible">
             <defs>
               <linearGradient id="wq-grad" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#FF5722" stopOpacity="0.3" />
-                <stop offset="100%" stopColor="#FF5722" stopOpacity="0.0" />
+                <stop offset="0%" stopColor="#C6FF00" stopOpacity="0.25" />
+                <stop offset="100%" stopColor="#C6FF00" stopOpacity="0.0" />
               </linearGradient>
             </defs>
             <path
@@ -377,10 +377,10 @@ export function WorldQuantArtwork() {
             <path
               d="M 0 42 Q 30 38, 60 32 T 110 20 T 160 10 L 200 4"
               fill="none"
-              stroke="#FF5722"
+              stroke="#C6FF00"
               strokeWidth="2"
             />
-            <circle cx="200" cy="4" r="2.5" fill="#FF5722" />
+            <circle cx="200" cy="4" r="2.5" fill="#C6FF00" />
           </svg>
         </div>
 
@@ -388,7 +388,7 @@ export function WorldQuantArtwork() {
         <div className="grid grid-cols-2 gap-1.5 pt-1 border-t border-white/[0.08] text-[9px] font-mono">
           <div className="flex justify-between">
             <span className="text-[#9E9890]">SHARPE:</span>
-            <span className="text-[#FF5722] font-bold">2.41</span>
+            <span className="text-accent font-bold">2.41</span>
           </div>
           <div className="flex justify-between">
             <span className="text-[#9E9890]">FITNESS:</span>
@@ -400,7 +400,7 @@ export function WorldQuantArtwork() {
           </div>
           <div className="flex justify-between">
             <span className="text-[#9E9890]">STATUS:</span>
-            <span className="text-[#FF5722]">PROD</span>
+            <span className="text-accent">PROD</span>
           </div>
         </div>
       </div>
@@ -408,7 +408,7 @@ export function WorldQuantArtwork() {
       {/* Footer */}
       <div className="relative z-10 flex items-center justify-between font-mono text-[9px] text-[#9E9890] pt-1">
         <span>WORLDQUANT BRAIN</span>
-        <span className="text-[#FF5722]">GOLD TIER</span>
+        <span className="text-accent">GOLD TIER</span>
       </div>
     </div>
   );

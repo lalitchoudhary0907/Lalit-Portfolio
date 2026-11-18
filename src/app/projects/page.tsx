@@ -153,12 +153,12 @@ export default function ProjectsPage() {
   return (
     <div
       ref={containerRef}
-      className="relative h-dvh max-h-dvh w-full overflow-hidden bg-[#121110] text-[#F5F3EF] flex flex-col justify-between selection:bg-[#FF5722] selection:text-[#121110] cursor-default select-none"
+      className="relative h-dvh max-h-dvh w-full overflow-hidden bg-[#121110] text-[#F5F3EF] flex flex-col justify-between selection:bg-accent selection:text-on-accent cursor-default select-none"
     >
       {/* Background ambient lighting */}
       <div className="pointer-events-none fixed inset-0 z-0">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 h-[450px] w-[800px] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(255,87,34,0.08),transparent_70%)] blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 h-[350px] w-[500px] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(255,87,34,0.05),transparent_70%)] blur-3xl" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 h-[450px] w-[800px] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(198,255,0,0.05),transparent_70%)] blur-3xl" />
+        <div className="absolute bottom-0 right-1/4 h-[350px] w-[500px] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(198,255,0,0.035),transparent_70%)] blur-3xl" />
       </div>
 
       {/* ========================================================
@@ -168,9 +168,9 @@ export default function ProjectsPage() {
         {/* Left: Back Link to Home */}
         <Link
           href="/"
-          className="group inline-flex items-center gap-2.5 text-xs tracking-[0.24em] uppercase text-[#F5F3EF] font-medium hover:text-[#FF5722] transition-colors"
+          className="group inline-flex items-center gap-2.5 text-xs tracking-[0.24em] uppercase text-[#F5F3EF] font-medium hover:text-accent transition-colors"
         >
-          <ArrowLeft className="h-3.5 w-3.5 transition-transform group-hover:-translate-x-1 text-[#FF5722]" />
+          <ArrowLeft className="h-3.5 w-3.5 transition-transform group-hover:-translate-x-1 text-accent" />
           <span>LALIT CHOUDHARY</span>
         </Link>
 
@@ -179,8 +179,8 @@ export default function ProjectsPage() {
           <Link href="/#about" className="hover:text-[#F5F3EF] transition-colors">
             ABOUT
           </Link>
-          <span className="text-[#FF5722] font-semibold flex items-center gap-1.5">
-            <span className="h-1.5 w-1.5 rounded-full bg-[#FF5722]" />
+          <span className="text-accent font-semibold flex items-center gap-1.5">
+            <span className="h-1.5 w-1.5 rounded-full bg-accent" />
             PROJECTS
           </span>
           <Link href="/#journey" className="hover:text-[#F5F3EF] transition-colors">
@@ -194,7 +194,7 @@ export default function ProjectsPage() {
         {/* Mobile Back Button */}
         <Link
           href="/"
-          className="md:hidden font-mono text-[11px] tracking-widest uppercase text-[#FF5722] border border-[#FF5722]/40 rounded px-2.5 py-1"
+          className="md:hidden font-mono text-[11px] tracking-widest uppercase text-accent border border-accent/35 rounded px-2.5 py-1"
         >
           HOME
         </Link>
@@ -207,8 +207,8 @@ export default function ProjectsPage() {
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 border-b border-white/[0.08] pb-2.5">
           <div>
             {/* Eyebrow */}
-            <div className="font-mono text-[10px] tracking-[0.24em] uppercase text-[#FF5722] mb-1 flex items-center gap-2">
-              <span className="h-1.5 w-1.5 rounded-full bg-[#FF5722]" />
+            <div className="font-mono text-[10px] tracking-[0.24em] uppercase text-accent mb-1 flex items-center gap-2">
+              <span className="h-1.5 w-1.5 rounded-full bg-accent" />
               01 / SELECTED WORK
             </div>
 
@@ -233,14 +233,14 @@ export default function ProjectsPage() {
                   onClick={() => setSelectedFilter(cat.id)}
                   className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 font-mono text-[10px] tracking-[0.16em] uppercase transition-all duration-200 cursor-pointer ${
                     isActive
-                      ? "bg-[#FF5722] text-[#121110] font-bold shadow-[0_0_14px_rgba(255,87,34,0.35)]"
+                      ? "bg-accent text-on-accent font-bold shadow-[0_0_14px_rgba(198,255,0,0.20)]"
                       : "bg-[#181614] border border-white/[0.10] text-[#9E9890] hover:text-[#F5F3EF] hover:border-white/20"
                   }`}
                 >
                   <span>{cat.label}</span>
                   <span
                     className={`text-[9px] rounded-full px-1.5 py-0.2 ${
-                      isActive ? "bg-[#121110]/20 text-[#121110]" : "text-[#7A736A]"
+                      isActive ? "bg-on-accent/20 text-on-accent" : "text-[#7A736A]"
                     }`}
                   >
                     0{cat.count}
@@ -314,13 +314,13 @@ export default function ProjectsPage() {
                 }}
                 className={`absolute w-[280px] sm:w-[320px] md:w-[340px] rounded-xl overflow-hidden cursor-pointer transition-colors duration-300 ${
                   isActive
-                    ? "border-2 border-[#FF5722] shadow-[0_20px_50px_rgba(255,87,34,0.30)] bg-[#181614]"
+                    ? "border-2 border-accent shadow-[0_20px_50px_rgba(198,255,0,0.18)] bg-[#181614]"
                     : "border border-white/[0.10] shadow-[0_15px_35px_rgba(0,0,0,0.6)] bg-[#141210]/95 hover:border-white/30"
                 }`}
               >
                 {/* Active Card Glow Tag */}
                 {isActive && (
-                  <div className="absolute top-3 right-3 z-20 flex items-center gap-1.5 rounded-full bg-[#FF5722] px-2.5 py-0.5 text-[9px] font-mono font-bold uppercase tracking-wider text-[#121110] shadow-[0_0_12px_rgba(255,87,34,0.5)]">
+                  <div className="absolute top-3 right-3 z-20 flex items-center gap-1.5 rounded-full bg-accent px-2.5 py-0.5 text-[9px] font-mono font-bold uppercase tracking-wider text-on-accent shadow-[0_0_12px_rgba(198,255,0,0.20)]">
                     <Sparkles className="h-2.5 w-2.5" />
                     FEATURED
                   </div>
@@ -341,7 +341,7 @@ export default function ProjectsPage() {
                 {/* Card Editorial Information */}
                 <div className="border-t border-white/[0.08] bg-[#161412] p-3.5 sm:p-4">
                   <div className="flex items-center justify-between font-mono text-[9px] sm:text-[10px] tracking-[0.16em] uppercase mb-1 gap-2">
-                    <span className="text-[#FF5722] font-semibold shrink-0">{project.index} //</span>
+                    <span className="text-accent font-semibold shrink-0">{project.index} //</span>
                     <span className="text-[#E5B85C] font-semibold truncate text-right">
                       {project.rightLabel || project.category}
                     </span>
@@ -365,7 +365,7 @@ export default function ProjectsPage() {
                             target="_blank"
                             rel="noopener noreferrer"
                             onClick={(e) => e.stopPropagation()}
-                            className="inline-flex items-center gap-1.5 rounded-md bg-[#FF5722] px-3.5 py-1.5 text-[11px] font-mono font-bold uppercase tracking-wider text-[#121110] shadow-[0_0_14px_rgba(255,87,34,0.3)] transition-all hover:bg-[#ff6838] cursor-pointer"
+                            className="inline-flex items-center gap-1.5 rounded-md bg-accent px-3.5 py-1.5 text-[11px] font-mono font-bold uppercase tracking-wider text-on-accent shadow-[0_0_14px_rgba(198,255,0,0.18)] transition-all hover:bg-accent-hover cursor-pointer"
                           >
                             <span>OPEN STORY</span>
                             <ArrowUpRight className="h-3 w-3" />
@@ -380,7 +380,7 @@ export default function ProjectsPage() {
                                   target="_blank"
                                   rel="noopener noreferrer"
                                   onClick={(e) => e.stopPropagation()}
-                                  className="inline-flex items-center gap-1 rounded-md border border-white/[0.14] bg-white/[0.04] px-2.5 py-1.5 text-[10px] font-mono uppercase tracking-wider text-[#F5F3EF] hover:border-[#FF5722] hover:text-[#FF5722] transition-colors cursor-pointer"
+                                  className="inline-flex items-center gap-1 rounded-md border border-white/[0.14] bg-white/[0.04] px-2.5 py-1.5 text-[10px] font-mono uppercase tracking-wider text-[#F5F3EF] hover:border-accent hover:text-accent transition-colors cursor-pointer"
                                 >
                                   <span>LIVE</span>
                                   <ExternalLink className="h-2.5 w-2.5" />
@@ -391,7 +391,7 @@ export default function ProjectsPage() {
                               target="_blank"
                               rel="noopener noreferrer"
                               onClick={(e) => e.stopPropagation()}
-                              className="inline-flex items-center gap-1.5 rounded-md border border-white/[0.14] bg-white/[0.04] px-2.5 py-1.5 text-[10px] font-mono uppercase tracking-wider text-[#F5F3EF] hover:border-[#FF5722] hover:text-[#FF5722] transition-colors cursor-pointer"
+                              className="inline-flex items-center gap-1.5 rounded-md border border-white/[0.14] bg-white/[0.04] px-2.5 py-1.5 text-[10px] font-mono uppercase tracking-wider text-[#F5F3EF] hover:border-accent hover:text-accent transition-colors cursor-pointer"
                             >
                               <GitHubIcon className="h-2.5 w-2.5" />
                               <span>CODE</span>
@@ -417,14 +417,14 @@ export default function ProjectsPage() {
         <div className="pointer-events-none absolute inset-y-0 left-0 right-0 max-w-[1440px] mx-auto px-4 sm:px-8 flex items-center justify-between z-40">
           <button
             onClick={handlePrev}
-            className="pointer-events-auto flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-full border border-white/[0.12] bg-[#161412]/80 backdrop-blur-md text-[#F5F3EF] transition-all hover:border-[#FF5722] hover:text-[#FF5722] hover:scale-105 active:scale-95 cursor-pointer"
+            className="pointer-events-auto flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-full border border-white/[0.12] bg-[#161412]/80 backdrop-blur-md text-[#F5F3EF] transition-all hover:border-accent hover:text-accent hover:scale-105 active:scale-95 cursor-pointer"
             aria-label="Previous project"
           >
             <ChevronLeft className="h-5 w-5 sm:h-6 sm:w-6" />
           </button>
           <button
             onClick={handleNext}
-            className="pointer-events-auto flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-full border border-white/[0.12] bg-[#161412]/80 backdrop-blur-md text-[#F5F3EF] transition-all hover:border-[#FF5722] hover:text-[#FF5722] hover:scale-105 active:scale-95 cursor-pointer"
+            className="pointer-events-auto flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-full border border-white/[0.12] bg-[#161412]/80 backdrop-blur-md text-[#F5F3EF] transition-all hover:border-accent hover:text-accent hover:scale-105 active:scale-95 cursor-pointer"
             aria-label="Next project"
           >
             <ChevronRight className="h-5 w-5 sm:h-6 sm:w-6" />
@@ -439,9 +439,9 @@ export default function ProjectsPage() {
         <div className="w-full max-w-[1440px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-2.5 text-xs font-mono uppercase tracking-[0.18em]">
           {/* Left: Interactive Prompt & Counter */}
           <div className="flex items-center gap-3 text-[#8E877E] text-[11px] min-w-0">
-            <span className="text-[#FF5722] shrink-0">:</span>
+            <span className="text-accent shrink-0">:</span>
             <span className="truncate">SCROLL OR DRAG TO EXPLORE • SELECT A PROJECT</span>
-            <span className="shrink-0 rounded bg-white/5 border border-white/10 px-2 py-0.5 text-[#FF5722] font-semibold">
+            <span className="shrink-0 rounded bg-white/5 border border-white/10 px-2 py-0.5 text-accent font-semibold">
               0{activeIndex + 1} / 0{total}
             </span>
           </div>
@@ -450,20 +450,20 @@ export default function ProjectsPage() {
           <div className="flex items-center gap-3">
             <button
               onClick={handlePrev}
-              className="rounded border border-white/[0.14] bg-[#161412] px-3 py-1.5 text-[11px] text-[#F5F3EF] transition-all hover:border-[#FF5722] hover:text-[#FF5722] cursor-pointer"
+              className="rounded border border-white/[0.14] bg-[#161412] px-3 py-1.5 text-[11px] text-[#F5F3EF] transition-all hover:border-accent hover:text-accent cursor-pointer"
             >
               ← PREV
             </button>
             <button
               onClick={handleNext}
-              className="rounded border border-white/[0.14] bg-[#161412] px-3 py-1.5 text-[11px] text-[#F5F3EF] transition-all hover:border-[#FF5722] hover:text-[#FF5722] cursor-pointer"
+              className="rounded border border-white/[0.14] bg-[#161412] px-3 py-1.5 text-[11px] text-[#F5F3EF] transition-all hover:border-accent hover:text-accent cursor-pointer"
             >
               NEXT →
             </button>
             <span className="text-white/20">|</span>
             <Link
               href="/"
-              className="rounded border border-[#FF5722]/50 bg-[#FF5722]/10 px-3.5 py-1.5 text-[11px] font-semibold text-[#FF5722] transition-all hover:bg-[#FF5722] hover:text-[#121110] cursor-pointer"
+              className="rounded border border-accent/35 bg-accent/12 px-3.5 py-1.5 text-[11px] font-semibold text-accent transition-all hover:bg-accent hover:text-on-accent cursor-pointer"
             >
               ← BACK TO HOME
             </Link>
