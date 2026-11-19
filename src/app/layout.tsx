@@ -18,7 +18,7 @@ export default function RootLayout({
       <head>
         <script
           dangerouslySetInnerHTML={{
-            __html: `if (typeof window !== "undefined") { if ("scrollRestoration" in history) { history.scrollRestoration = "manual"; } if (window.location.hash === "#journey" || window.location.hash === "#time-journey") { history.replaceState(null, "", window.location.pathname); } window.scrollTo(0, 0); }`,
+            __html: `if (typeof window !== "undefined") { if ("scrollRestoration" in history) { history.scrollRestoration = "manual"; } if (window.location.hash === "#journey" || window.location.hash === "#time-journey") { history.replaceState(null, "", window.location.pathname); } window.scrollTo(0, 0); if (window.matchMedia("(pointer: fine) and (hover: hover)").matches) { document.documentElement.classList.add("has-custom-cursor"); } }`,
           }}
         />
       </head>

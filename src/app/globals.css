@@ -50,6 +50,27 @@ a,
   cursor: pointer;
 }
 
+/* Hide native OS cursor exclusively on fine-pointer desktop viewports where CustomCursor is active */
+@media (pointer: fine) and (hover: hover) {
+  html,
+  body,
+  a,
+  button,
+  input,
+  textarea,
+  select,
+  [role="button"],
+  .cursor-pointer,
+  .cursor-default,
+  .cursor-grab,
+  .cursor-grabbing,
+  *,
+  *::before,
+  *::after {
+    cursor: none !important;
+  }
+}
+
 body {
   background-color: #111010;
   color: #f5f3ef;
